@@ -1,0 +1,107 @@
+import mongoose from "mongoose"
+const productschema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        trim: true,
+    },
+    description: {
+        type: String,
+        required: true,
+    },
+    price: {
+        type: Number,
+        required: true,
+    },
+    discountprice: {
+        type: Number
+    },
+    countinstock: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    sku: {
+        type: String,
+        unique: true,
+        required: true,
+    },
+    category: {
+        type: String,
+        required: true,
+    },
+    brand: {
+        type: String,
+    },
+    sizes: {
+        type: [String],
+        required: true
+    },
+    colors: {
+        type: [String],
+        required: true
+    },
+    collections: {
+        type: String,
+        required: true
+    },
+    material: {
+        type: String,
+    },
+    gender: {
+        type: String,
+        enum: ["Men", "Women", "Unisex"]
+    },
+    images: [
+        {
+            url: {
+                type: String,
+                required: true
+            },
+            alttext: {
+                type: String,
+            },
+
+        }
+    ],
+    isfeatured: {
+        type: Boolean,
+        default: false
+    },
+    ispublised: {
+        type: Boolean,
+        default: false
+    },
+    rating: {
+        type: Number,
+        default: 0
+    },
+    numreviews: {
+        type: Number,
+        default: 0
+    },
+    tags: [String],
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "user",
+        required: true
+    },
+    metatitle: {
+        type: String
+    },
+    metadescription: {
+        type: String
+    },
+    metakeywords: {
+        type: String
+    },
+    dimensions: {
+        length: Number,
+        width: Number,
+        height: Number
+    },
+    weight: Number
+
+}, { timestamps: true })
+const product = mongoose.model("product", productschema)
+export default product
