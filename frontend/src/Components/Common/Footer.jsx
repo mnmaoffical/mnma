@@ -16,7 +16,7 @@ const Footer = () => {
     setMessage('')
 
     try {
-      const res = await fetch('http://localhost:5000/api/subscribe', {
+      const res = await fetch('https://mnma-backend.onrender.com/api/subscribe', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

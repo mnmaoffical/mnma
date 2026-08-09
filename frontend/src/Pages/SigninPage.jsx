@@ -29,7 +29,7 @@ export default function SigninPage() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/user/login",
+        "https://mnma-backend.onrender.com/api/user/login",
         {
           method: "POST",
           headers: {

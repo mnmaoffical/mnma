@@ -35,7 +35,7 @@ export default function SignupPage() {
       setError("");
 
       const response = await fetch(
-        "http://localhost:5000/api/user/register",
+        "https://mnma-backend.onrender.com/api/user/register",
         {
           method: "POST",
           headers: {
