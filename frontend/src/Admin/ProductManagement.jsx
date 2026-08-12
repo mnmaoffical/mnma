@@ -8,6 +8,7 @@ import {
   updateproduct,
   deleteproduct,
 } from "../redux/slices/adminproductslice";
+import { useTranslation } from "react-i18next";
 
 const EMPTY_FORM = {
   name: "",
@@ -33,9 +34,10 @@ const EMPTY_FORM = {
 };
 
 export default function ProductManagement() {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
   const dispatch = useDispatch();
 
-  
   const { products = [], loading = false, error = null } = useSelector(
     (state) => state.adminproduct || {}
   );
@@ -47,8 +49,6 @@ export default function ProductManagement() {
   useEffect(() => {
     dispatch(fetchadminproduct());
   }, [dispatch]);
-
-  // ─── Handlers ───────────────────────────────────────────────
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -102,15 +102,13 @@ export default function ProductManagement() {
   };
 
   const handleDelete = async (id) => {
-    if (!window.confirm("Delete this product?")) return;
+    if (!window.confirm(t('admin.products.deleteConfirm'))) return;
     try {
       await dispatch(deleteproduct(id)).unwrap();
     } catch (err) {
-      alert(err || "Delete failed");
+      alert(err || t('admin.products.deleteFailed'));
     }
   };
-
-  // ─── Upload image ────────────────────────────────────────────
 
   const uploadImage = async (file) => {
     const formData = new FormData();
@@ -122,14 +120,12 @@ export default function ProductManagement() {
       {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("token")}`, // ✅ auth header
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       }
     );
     return res.data.imageurl;
   };
-
-  // ─── Build payload ───────────────────────────────────────────
 
   const parseList = (str) =>
     str
@@ -141,9 +137,9 @@ export default function ProductManagement() {
     let imageUrl = ""; 
 
     if (form.image) {
-      imageUrl = await uploadImage(form.image); // upload new image
+      imageUrl = await uploadImage(form.image);
     } else if (form.imagePreview) {
-      imageUrl = form.imagePreview; // keep existing image url on edit
+      imageUrl = form.imagePreview;
     }
 
     return {
@@ -169,8 +165,6 @@ export default function ProductManagement() {
     };
   };
 
-  // ─── Submit ──────────────────────────────────────────────────
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitError("");
@@ -180,33 +174,39 @@ export default function ProductManagement() {
 
       if (editingId) {
         await dispatch(updateproduct({ id: editingId, productdata: payload })).unwrap();
-         toast.success("Product updated successfully!");
+        toast.success(t('admin.products.updateProduct'));
       } else {
         await dispatch(createproduct(payload)).unwrap();
-         toast.success("Product added successfully!");
+        toast.success(t('admin.products.addProduct'));
       }
 
       resetForm();
       dispatch(fetchadminproduct());
     } catch (err) {
-      const msg = typeof err === "string" ? err : err?.message || "Failed to save product";
+      const msg = typeof err === "string" ? err : err?.message || t('admin.products.failedToSave');
       setSubmitError(msg);
     }
   };
 
-
+  const formatPrice = (price) => {
+    const amount = Number(price) || 0;
+    if (isRtl) {
+      return new Intl.NumberFormat('ar-AE', { style: 'currency', currency: 'AED' }).format(amount);
+    }
+    return `AED ${amount}`;
+  };
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-3xl font-bold mb-6">Product Management</h1>
+      <h1 className="text-3xl font-bold mb-6">{t('admin.products.title')}</h1>
 
-      {/* ── Form ── */}
+      {/* Form */}
       <form
         onSubmit={handleSubmit}
         className="grid grid-cols-1 gap-4 bg-white p-6 rounded-lg shadow mb-10"
       >
         <h2 className="text-xl font-semibold">
-          {editingId ? "Edit Product" : "Add New Product"}
+          {editingId ? t('admin.products.editProduct') : t('admin.products.addNew')}
         </h2>
 
         {submitError && (
@@ -217,25 +217,25 @@ export default function ProductManagement() {
 
         {/* Name */}
         <div>
-          <label className="block mb-1 font-medium">Product Name *</label>
+          <label className="block mb-1 font-medium">{t('admin.products.labels.productName')}</label>
           <input
             type="text"
             name="name"
             value={form.name}
             onChange={handleChange}
-            className="border p-2 rounded w-full"
+            className="border p-2 rounded w-full text-sm"
             required
           />
         </div>
 
         {/* Description */}
         <div>
-          <label className="block mb-1 font-medium">Description *</label>
+          <label className="block mb-1 font-medium">{t('admin.products.labels.description')}</label>
           <textarea
             name="description"
             value={form.description}
             onChange={handleChange}
-            className="border p-2 rounded w-full"
+            className="border p-2 rounded w-full text-sm"
             rows="4"
             required
           />
@@ -244,26 +244,26 @@ export default function ProductManagement() {
         {/* Price & Discount */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block mb-1 font-medium">Price *</label>
+            <label className="block mb-1 font-medium">{t('admin.products.labels.price')}</label>
             <input
               type="number"
               name="price"
               value={form.price}
               onChange={handleChange}
-              className="border p-2 rounded w-full"
+              className="border p-2 rounded w-full text-sm"
               min="0"
               step="0.01"
               required
             />
           </div>
           <div>
-            <label className="block mb-1 font-medium">Discount Price</label>
+            <label className="block mb-1 font-medium">{t('admin.products.labels.discountPrice')}</label>
             <input
               type="number"
               name="discountprice"
               value={form.discountprice}
               onChange={handleChange}
-              className="border p-2 rounded w-full"
+              className="border p-2 rounded w-full text-sm"
               min="0"
               step="0.01"
             />
@@ -273,25 +273,25 @@ export default function ProductManagement() {
         {/* Stock & SKU */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block mb-1 font-medium">Count in Stock *</label>
+            <label className="block mb-1 font-medium">{t('admin.products.labels.countInStock')}</label>
             <input
               type="number"
               name="countinstock"
               value={form.countinstock}
               onChange={handleChange}
-              className="border p-2 rounded w-full"
+              className="border p-2 rounded w-full text-sm"
               min="0"
               required
             />
           </div>
           <div>
-            <label className="block mb-1 font-medium">SKU *</label>
+            <label className="block mb-1 font-medium">{t('admin.products.labels.sku')}</label>
             <input
               type="text"
               name="sku"
               value={form.sku}
               onChange={handleChange}
-              className="border p-2 rounded w-full"
+              className="border p-2 rounded w-full text-sm"
             />
           </div>
         </div>
@@ -299,23 +299,23 @@ export default function ProductManagement() {
         {/* Category & Brand */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block mb-1 font-medium">Category *</label>
+            <label className="block mb-1 font-medium">{t('admin.products.labels.category')}</label>
             <input
               type="text"
               name="category"
               value={form.category}
               onChange={handleChange}
-              className="border p-2 rounded w-full"
+              className="border p-2 rounded w-full text-sm"
             />
           </div>
           <div>
-            <label className="block mb-1 font-medium">Brand</label>
+            <label className="block mb-1 font-medium">{t('admin.products.labels.brand')}</label>
             <input
               type="text"
               name="brand"
               value={form.brand}
               onChange={handleChange}
-              className="border p-2 rounded w-full"
+              className="border p-2 rounded w-full text-sm"
             />
           </div>
         </div>
@@ -323,100 +323,100 @@ export default function ProductManagement() {
         {/* Collections & Material */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block mb-1 font-medium">Collections *</label>
+            <label className="block mb-1 font-medium">{t('admin.products.labels.collections')}</label>
             <input
               type="text"
               name="collections"
               value={form.collections}
               onChange={handleChange}
-              className="border p-2 rounded w-full"
+              className="border p-2 rounded w-full text-sm"
             />
           </div>
           <div>
-            <label className="block mb-1 font-medium">Material</label>
+            <label className="block mb-1 font-medium">{t('admin.products.labels.material')}</label>
             <input
               type="text"
               name="material"
               value={form.material}
               onChange={handleChange}
-              className="border p-2 rounded w-full"
+              className="border p-2 rounded w-full text-sm"
             />
           </div>
         </div>
 
         {/* Gender */}
         <div>
-          <label className="block mb-1 font-medium">Gender *</label>
+          <label className="block mb-1 font-medium">{t('admin.products.labels.gender')}</label>
           <select
             name="gender"
             value={form.gender}
             onChange={handleChange}
-            className="border p-2 rounded w-full"
+            className="border p-2 rounded w-full text-sm"
           >
-            <option value="">Select Gender</option>
-            <option value="Men">Men</option>
-            <option value="Women">Women</option>
-            <option value="Unisex">Unisex</option>
+            <option value="">{t('admin.products.labels.selectGender')}</option>
+            <option value="Men">{t('admin.products.labels.men')}</option>
+            <option value="Women">{t('admin.products.labels.women')}</option>
+            <option value="Unisex">{t('admin.products.labels.unisex')}</option>
           </select>
         </div>
 
         {/* Sizes, Colors, Tags */}
         <div>
-          <label className="block mb-1 font-medium">Sizes (comma-separated) *</label>
+          <label className="block mb-1 font-medium">{t('admin.products.labels.sizes')}</label>
           <input
             type="text"
             name="sizes"
             value={form.sizes}
             onChange={handleChange}
-            placeholder="S, M, L, XL"
-            className="border p-2 rounded w-full"
+            placeholder={t('admin.products.labels.sizesPlaceholder')}
+            className="border p-2 rounded w-full text-sm"
           />
         </div>
 
         <div>
-          <label className="block mb-1 font-medium">Colors (comma-separated) *</label>
+          <label className="block mb-1 font-medium">{t('admin.products.labels.colors')}</label>
           <input
             type="text"
             name="colors"
             value={form.colors}
             onChange={handleChange}
-            placeholder="Red, Blue, Black"
-            className="border p-2 rounded w-full"
+            placeholder={t('admin.products.labels.colorsPlaceholder')}
+            className="border p-2 rounded w-full text-sm"
           />
         </div>
 
         <div>
-          <label className="block mb-1 font-medium">Tags (comma-separated)</label>
+          <label className="block mb-1 font-medium">{t('admin.products.labels.tags')}</label>
           <input
             type="text"
             name="tags"
             value={form.tags}
             onChange={handleChange}
-            placeholder="summer, sale, new"
-            className="border p-2 rounded w-full"
+            placeholder={t('admin.products.labels.tagsPlaceholder')}
+            className="border p-2 rounded w-full text-sm"
           />
         </div>
 
         {/* Dimensions & Weight */}
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <label className="block mb-1 font-medium">Dimensions</label>
+            <label className="block mb-1 font-medium">{t('admin.products.labels.dimensions')}</label>
             <input
               type="text"
               name="dimensions"
               value={form.dimensions}
               onChange={handleChange}
-              className="border p-2 rounded w-full"
+              className="border p-2 rounded w-full text-sm"
             />
           </div>
           <div>
-            <label className="block mb-1 font-medium">Weight (kg)</label>
+            <label className="block mb-1 font-medium">{t('admin.products.labels.weight')}</label>
             <input
               type="number"
               name="weight"
               value={form.weight}
               onChange={handleChange}
-              className="border p-2 rounded w-full"
+              className="border p-2 rounded w-full text-sm"
               min="0"
               step="0.01"
             />
@@ -425,12 +425,12 @@ export default function ProductManagement() {
 
         {/* Image Upload */}
         <div>
-          <label className="block mb-1 font-medium">Product Image *</label>
+          <label className="block mb-1 font-medium">{t('admin.products.labels.productImage')}</label>
           <input
             type="file"
             accept="image/*"
             onChange={handleImageChange}
-            className="border p-2 rounded w-full"
+            className="border p-2 rounded w-full text-sm"
           />
         </div>
 
@@ -444,24 +444,24 @@ export default function ProductManagement() {
 
         {/* Checkboxes */}
         <div className="flex gap-6 items-center">
-          <label className="flex items-center gap-2 cursor-pointer">
+          <label className="flex items-center gap-2 cursor-pointer text-sm font-medium">
             <input
               type="checkbox"
               name="isfeatured"
               checked={form.isfeatured}
               onChange={handleChange}
             />
-            Featured
+            {t('admin.products.labels.isFeatured')}
           </label>
 
-          <label className="flex items-center gap-2 cursor-pointer">
+          <label className="flex items-center gap-2 cursor-pointer text-sm font-medium">
             <input
               type="checkbox"
               name="ispublised"
               checked={form.ispublised}
               onChange={handleChange}
             />
-            Published
+            {t('admin.products.labels.isPublished')}
           </label>
         </div>
 
@@ -470,28 +470,26 @@ export default function ProductManagement() {
           <button
             type="submit"
             disabled={loading}
-            className="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded disabled:bg-gray-400"
+            className="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded disabled:bg-gray-400 font-medium transition"
           >
-            {loading ? "Saving..." : editingId ? "Update Product" : "Add Product"}
-           
+            {loading ? t('admin.products.saving') : editingId ? t('admin.products.updateProduct') : t('admin.products.addProduct')}
           </button>
-              
+
           {editingId && (
             <button
               type="button"
               onClick={resetForm}
-              className="bg-gray-200 hover:bg-gray-300 text-black py-2 px-6 rounded"
+              className="bg-gray-200 hover:bg-gray-300 text-black py-2 px-6 rounded font-medium transition"
             >
-
-              Cancel
+              {t('admin.products.cancel')}
             </button>
           )}
         </div>
       </form>
 
-      {/* ── Product List ── */}
+      {/* Product List */}
       <h2 className="text-2xl font-semibold mb-4">
-        Products ({products.length})
+        {t('admin.products.productCount', { count: products.length })}
       </h2>
 
       {error && (
@@ -501,7 +499,7 @@ export default function ProductManagement() {
       )}
 
       {loading && products.length === 0 && (
-        <p className="text-gray-500 text-center py-8">Loading products...</p>
+        <p className="text-gray-500 text-center py-8">{t('admin.products.loading')}</p>
       )}
 
       <div className="grid gap-4">
@@ -510,7 +508,6 @@ export default function ProductManagement() {
             key={item._id}
             className="border rounded-lg p-4 shadow bg-white flex gap-4"
           >
-            {/* Image */}
             {Array.isArray(item.images) && item.images[0]?.url && (
               <img
                 src={item.images[0].url}
@@ -519,68 +516,66 @@ export default function ProductManagement() {
               />
             )}
 
-            {/* Info */}
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <h3 className="text-xl font-bold">{item.name}</h3>
               <p className="text-gray-600 text-sm mb-2">{item.description}</p>
               <div className="grid grid-cols-2 gap-x-4 text-sm">
-                <p><strong>Price:</strong> AED {item.price}</p>
-                <p><strong>Discount:</strong> AED {item.discountprice || 0}</p>
-                <p><strong>Stock:</strong> {item.countinstock}</p>
-                <p><strong>SKU:</strong> {item.sku}</p>
-                <p><strong>Category:</strong> {item.category}</p>
-                <p><strong>Brand:</strong> {item.brand}</p>
-                <p><strong>Gender:</strong> {item.gender}</p>
-                <p><strong>Collections:</strong> {item.collections}</p>
+                <p><strong>{t('admin.products.labels.price_lbl')}</strong> {formatPrice(item.price)}</p>
+                <p><strong>{t('admin.products.labels.discount_lbl')}</strong> {formatPrice(item.discountprice || 0)}</p>
+                <p><strong>{t('admin.products.labels.stock_lbl')}</strong> {item.countinstock}</p>
+                <p><strong>{t('admin.products.labels.sku_lbl')}</strong> {item.sku}</p>
+                <p><strong>{t('admin.products.labels.category_lbl')}</strong> {item.category}</p>
+                <p><strong>{t('admin.products.labels.brand_lbl')}</strong> {item.brand}</p>
+                <p><strong>{t('admin.products.labels.gender_lbl')}</strong> {item.gender}</p>
+                <p><strong>{t('admin.products.labels.collections_lbl')}</strong> {item.collections}</p>
                 <p>
-                  <strong>Sizes:</strong>{" "}
+                  <strong>{t('admin.products.labels.sizes_lbl')}</strong>{" "}
                   {Array.isArray(item.sizes) ? item.sizes.join(", ") : item.sizes}
                 </p>
                 <p>
-                  <strong>Colors:</strong>{" "}
+                  <strong>{t('admin.products.labels.colors_lbl')}</strong>{" "}
                   {Array.isArray(item.colors) ? item.colors.join(", ") : item.colors}
                 </p>
               </div>
 
               <div className="flex gap-2 mt-3">
                 <span
-                  className={`px-2 py-1 rounded-full text-xs ${
+                  className={`px-2 py-1 rounded-full text-xs font-medium ${
                     item.ispublised
                       ? "bg-green-100 text-green-700"
                       : "bg-gray-100 text-gray-500"
                   }`}
                 >
-                  {item.ispublised ? "Published" : "Draft"}
+                  {item.ispublised ? t('admin.products.published') : t('admin.products.draft')}
                 </span>
                 {item.isfeatured && (
-                  <span className="px-2 py-1 rounded-full text-xs bg-yellow-100 text-yellow-700">
-                    Featured
+                  <span className="px-2 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700">
+                    {t('admin.products.featured')}
                   </span>
                 )}
               </div>
             </div>
 
-            {/* Actions */}
             <div className="flex flex-col gap-2 flex-shrink-0">
               <button
                 onClick={() => handleEdit(item)}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm font-medium transition"
               >
-                Edit
+                {t('admin.products.edit')}
               </button>
               <button
                 onClick={() => handleDelete(item._id)}
                 disabled={loading}
-                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm disabled:bg-gray-400"
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded text-sm font-medium transition disabled:bg-gray-400"
               >
-                Delete
+                {t('admin.products.delete')}
               </button>
             </div>
           </div>
         ))}
 
         {products.length === 0 && !loading && (
-          <p className="text-center text-gray-500 py-8">No products found.</p>
+          <p className="text-center text-gray-500 py-8">{t('admin.products.noProducts')}</p>
         )}
       </div>
     </div>

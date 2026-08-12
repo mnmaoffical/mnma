@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logoImg from "../assets/register.webp";
 import MNMALOGO from "../assets/mnma_logo.png";
+import { useTranslation } from "react-i18next";
 
 export default function SigninPage() {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -74,11 +76,11 @@ export default function SigninPage() {
         />
 
         <h1 className="text-4xl font-bold text-center mb-2">
-          Welcome Back
+          {t('signin.title')}
         </h1>
 
         <p className="text-center text-gray-600 mb-8">
-          Login to continue
+          {t('signin.subtitle')}
         </p>
 
         {error && (
@@ -91,39 +93,39 @@ export default function SigninPage() {
           <input
             type="email"
             name="email"
-            placeholder="Email Address"
+            placeholder={t('signin.emailPlaceholder')}
             value={formData.email}
             onChange={handleChange}
-            className="w-full p-3 border rounded-lg"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm"
             required
           />
 
           <input
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder={t('signin.passwordPlaceholder')}
             value={formData.password}
             onChange={handleChange}
-            className="w-full p-3 border rounded-lg"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black text-sm"
             required
           />
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white p-3 rounded-lg"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white p-3 rounded-lg font-semibold transition"
           >
-            {loading ? "Signing In..." : "Sign In"}
+            {loading ? t('signin.signingIn') : t('signin.signIn')}
           </button>
         </form>
 
-        <p className="text-center mt-5">
-          Don't have an account?{" "}
+        <p className="text-center mt-5 text-sm text-gray-600">
+          {t('signin.noAccount')}{" "}
           <span
-            className="text-blue-600 cursor-pointer"
+            className="text-blue-600 cursor-pointer font-semibold hover:underline"
             onClick={() => navigate("/SignupPage")}
           >
-            Register here
+            {t('signin.register')}
           </span>
         </p>
       </div>

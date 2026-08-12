@@ -30,7 +30,10 @@ import ProductManagement from "./Admin/ProductManagement";
 import OrderManagement from "./Admin/OrderManagement";
 import ShopManagement from "./Admin/ShopManagement";
 
+import { useLanguageDirection } from "./hooks/useLanguageDirection";
+
 function App() {
+  useLanguageDirection();
   return (
     <Provider store={store}>
       <BrowserRouter>

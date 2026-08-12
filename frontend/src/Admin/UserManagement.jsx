@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import { Edit, Trash2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchusers, adduser, updateuser, deleteuser } from "../redux/slices/adminslice";
+import { useTranslation } from "react-i18next";
 
 export default function UserManagement() {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const { users = [], loading, error } = useSelector((state) => state.admin);
   
@@ -32,7 +34,7 @@ export default function UserManagement() {
     e.preventDefault();
     
     if (!formData.name || !formData.email || (!editMode && !formData.password) || !formData.role) {
-      alert("Please fill all fields");
+      alert(t('admin.users.fillAll'));
       return;
     }
 
@@ -45,7 +47,7 @@ export default function UserManagement() {
           role: formData.role
         })).unwrap();
         
-        setFormData({ name: "", email: "", password: "", role: "Customer" });
+        setFormData({ name: "", email: "", password: "", role: "customer" });
         setEditMode(false);
         setEditingUserId(null);
       } catch (err) {
@@ -62,7 +64,7 @@ export default function UserManagement() {
         
         await dispatch(adduser(userdata)).unwrap();
         
-        setFormData({ name: "", email: "", password: "", role: "Customer" });
+        setFormData({ name: "", email: "", password: "", role: "customer" });
       } catch (err) {
         console.error("Add failed:", err);
       }
@@ -89,7 +91,7 @@ export default function UserManagement() {
   };
 
   const handleCancel = () => {
-    setFormData({ name: "", email: "", password: "", role: "Customer" });
+    setFormData({ name: "", email: "", password: "", role: "customer" });
     setEditMode(false);
     setEditingUserId(null);
   };
@@ -103,9 +105,9 @@ export default function UserManagement() {
             <span>⚠️ {error}</span>
             <button
               onClick={() => dispatch(fetchusers())}
-              className="ml-4 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm"
+              className="ms-4 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded text-sm"
             >
-              Retry
+              {t('admin.users.retry')}
             </button>
           </div>
         )}
@@ -113,11 +115,11 @@ export default function UserManagement() {
         {/* Add User Form */}
         <div className="bg-white rounded-xl shadow-md p-8 mb-8">
           <h1 className="text-3xl font-bold text-gray-800 mb-6">
-            User Management
+            {t('admin.users.title')}
           </h1>
 
           <h2 className="text-xl font-semibold mb-4">
-            {editMode ? "Edit User" : "Add New User"}
+            {editMode ? t('admin.users.editUser') : t('admin.users.addUser')}
           </h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -126,8 +128,8 @@ export default function UserManagement() {
               name="name"
               value={formData.name}
               onChange={handleInputChange}
-              placeholder="Name"
-              className="w-full border p-3 rounded-lg"
+              placeholder={t('admin.users.namePlaceholder')}
+              className="w-full border p-3 rounded-lg text-sm"
               disabled={loading}
             />
 
@@ -136,8 +138,8 @@ export default function UserManagement() {
               name="email"
               value={formData.email}
               onChange={handleInputChange}
-              placeholder="Email"
-              className="w-full border p-3 rounded-lg"
+              placeholder={t('admin.users.emailPlaceholder')}
+              className="w-full border p-3 rounded-lg text-sm"
               disabled={loading}
             />
 
@@ -146,8 +148,8 @@ export default function UserManagement() {
               name="password"
               value={formData.password}
               onChange={handleInputChange}
-              placeholder="Password"
-              className="w-full border p-3 rounded-lg"
+              placeholder={t('admin.users.passwordPlaceholder')}
+              className="w-full border p-3 rounded-lg text-sm"
               disabled={loading || editMode}
             />
 
@@ -155,30 +157,29 @@ export default function UserManagement() {
               name="role"
               value={formData.role}
               onChange={handleInputChange}
-              className="w-full border p-3 rounded-lg"
+              className="w-full border p-3 rounded-lg text-sm"
               disabled={loading}
             >
-              <option value="customer">Customer</option>
-              <option value="admin">Admin</option>
-              
+              <option value="customer">{t('admin.users.customer')}</option>
+              <option value="admin">{t('admin.users.admin')}</option>
             </select>
 
             <div className="flex gap-3">
               <button 
                 type="submit"
-                className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg disabled:bg-gray-400"
+                className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg disabled:bg-gray-400 font-medium transition"
                 disabled={loading}
               >
-                {loading ? "Processing..." : editMode ? "Update User" : "Add User"}
+                {loading ? t('admin.users.processing') : editMode ? t('admin.users.updateUser') : t('admin.users.addUser_btn')}
               </button>
               
               {editMode && (
                 <button
                   type="button"
                   onClick={handleCancel}
-                  className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg"
+                  className="bg-gray-500 hover:bg-gray-600 text-white px-6 py-3 rounded-lg font-medium transition"
                 >
-                  Cancel
+                  {t('admin.users.cancel')}
                 </button>
               )}
             </div>
@@ -189,24 +190,24 @@ export default function UserManagement() {
         <div className="bg-white rounded-xl shadow-md overflow-hidden">
           <div className="p-6 border-b">
             <h2 className="text-2xl font-semibold">
-              User List
+              {t('admin.users.userList')}
             </h2>
           </div>
 
           {loading && !editMode && (
             <div className="p-4 text-center text-gray-500">
-              Loading users...
+              {t('admin.users.loading')}
             </div>
           )}
 
           <table className="w-full">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-50 text-start">
               <tr>
-                <th className="text-left p-4">Name</th>
-                <th className="text-left p-4">Email</th>
-                <th className="text-left p-4">Role</th>
-                <th className="text-left p-4">Status</th>
-                <th className="text-center p-4">Actions</th>
+                <th className="text-start p-4">{t('admin.users.name')}</th>
+                <th className="text-start p-4">{t('admin.users.email')}</th>
+                <th className="text-start p-4">{t('admin.users.role')}</th>
+                <th className="text-start p-4">{t('admin.users.status')}</th>
+                <th className="text-center p-4">{t('admin.users.actions')}</th>
               </tr>
             </thead>
 
@@ -214,14 +215,14 @@ export default function UserManagement() {
               {users.length === 0 && !loading ? (
                 <tr>
                   <td colSpan="5" className="p-8 text-center text-gray-500">
-                    No users found
+                    {t('admin.users.noUsers')}
                   </td>
                 </tr>
               ) : (
                 users.map((user) => (
                   <tr
                     key={user._id}
-                    className="border-t hover:bg-gray-50"
+                    className="border-t hover:bg-gray-50 transition"
                   >
                     <td className="p-4 font-medium">
                       {user.name}
@@ -231,8 +232,8 @@ export default function UserManagement() {
                       {user.email}
                     </td>
 
-                    <td className="p-4">
-                      {user.role}
+                    <td className="p-4 capitalize">
+                      {user.role === 'admin' ? t('admin.users.admin') : t('admin.users.customer')}
                     </td>
 
                     <td className="p-4">
@@ -243,7 +244,7 @@ export default function UserManagement() {
                             : "bg-red-100 text-red-700"
                         }`}
                       >
-                        {user.status}
+                        {user.status || "Active"}
                       </span>
                     </td>
 

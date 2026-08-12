@@ -1,4 +1,5 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 export default function FilterSidebar({
   selectedCategory,
@@ -12,18 +13,19 @@ export default function FilterSidebar({
   selectedMaterial,
   setSelectedMaterial,
 }) {
+  const { t } = useTranslation();
   const colors = ["red", "blue", "black", "green", "yellow", "gray", "white", "pink"];
   const sizes = ["XS", "S", "M", "L", "XL", "XXL"];
   const materials = ["Cotton", "Wool", "Denim", "Polyester"];
 
   return (
-    <aside className="w-full md:w-64 border-b md:border-b-0 md:border-r pb-6 md:pb-0 md:pr-6">
-      <h2 className="mb-6 text-xl font-bold">Filter</h2>
+    <aside className="w-full md:w-64 border-b md:border-b-0 md:border-e pb-6 md:pb-0 md:pe-6">
+      <h2 className="mb-6 text-xl font-bold">{t('filter.title')}</h2>
 
       <div className="mb-8">
-        <h3 className="mb-3 font-semibold">Category</h3>
+        <h3 className="mb-3 font-semibold">{t('filter.category')}</h3>
 
-        <label className="mb-2 block">
+        <label className="mb-2 flex items-center cursor-pointer">
           <input
             type="radio"
             name="category"
@@ -31,10 +33,10 @@ export default function FilterSidebar({
             checked={selectedCategory === "Top Wear"}
             onChange={(e) => setSelectedCategory(e.target.value)}
           />
-          <span className="ml-2">Top Wear</span>
+          <span className="ms-2">{t('filter.topWear')}</span>
         </label>
 
-        <label className="block">
+        <label className="flex items-center cursor-pointer">
           <input
             type="radio"
             name="category"
@@ -42,14 +44,14 @@ export default function FilterSidebar({
             checked={selectedCategory === "Bottom Wear"}
             onChange={(e) => setSelectedCategory(e.target.value)}
           />
-          <span className="ml-2">Bottom Wear</span>
+          <span className="ms-2">{t('filter.bottomWear')}</span>
         </label>
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-3 font-semibold">Gender</h3>
+        <h3 className="mb-3 font-semibold">{t('filter.gender')}</h3>
 
-        <label className="mb-2 block">
+        <label className="mb-2 flex items-center cursor-pointer">
           <input
             type="radio"
             name="gender"
@@ -57,10 +59,10 @@ export default function FilterSidebar({
             checked={selectedGender === "Men"}
             onChange={(e) => setSelectedGender(e.target.value)}
           />
-          <span className="ml-2">Men</span>
+          <span className="ms-2">{t('filter.men')}</span>
         </label>
 
-        <label className="block">
+        <label className="flex items-center cursor-pointer">
           <input
             type="radio"
             name="gender"
@@ -68,12 +70,12 @@ export default function FilterSidebar({
             checked={selectedGender === "Women"}
             onChange={(e) => setSelectedGender(e.target.value)}
           />
-          <span className="ml-2">Women</span>
+          <span className="ms-2">{t('filter.women')}</span>
         </label>
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-3 font-semibold">Color</h3>
+        <h3 className="mb-3 font-semibold">{t('filter.color')}</h3>
         <div className="flex flex-wrap gap-3">
           {colors.map((color) => (
             <button
@@ -81,7 +83,7 @@ export default function FilterSidebar({
               type="button"
               onClick={() => setSelectedColor(color)}
               className={`h-8 w-8 rounded-full border-2 ${
-                selectedColor === color ? "border-black" : "border-gray-300"
+                selectedColor === color ? "border-black scale-110" : "border-gray-300"
               }`}
               style={{ backgroundColor: color }}
               aria-label={color}
@@ -91,9 +93,9 @@ export default function FilterSidebar({
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-3 font-semibold">Size</h3>
+        <h3 className="mb-3 font-semibold">{t('filter.size')}</h3>
         {sizes.map((size) => (
-          <label key={size} className="mb-2 block">
+          <label key={size} className="mb-2 flex items-center cursor-pointer">
             <input
               type="checkbox"
               checked={selectedSizes.includes(size)}
@@ -105,15 +107,15 @@ export default function FilterSidebar({
                 }
               }}
             />
-            <span className="ml-2">{size}</span>
+            <span className="ms-2">{size}</span>
           </label>
         ))}
       </div>
 
       <div className="mb-8">
-        <h3 className="mb-3 font-semibold">Material</h3>
+        <h3 className="mb-3 font-semibold">{t('filter.material')}</h3>
         {materials.map((material) => (
-          <label key={material} className="mb-2 block">
+          <label key={material} className="mb-2 flex items-center cursor-pointer">
             <input
               type="radio"
               name="material"
@@ -121,13 +123,13 @@ export default function FilterSidebar({
               checked={selectedMaterial === material}
               onChange={(e) => setSelectedMaterial(e.target.value)}
             />
-            <span className="ml-2">{material}</span>
+            <span className="ms-2">{material}</span>
           </label>
         ))}
       </div>
 
       <button
-        className="w-full rounded-lg bg-black py-2 text-white"
+        className="w-full rounded-lg bg-black py-2 text-white font-medium hover:bg-gray-800 transition"
         onClick={() => {
           setSelectedCategory("");
           setSelectedGender("");
@@ -136,7 +138,7 @@ export default function FilterSidebar({
           setSelectedMaterial("");
         }}
       >
-        Clear Filters
+        {t('filter.clearFilters')}
       </button>
     </aside>
   );

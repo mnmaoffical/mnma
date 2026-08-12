@@ -4,8 +4,11 @@ import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { addtocart } from "../../redux/slices/cartslice";
+import { useTranslation } from "react-i18next";
 
 function ProductDetail() {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
   const { id } = useParams();
   const dispatch = useDispatch();
 
@@ -35,12 +38,12 @@ function ProductDetail() {
         }
       } catch (error) {
         console.log(error);
-        toast.error("Failed to load product");
+        toast.error(t('productDetail.failedToLoad'));
       }
     };
 
     fetchProduct();
-  }, [id]);
+  }, [id, t]);
 
   const handleQuantityChange = (type) => {
     if (type === "Plus") {
@@ -54,12 +57,12 @@ function ProductDetail() {
 
   const handleAddToCart = async () => {
     if (!selectedColor) {
-      toast.error("Select a color");
+      toast.error(t('productDetail.selectColor'));
       return;
     }
 
     if (!selectedSize) {
-      toast.error("Select a size");
+      toast.error(t('productDetail.selectSize'));
       return;
     }
 
@@ -79,18 +82,26 @@ function ProductDetail() {
         })
       );
 
-      toast.success("Added to cart");
+      toast.success(t('productDetail.addedToCart'));
     } catch (error) {
-      toast.error("Failed to add cart");
+      toast.error(t('productDetail.failedToAdd'));
     } finally {
       setIsButtonDisabled(false);
     }
   };
 
+  const formatPrice = (price) => {
+    const amount = Number(price) || 0;
+    if (isRtl) {
+      return new Intl.NumberFormat('ar-AE', { style: 'currency', currency: 'AED' }).format(amount);
+    }
+    return `AED ${amount.toLocaleString()}`;
+  };
+
   if (!product) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        Loading Product...
+      <div className="flex justify-center items-center min-h-screen font-medium text-gray-500">
+        {t('productDetail.loading')}
       </div>
     );
   }
@@ -123,28 +134,27 @@ function ProductDetail() {
             <img
               src={mainImage}
               alt={product.name}
-              className="w-full rounded-lg"
+              className="w-full rounded-lg object-cover"
             />
           </div>
 
           {/* details */}
           <div className="w-full md:w-1/2">
              <div className="mb-3">
-              <span className="text-sm text-[#8b7355] uppercase tracking-wider">
+              <span className="text-sm text-[#8b7355] uppercase tracking-wider font-semibold">
                 {product.category}
               </span>
             </div>
-
 
             <h1 className="text-3xl font-bold mb-3">
               {product.name}
             </h1>
 
-            <p className="text-2xl font-semibold mb-4">
-              AED {product.price}
+            <p className="text-2xl font-semibold mb-4 text-gray-900">
+              {formatPrice(product.price)}
             </p>
 
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-600 mb-6 leading-relaxed">
               {product.description}
             </p>
              {product.rating && (
@@ -155,19 +165,18 @@ function ProductDetail() {
               </div>
             )}
 
-
             {/* colors */}
             <div className="mb-5">
-              <h3 className="font-medium mb-2">Color</h3>
+              <h3 className="font-medium mb-2">{t('productDetail.color')}</h3>
 
               <div className="flex gap-2">
                 {product.colors?.map((color) => (
                   <button
                     key={color}
                     onClick={() => setSelectedColor(color)}
-                    className={`w-10 h-10 rounded-full border-2 ${
+                    className={`w-10 h-10 rounded-full border-2 transition ${
                       selectedColor === color
-                        ? "border-black"
+                        ? "border-black scale-110"
                         : "border-gray-300"
                     }`}
                     style={{
@@ -180,17 +189,17 @@ function ProductDetail() {
 
             {/* sizes */}
             <div className="mb-5">
-              <h3 className="font-medium mb-2">Size</h3>
+              <h3 className="font-medium mb-2">{t('productDetail.size')}</h3>
 
               <div className="flex gap-2">
                 {product.sizes?.map((size) => (
                   <button
                     key={size}
                     onClick={() => setSelectedSize(size)}
-                    className={`px-4 py-2 border rounded ${
+                    className={`px-4 py-2 border rounded font-medium transition ${
                       selectedSize === size
-                        ? "bg-black text-white"
-                        : ""
+                        ? "bg-black text-white border-black"
+                        : "border-gray-300"
                     }`}
                   >
                     {size}
@@ -201,13 +210,19 @@ function ProductDetail() {
 
             {/* quantity */}
             <div className="flex items-center gap-4 mb-6">
-              <button onClick={() => handleQuantityChange("Minus")}>
+              <button 
+                onClick={() => handleQuantityChange("Minus")}
+                className="w-10 h-10 border rounded text-lg font-medium hover:bg-gray-100"
+              >
                 -
               </button>
 
-              <span>{quantity}</span>
+              <span className="text-lg font-medium px-2">{quantity}</span>
 
-              <button onClick={() => handleQuantityChange("Plus")}>
+              <button 
+                onClick={() => handleQuantityChange("Plus")}
+                className="w-10 h-10 border rounded text-lg font-medium hover:bg-gray-100"
+              >
                 +
               </button>
             </div>
@@ -216,9 +231,9 @@ function ProductDetail() {
             <button
               onClick={handleAddToCart}
               disabled={isButtonDisabled}
-              className="w-full bg-black text-white py-3 rounded-lg"
+              className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition disabled:opacity-50"
             >
-              {isButtonDisabled ? "Adding..." : "ADD TO CART"}
+              {isButtonDisabled ? t('productDetail.adding') : t('productDetail.addToCart')}
             </button>
           </div>
 

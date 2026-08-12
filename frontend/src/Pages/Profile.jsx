@@ -17,12 +17,14 @@ import {
 } from "lucide-react";
 import { logout } from "../redux/slices/authslice";
 import { fetchuserorders } from "../redux/slices/orderslice";
+import { useTranslation } from "react-i18next";
 
 export default function Profile() {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // ── Auth: check BOTH storage strategies (Redux authslice & direct SigninPage) ──
   const reduxUser = useSelector((state) => state.auth.user);
   const [localUser, setLocalUser] = useState(() => {
     try {
@@ -36,7 +38,6 @@ export default function Profile() {
     }
   });
 
-  // Merge: prefer Redux state, fall back to localStorage
   const user = reduxUser || localUser;
   const isLoggedIn = !!user;
 
@@ -50,9 +51,8 @@ export default function Profile() {
     }
   }, [dispatch, isLoggedIn]);
 
-  // ── Logout: clear ALL auth keys used anywhere in the codebase ──
   const handleLogout = () => {
-    const confirmed = window.confirm("Are you sure you want to logout?");
+    const confirmed = window.confirm(t('profile.logoutConfirm'));
     if (!confirmed) return;
 
     dispatch(logout());
@@ -60,7 +60,7 @@ export default function Profile() {
     localStorage.removeItem("user");
     setLocalUser(null);
 
-    toast.success("Logged out successfully!");
+    toast.success(t('profile.loggedOut'));
     navigate("/");
   };
 
@@ -81,11 +81,20 @@ export default function Profile() {
 
   const formatDate = (dateStr) => {
     if (!dateStr) return "—";
-    return new Date(dateStr).toLocaleDateString("en-AE", {
+    const locale = isRtl ? 'ar-AE' : 'en-AE';
+    return new Date(dateStr).toLocaleDateString(locale, {
       day: "2-digit",
       month: "short",
       year: "numeric",
     });
+  };
+
+  const formatPrice = (price) => {
+    const amount = Number(price) || 0;
+    if (isRtl) {
+      return new Intl.NumberFormat('ar-AE', { style: 'currency', currency: 'AED' }).format(amount);
+    }
+    return `AED ${amount.toLocaleString()}`;
   };
 
   const totalSpent = orders.reduce((sum, o) => sum + (o.totalPrice || 0), 0);
@@ -98,15 +107,6 @@ export default function Profile() {
       o.status?.toLowerCase() === "shipped"
   ).length;
 
-  const avatarInitials = user?.name
-    ? user.name
-        .split(" ")
-        .map((n) => n[0])
-        .join("")
-        .toUpperCase()
-        .slice(0, 2)
-    : "?";
-
   if (!isLoggedIn) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-violet-50 via-blue-50 to-emerald-50 flex items-center justify-center px-4 py-12 sm:py-16">
@@ -116,11 +116,10 @@ export default function Profile() {
           </div>
 
           <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">
-            Your Profile
+            {t('profile.title')}
           </h1>
           <p className="text-gray-500 mb-8 sm:mb-10 text-base leading-relaxed">
-            Sign in to view your orders, manage your account, and get a
-            personalised experience.
+            {t('profile.description')}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
@@ -129,22 +128,22 @@ export default function Profile() {
               className="flex items-center justify-center gap-2 bg-gradient-to-r from-violet-600 to-indigo-600 text-white font-semibold px-6 sm:px-8 py-3 rounded-xl shadow-lg shadow-violet-200 hover:from-violet-700 hover:to-indigo-700 hover:shadow-xl hover:shadow-violet-300 transition-all duration-200 transform hover:-translate-y-0.5"
             >
               <LogIn size={18} />
-              Sign In
+              {t('profile.signIn')}
             </Link>
             <Link
               to="/SignupPage"
               className="flex items-center justify-center gap-2 bg-white text-gray-700 font-semibold px-6 sm:px-8 py-3 rounded-xl border-2 border-gray-200 hover:border-violet-300 hover:text-violet-700 hover:bg-violet-50 transition-all duration-200 transform hover:-translate-y-0.5"
             >
               <UserPlus size={18} />
-              Create Account
+              {t('profile.createAccount')}
             </Link>
           </div>
 
           <div className="grid grid-cols-3 gap-3 mt-2">
             {[
-              { icon: <ShoppingBag size={20} />, label: "Track Orders" },
-              { icon: <Package size={20} />, label: "Easy Returns" },
-              { icon: <Shield size={20} />, label: "Secure Account" },
+              { icon: <ShoppingBag size={20} />, label: t('profile.trackOrders') },
+              { icon: <Package size={20} />, label: t('profile.easyReturns') },
+              { icon: <Shield size={20} />, label: t('profile.secureAccount') },
             ].map(({ icon, label }) => (
               <div
                 key={label}
@@ -168,29 +167,29 @@ export default function Profile() {
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
           {[
             {
-              label: "Total Orders",
+              label: t('profile.totalOrders'),
               value: totalorders ?? orders.length,
               color: "text-indigo-600",
               bg: "bg-indigo-50",
               icon: <ShoppingBag size={18} className="text-indigo-500" />,
             },
             {
-              label: "Delivered",
+              label: t('profile.delivered'),
               value: delivered,
               color: "text-emerald-600",
               bg: "bg-emerald-50",
               icon: <Package size={18} className="text-emerald-500" />,
             },
             {
-              label: "In Progress",
+              label: t('profile.inProgress'),
               value: inProgress,
               color: "text-amber-600",
               bg: "bg-amber-50",
               icon: <Clock size={18} className="text-amber-500" />,
             },
             {
-              label: "Total Spent",
-              value: `AED ${totalSpent.toLocaleString()}`,
+              label: t('profile.totalSpent'),
+              value: formatPrice(totalSpent),
               color: "text-violet-600",
               bg: "bg-violet-50",
               icon: <span className="text-violet-500 font-bold text-xs">AED</span>,
@@ -217,7 +216,7 @@ export default function Profile() {
           <div className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-200">
             <div className="px-4 sm:px-5 py-3 sm:py-4 border-b border-gray-50 bg-gradient-to-r from-gray-50 to-white">
               <h2 className="text-sm sm:text-base font-bold text-gray-800">
-                Account Info
+                {t('profile.accountInfo')}
               </h2>
             </div>
 
@@ -228,7 +227,7 @@ export default function Profile() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-[11px] uppercase font-semibold text-gray-400 tracking-wider">
-                    Name
+                    {t('profile.name')}
                   </p>
                   <p className="text-sm font-semibold text-gray-800 truncate">
                     {user?.name}
@@ -242,7 +241,7 @@ export default function Profile() {
                 </div>
                 <div className="min-w-0">
                   <p className="text-[11px] uppercase font-semibold text-gray-400 tracking-wider">
-                    Email
+                    {t('profile.email')}
                   </p>
                   <p className="text-sm font-semibold text-gray-800 truncate">
                     {user?.email}
@@ -256,7 +255,7 @@ export default function Profile() {
                 </div>
                 <div>
                   <p className="text-[11px] uppercase font-semibold text-gray-400 tracking-wider">
-                    Role
+                    {t('profile.role')}
                   </p>
                   <span
                     className={`inline-block text-xs font-bold px-2 py-0.5 rounded-full mt-0.5 capitalize shadow-sm ${
@@ -265,7 +264,7 @@ export default function Profile() {
                         : "bg-emerald-100 text-emerald-700 shadow-emerald-200"
                     }`}
                   >
-                    {user?.role || "customer"}
+                    {user?.role === "admin" ? t('admin.users.admin') : t('admin.users.customer')}
                   </span>
                 </div>
               </div>
@@ -277,7 +276,7 @@ export default function Profile() {
                 className="w-full flex items-center justify-center gap-2 bg-red-50 hover:bg-red-100 text-red-600 font-bold py-3 rounded-xl border border-red-100 hover:border-red-200 transition-all duration-200 text-sm hover:shadow-md hover:shadow-red-200 transform hover:-translate-y-0.5"
               >
                 <LogOut size={16} />
-                Logout
+                {t('profile.logout')}
               </button>
             </div>
           </div>
@@ -285,17 +284,17 @@ export default function Profile() {
           <div className="lg:col-span-3 bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow duration-200">
             <div className="flex items-center justify-between px-4 sm:px-5 py-3 sm:py-4 border-b border-gray-50 bg-gradient-to-r from-gray-50 to-white">
               <h2 className="text-sm sm:text-base font-bold text-gray-800">
-                Recent Orders
+                {t('profile.recentOrders')}
               </h2>
               <span className="text-xs text-gray-400 font-medium bg-gray-50 px-2.5 py-1 rounded-full">
-                {orders.length} order{orders.length !== 1 ? "s" : ""}
+                {orders.length} {orders.length === 1 ? t('profile.order') : t('profile.orders')}
               </span>
             </div>
 
             {ordersLoading && (
               <div className="flex flex-col items-center justify-center py-12 sm:py-16 gap-3">
                 <div className="w-8 h-8 sm:w-9 sm:h-9 border-3 border-gray-200 border-t-indigo-500 rounded-full animate-spin" />
-                <p className="text-sm text-gray-400">Loading orders...</p>
+                <p className="text-sm text-gray-400">{t('profile.loadingOrders')}</p>
               </div>
             )}
 
@@ -303,16 +302,16 @@ export default function Profile() {
               <div className="flex flex-col items-center justify-center py-12 sm:py-16 px-4 sm:px-6 text-center">
                 <Inbox size={40} className="text-gray-200 mb-3" />
                 <p className="text-gray-500 font-semibold text-sm mb-1">
-                  No orders yet
+                  {t('profile.noOrders')}
                 </p>
                 <p className="text-gray-300 text-xs mb-5">
-                  Your orders will appear here once you shop
+                  {t('profile.noOrdersDesc')}
                 </p>
                 <Link
                   to="/collection"
                   className="bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-sm font-semibold px-5 sm:px-6 py-2.5 rounded-xl hover:from-violet-700 hover:to-indigo-700 transition-all shadow-md shadow-violet-200 hover:shadow-lg hover:shadow-violet-300 transform hover:-translate-y-0.5"
                 >
-                  Browse Collection
+                  {t('profile.browseCollection')}
                 </Link>
               </div>
             )}
@@ -334,32 +333,32 @@ export default function Profile() {
                       </p>
                       <p className="text-xs text-gray-400 mt-0.5">
                         {formatDate(order.createdAt)} &bull;{" "}
-                        {order.orderItems?.length || 0} item
-                        {order.orderItems?.length !== 1 ? "s" : ""}
+                        {order.orderItems?.length || 0}{" "}
+                        {order.orderItems?.length === 1 ? t('profile.item') : t('profile.items')}
                       </p>
                     </div>
 
-                    <div className="text-right flex-shrink-0">
+                    <div className="text-end flex-shrink-0">
                       <p className="text-sm font-bold text-gray-800">
-                        AED {order.totalPrice?.toLocaleString()}
+                        {formatPrice(order.totalPrice)}
                       </p>
                       <span
                         className={`inline-block text-[10px] font-bold px-2 py-0.5 rounded-full mt-1 ${getStatusStyle(order.status)}`}
                       >
-                        {order.status || "Processing"}
+                        {order.status || t('admin.orders.statuses.processing')}
                       </span>
                     </div>
 
                     <ChevronRight
                       size={14}
-                      className="text-gray-300 group-hover:text-gray-500 flex-shrink-0 transition-colors group-hover:translate-x-0.5 transform"
+                      className={`text-gray-300 group-hover:text-gray-500 flex-shrink-0 transition-colors ${isRtl ? 'rotate-180 group-hover:-translate-x-0.5' : 'group-hover:translate-x-0.5'} transform`}
                     />
                   </div>
                 ))}
 
                 {orders.length > 7 && (
                   <p className="text-center text-xs text-gray-400 font-medium py-3 sm:py-4">
-                    + {orders.length - 7} more orders
+                    {t('profile.moreOrders', { count: orders.length - 7 })}
                   </p>
                 )}
               </div>

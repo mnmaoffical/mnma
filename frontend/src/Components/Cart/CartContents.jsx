@@ -1,6 +1,7 @@
 import React from 'react';
 import { RiDeleteBin3Line } from 'react-icons/ri';
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import {
   removefromcart,
   updatecartitemquantity,
@@ -9,16 +10,12 @@ import {
 } from '../../redux/slices/cartslice';
 
 function CartContents() {
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   
-  // Read data from Redux slice (your slice structure: cart.cart.products)
-  const { cart, loading, error } = useSelector((state) => state.cart);
-  
-  // Access products from the slice
+  const { cart } = useSelector((state) => state.cart);
   const cartproducts = cart?.products || [];
-   
 
-  // Fetch cart on component mount
   React.useEffect(() => {
     const user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
     const userId = user?._id || null;
@@ -28,7 +25,6 @@ function CartContents() {
     }
   }, [dispatch]);
 
-  // Handle increment
   const handleIncrement = (product) => {
     const user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
     const userId = user?._id || null;
@@ -42,7 +38,6 @@ function CartContents() {
     }));
   };
 
-  // Handle decrement
   const handleDecrement = (product) => {
     if (product.quantity <= 1) return;
     
@@ -58,7 +53,6 @@ function CartContents() {
     }));
   };
 
-  // Handle remove
   const handleRemove = (product) => {
     const user = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : null;
     const userId = user?._id || null;
@@ -73,54 +67,56 @@ function CartContents() {
     );
   };
 
-  // Handle clear entire cart
-  const handleClearCart = () => {
-    dispatch(clearcart());
+  const formatPrice = (price) => {
+    const amount = Number(price) || 0;
+    if (i18n.language === 'ar') {
+      return new Intl.NumberFormat('ar-AE', { style: 'currency', currency: 'AED' }).format(amount);
+    }
+    return `AED ${amount.toLocaleString()}`;
   };
 
   return (
     <div>
       {cartproducts.length === 0 ? (
-        <p className="text-center text-gray-600 py-8">Your cart is empty</p>
+        <p className="text-center text-gray-600 py-8">{t('cart.empty')}</p>
       ) : (
         <div>
           {cartproducts.map((product, index) => (
-            <div className="flex items-start justify-between py-4 border-b" key={index}>
-              <div className="flex items-start">
+            <div className="flex items-start justify-between py-4 border-b gap-4" key={index}>
+              <div className="flex items-start gap-4">
                 <img
                   src={product.image}
                   alt={product.name}
-                  className="w-20 h-24 object-cover mr-4 rounded"
+                  className="w-20 h-24 object-cover rounded flex-shrink-0"
                 />
                 <div>
-                  <h3>
+                  <h3 className="font-medium text-sm">
                     {product.name}
-                   
                   </h3>
-                  <p className="text-sm text-gray-600">
-                    size: {product.size} | color: {product.color}
+                  <p className="text-sm text-gray-600 mt-1">
+                    {t('cart.size')}: {product.size} | {t('cart.color')}: {product.color}
                   </p>
-                  <div className="flex items-center mt-2">
+                  <div className="flex items-center mt-2 gap-2">
                     <button
                       onClick={() => handleDecrement(product)}
-                      className="border rounded px-2 py-1 text-xl font-medium"
+                      className="border rounded px-2.5 py-0.5 text-lg font-medium hover:bg-gray-100"
                     >
                       -
                     </button>
-                    <span className="mx-4">{product.quantity}</span>
+                    <span className="px-2 font-medium">{product.quantity}</span>
                     <button
                       onClick={() => handleIncrement(product)}
-                      className="border rounded px-2 py-1 text-xl font-medium"
+                      className="border rounded px-2.5 py-0.5 text-lg font-medium hover:bg-gray-100"
                     >
                       +
                     </button>
                   </div>
                 </div>
               </div>
-              <div>
-                <p>AED {product.price.toLocaleString()}</p>
-                <button onClick={() => handleRemove(product)}>
-                  <RiDeleteBin3Line className="h-6 w-6 mt-2 text-red-600" />
+              <div className="text-end flex flex-col justify-between items-end">
+                <p className="font-semibold text-sm">{formatPrice(product.price * product.quantity)}</p>
+                <button onClick={() => handleRemove(product)} className="mt-2 text-red-600 hover:text-red-800">
+                  <RiDeleteBin3Line className="h-5 w-5" />
                 </button>
               </div>
             </div>

@@ -3,28 +3,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { ShoppingBag } from "lucide-react";
 import { Link } from "react-router-dom";
 import { fetchproductbyfilters } from "../redux/slices/productslice";
-import { useParams } from "react-router-dom";
-
+import { useTranslation } from "react-i18next";
 
 export default function TopItems() {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
   const dispatch = useDispatch();
 
   const {
-  products: bestSellers,
-  loading,
-  error,
-  filters,
-} = useSelector((state) => state.product);
+    products: bestSellers,
+    loading,
+    error,
+    filters,
+  } = useSelector((state) => state.product);
 
- useEffect(() => {
-  dispatch(
-    fetchproductbyfilters({
-      sortby: filters.search ? "" : "popularity",
-      search: filters.search,
-      limit: filters.search ? 100 : 8,
-    })
-  );
-}, [dispatch, filters.search]);
+  useEffect(() => {
+    dispatch(
+      fetchproductbyfilters({
+        sortby: filters.search ? "" : "popularity",
+        search: filters.search,
+        limit: filters.search ? 100 : 8,
+      })
+    );
+  }, [dispatch, filters.search]);
 
   const getImageUrl = (product) => {
     if (!product?.images?.length) {
@@ -48,31 +49,39 @@ export default function TopItems() {
     return "https://via.placeholder.com/300";
   };
 
+  const formatPrice = (price) => {
+    const val = Number(price) || 0;
+    if (isRtl) {
+      return new Intl.NumberFormat('ar-AE', { style: 'currency', currency: 'AED' }).format(val);
+    }
+    return `AED ${val}`;
+  };
+
   if (loading) {
     return (
-      <div className="py-20 text-center text-gray-500">
-        Loading top products...
+      <div className="py-20 text-center text-gray-500 font-medium">
+        {t('topItems.loading')}
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="py-20 text-center text-red-500">
-        {error || "Failed to load products"}
+      <div className="py-20 text-center text-red-500 font-medium">
+        {error || t('topItems.loadError')}
       </div>
     );
   }
 
   return (
-    <section className="bg-gray-50 px-4 sm:px-6 py-10 sm:py-12">
+    <section className="bg-gray-50 px-4 sm:px-6 py-10 sm:py-12 min-h-screen">
       <div className="mx-auto max-w-7xl">
         <div className="mb-8 sm:mb-10 text-center">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">
-            Top Selling Items
+            {t('topItems.title')}
           </h2>
           <p className="mt-2 text-gray-600 text-sm sm:text-base">
-            Discover our most popular fashion picks
+            {t('topItems.subtitle')}
           </p>
         </div>
 
@@ -82,7 +91,7 @@ export default function TopItems() {
               <Link
                 key={product._id}
                 to={`/product/${product._id}`}
-                className="group rounded-2xl bg-white shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300"
+                className="group rounded-2xl bg-white shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 block"
               >
                 <div className="overflow-hidden rounded-t-2xl">
                   <img
@@ -93,7 +102,7 @@ export default function TopItems() {
                 </div>
 
                 <div className="space-y-1 p-4 sm:p-5">
-                  <p className="text-xs uppercase text-[#8b7355] tracking-wider">
+                  <p className="text-xs uppercase text-[#8b7355] tracking-wider font-semibold">
                     {product.category}
                   </p>
 
@@ -103,7 +112,7 @@ export default function TopItems() {
 
                   <div className="flex items-center justify-between pt-1">
                     <p className="font-semibold text-base sm:text-lg">
-                      AED {product.price}
+                      {formatPrice(product.price)}
                     </p>
 
                     <div className="rounded-full border p-2 sm:p-3 transition hover:bg-black hover:text-white">
@@ -116,7 +125,7 @@ export default function TopItems() {
           </div>
         ) : (
           <div className="py-10 text-center text-gray-500">
-            No top-selling products found.
+            {t('topItems.empty')}
           </div>
         )}
       </div>

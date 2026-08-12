@@ -1,0 +1,432 @@
+{
+  "nav": {
+    "home": "Home",
+    "men": "Men",
+    "women": "Women",
+    "topItems": "Top Items",
+    "aboutUs": "About Us",
+    "admin": "Admin",
+    "profile": "Profile",
+    "menu": "Menu"
+  },
+  "topbar": {
+    "tagline": "We deliver the #trend - COOL and CLASSY"
+  },
+  "hero": {
+    "title": "BEYOND ELEGANCE",
+    "subtitle": "Discover elegance through premium leather, signature scents, luxury perfumes and contemporary garments.",
+    "shopNow": "Shop Now",
+    "imageAlt": "The 2026 Collection"
+  },
+  "genderCollection": {
+    "mensTitle": "Men's Collection",
+    "womensTitle": "Women's Collection",
+    "shopNow": "Shop Now",
+    "mensAlt": "Men's collection",
+    "womensAlt": "Women's collection"
+  },
+  "newArrivals": {
+    "title": "Explore New Arrivals",
+    "subtitle": "Discover the latest styles freshly added to keep your look on trend.",
+    "loading": "Loading new arrivals...",
+    "noImage": "No Image Available",
+    "empty": "No new arrivals found at the moment.",
+    "scrollLeft": "Scroll Left",
+    "scrollRight": "Scroll Right"
+  },
+  "bestSeller": {
+    "badge": "Most Popular Product",
+    "title": "Best Seller",
+    "loading": "Loading Best Seller Product...",
+    "noProduct": "No bestseller product found.",
+    "color": "Color",
+    "size": "Size",
+    "adding": "Adding...",
+    "addToCart": "ADD TO CART"
+  },
+  "footer": {
+    "newsletter": {
+      "title": "Newsletter",
+      "description": "Be the first to hear about new products, exclusive events, and online offers.",
+      "incentive": "Sign up and get 10% off your first order.",
+      "placeholder": "Enter your email",
+      "subscribe": "Subscribe",
+      "subscribedSuccess": "Subscribed successfully",
+      "subscribedFail": "Subscription failed",
+      "networkError": "Network error"
+    },
+    "shop": {
+      "title": "Shop",
+      "mens": "Men's Product",
+      "womens": "Women's Product",
+      "top": "Top Products",
+      "all": "All Collection"
+    },
+    "support": {
+      "title": "Support",
+      "support": "Support",
+      "contact": "Contact Us",
+      "about": "About Us",
+      "faq": "FAQs",
+      "features": "Features"
+    },
+    "followUs": {
+      "title": "Follow Us"
+    },
+    "copyright": "© {{year}} M N M A General Trading - L.L.C- S.P.C, All rights reserved."
+  },
+  "search": {
+    "placeholder": "Search products..."
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "checkout": "Checkout",
+    "shippingNote": "Shipping, taxes, and discount codes calculated at checkout.",
+    "size": "size",
+    "color": "color",
+    "qty": "Qty",
+    "itemSize": "Size",
+    "itemColor": "Color"
+  },
+  "productDetail": {
+    "loading": "Loading Product...",
+    "color": "Color",
+    "size": "Size",
+    "adding": "Adding...",
+    "addToCart": "ADD TO CART",
+    "selectColor": "Select a color",
+    "selectSize": "Select a size",
+    "addedToCart": "Added to cart",
+    "failedToAdd": "Failed to add cart",
+    "failedToLoad": "Failed to load product"
+  },
+  "filter": {
+    "title": "Filter",
+    "filterProducts": "Filter Products",
+    "applyFilters": "Apply Filters",
+    "clearFilters": "Clear Filters",
+    "category": "Category",
+    "topWear": "Top Wear",
+    "bottomWear": "Bottom Wear",
+    "gender": "Gender",
+    "men": "Men",
+    "women": "Women",
+    "color": "Color",
+    "size": "Size",
+    "material": "Material",
+    "filters": "Filters"
+  },
+  "collection": {
+    "badge": "ALL COLLECTION",
+    "title": "Complete Fashion Catalog",
+    "subtitle": "For Every Style Preference",
+    "loading": "Loading Products...",
+    "noProducts": "No Products Found",
+    "filters": "Filters"
+  },
+  "mens": {
+    "badge": "MEN COLLECTION",
+    "title": "Timeless Fashion",
+    "subtitle": "Crafted For Modern Men",
+    "loading": "Loading Products...",
+    "noProducts": "No Products Found"
+  },
+  "womens": {
+    "badge": "WOMENS COLLECTION",
+    "title": "Timeless Fashion",
+    "subtitle": "Crafted For Modern Women",
+    "loading": "Loading Products...",
+    "noProducts": "No Products Found"
+  },
+  "topItems": {
+    "title": "Top Selling Items",
+    "subtitle": "Discover our most popular fashion picks",
+    "loading": "Loading top products...",
+    "empty": "No top-selling products found.",
+    "loadError": "Failed to load products"
+  },
+  "about": {
+    "hero": {
+      "badge": "Welcome To Our Store",
+      "titlePart1": "Redefining Your",
+      "titleHighlight": "Shopping",
+      "titlePart2": "Experience",
+      "description": "We believe shopping should be simple, elegant and enjoyable. Our platform brings together quality products, modern design and seamless customer experience — all in one place.",
+      "shopNow": "Shop Now",
+      "explore": "Explore Collection"
+    },
+    "brand": {
+      "badge": "About Us",
+      "title": "More Than Just An E-Commerce Store",
+      "p1": "Our mission is to create a shopping platform where customers can discover high-quality products with confidence and ease. We focus on delivering value, trust and an exceptional online shopping journey.",
+      "p2": "From premium collections to reliable service, every detail is designed to provide a modern and satisfying customer experience."
+    },
+    "features": {
+      "badge": "Why Choose Us",
+      "title": "Designed For Modern Shopping"
+    },
+    "services": {
+      "premiumProducts": {
+        "title": "Premium Products",
+        "desc": "Carefully selected products with quality, style and customer satisfaction in mind."
+      },
+      "fastDelivery": {
+        "title": "Fast Delivery",
+        "desc": "Quick and reliable shipping experience designed to deliver products on time."
+      },
+      "secureShopping": {
+        "title": "Secure Shopping",
+        "desc": "Safe payments and trusted transactions to ensure a worry-free shopping experience."
+      },
+      "support247": {
+        "title": "24/7 Support",
+        "desc": "Friendly customer support always ready to help you with your orders and queries."
+      }
+    },
+    "stats": {
+      "customers": "Happy Customers",
+      "products": "Premium Products",
+      "reviews": "Positive Reviews",
+      "support": "Customer Support"
+    },
+    "cta": {
+      "title": "Discover A Better Way To Shop",
+      "description": "Experience premium products, trusted quality and a seamless online shopping journey designed for modern customers.",
+      "button": "Start Shopping"
+    }
+  },
+  "signin": {
+    "title": "Welcome Back",
+    "subtitle": "Login to continue",
+    "emailPlaceholder": "Email Address",
+    "passwordPlaceholder": "Password",
+    "signingIn": "Signing In...",
+    "signIn": "Sign In",
+    "noAccount": "Don't have an account?",
+    "register": "Register here"
+  },
+  "signup": {
+    "title": "Create Account",
+    "subtitle": "Sign up to continue",
+    "namePlaceholder": "Full Name",
+    "emailPlaceholder": "Email Address",
+    "passwordPlaceholder": "Password",
+    "confirmPasswordPlaceholder": "Confirm Password",
+    "creatingAccount": "Creating Account...",
+    "register": "Register",
+    "haveAccount": "Already have an account?",
+    "login": "Login here",
+    "passwordMismatch": "Passwords do not match",
+    "registrationFailed": "Registration failed"
+  },
+  "profile": {
+    "title": "Your Profile",
+    "description": "Sign in to view your orders, manage your account, and get a personalised experience.",
+    "signIn": "Sign In",
+    "createAccount": "Create Account",
+    "trackOrders": "Track Orders",
+    "easyReturns": "Easy Returns",
+    "secureAccount": "Secure Account",
+    "totalOrders": "Total Orders",
+    "delivered": "Delivered",
+    "inProgress": "In Progress",
+    "totalSpent": "Total Spent",
+    "accountInfo": "Account Info",
+    "name": "Name",
+    "email": "Email",
+    "role": "Role",
+    "logout": "Logout",
+    "logoutConfirm": "Are you sure you want to logout?",
+    "loggedOut": "Logged out successfully!",
+    "recentOrders": "Recent Orders",
+    "noOrders": "No orders yet",
+    "noOrdersDesc": "Your orders will appear here once you shop",
+    "browseCollection": "Browse Collection",
+    "loadingOrders": "Loading orders...",
+    "moreOrders": "+ {{count}} more orders",
+    "order": "order",
+    "orders": "orders",
+    "items": "items",
+    "item": "item"
+  },
+  "checkout": {
+    "step": {
+      "delivery": "Delivery",
+      "payment": "Payment"
+    },
+    "deliveryInfo": "Delivery Information",
+    "edit": "Edit",
+    "emailPlaceholder": "Email Address *",
+    "firstNamePlaceholder": "First Name *",
+    "lastNamePlaceholder": "Last Name",
+    "addressPlaceholder": "Street Address *",
+    "cityPlaceholder": "City *",
+    "postalCodePlaceholder": "Postal Code",
+    "countryPlaceholder": "Country",
+    "phonePlaceholder": "Phone Number",
+    "continueToPayment": "Continue to Payment",
+    "processing": "Processing...",
+    "orderSummary": "Order Summary",
+    "emptyCart": "Your cart is empty",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "free": "Free",
+    "total": "Total",
+    "loadingCart": "Loading your cart...",
+    "youWillBeCharged": "You will be charged in USD via PayPal",
+    "qty": "Qty",
+    "size": "Size",
+    "color": "Color",
+    "fillRequired": "Please fill in all required fields: Email, First Name, Address, and City.",
+    "checkoutFailed": "Failed to save checkout. Please try again.",
+    "sessionExpired": "Checkout session expired. Please restart checkout.",
+    "paymentFailed": "Payment failed. Please try again.",
+    "orderSaveFailed": "Order saving failed: {{message}}"
+  },
+  "orderConfirmation": {
+    "title": "Order Confirmed!",
+    "thanks": "Thank you for shopping with MNMA.",
+    "placed": "Your order has been placed successfully.",
+    "details": "Order Details",
+    "orderId": "Order ID",
+    "orderDate": "Order Date",
+    "paymentStatus": "Payment Status",
+    "paid": "Paid",
+    "estimatedDelivery": "Estimated Delivery",
+    "deliveryDays": "3 - 5 Business Days",
+    "shippingAddress": "Shipping Address",
+    "continueShopping": "Continue Shopping",
+    "viewOrders": "View Orders"
+  },
+  "admin": {
+    "sidebar": {
+      "dashboard": "DashBoard",
+      "users": "Users",
+      "products": "Products",
+      "orders": "Orders",
+      "logout": "Logout",
+      "logoutConfirm": "Are you sure you want to logout?"
+    },
+    "dashboard": {
+      "title": "Admin Dashboard",
+      "revenue": "Revenue",
+      "totalOrders": "Total Orders",
+      "manageOrders": "Manage Orders",
+      "totalProducts": "Total Products",
+      "manageProducts": "Manage Products",
+      "recentOrders": "Recent Orders",
+      "loading": "Loading orders...",
+      "orderId": "ORDER ID",
+      "user": "USER",
+      "totalPrice": "TOTAL PRICE",
+      "status": "STATUS",
+      "adminUser": "Admin User"
+    },
+    "users": {
+      "title": "User Management",
+      "addUser": "Add New User",
+      "editUser": "Edit User",
+      "namePlaceholder": "Name",
+      "emailPlaceholder": "Email",
+      "passwordPlaceholder": "Password",
+      "customer": "Customer",
+      "admin": "Admin",
+      "processing": "Processing...",
+      "updateUser": "Update User",
+      "addUser_btn": "Add User",
+      "cancel": "Cancel",
+      "userList": "User List",
+      "loading": "Loading users...",
+      "noUsers": "No users found",
+      "fillAll": "Please fill all fields",
+      "name": "Name",
+      "email": "Email",
+      "role": "Role",
+      "status": "Status",
+      "actions": "Actions",
+      "retry": "Retry"
+    },
+    "orders": {
+      "title": "Order Management",
+      "loading": "Loading orders...",
+      "orderId": "ORDER ID",
+      "customer": "CUSTOMER",
+      "totalPrice": "TOTAL PRICE",
+      "status": "STATUS",
+      "actions": "ACTIONS",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this order?",
+      "unknown": "Unknown",
+      "statuses": {
+        "processing": "Processing",
+        "shipped": "Shipped",
+        "delivered": "Delivered",
+        "cancelled": "Cancelled"
+      }
+    },
+    "products": {
+      "title": "Product Management",
+      "addNew": "Add New Product",
+      "editProduct": "Edit Product",
+      "saving": "Saving...",
+      "updateProduct": "Update Product",
+      "addProduct": "Add Product",
+      "cancel": "Cancel",
+      "loading": "Loading products...",
+      "noProducts": "No products found.",
+      "deleteConfirm": "Delete this product?",
+      "deleteFailed": "Delete failed",
+      "failedToSave": "Failed to save product",
+      "productCount": "Products ({{count}})",
+      "published": "Published",
+      "draft": "Draft",
+      "featured": "Featured",
+      "edit": "Edit",
+      "delete": "Delete",
+      "labels": {
+        "productName": "Product Name *",
+        "description": "Description *",
+        "price": "Price *",
+        "discountPrice": "Discount Price",
+        "countInStock": "Count in Stock *",
+        "sku": "SKU *",
+        "category": "Category *",
+        "brand": "Brand",
+        "collections": "Collections *",
+        "material": "Material",
+        "gender": "Gender *",
+        "sizes": "Sizes (comma-separated) *",
+        "colors": "Colors (comma-separated) *",
+        "tags": "Tags (comma-separated)",
+        "dimensions": "Dimensions",
+        "weight": "Weight (kg)",
+        "productImage": "Product Image *",
+        "selectGender": "Select Gender",
+        "men": "Men",
+        "women": "Women",
+        "unisex": "Unisex",
+        "sizesPlaceholder": "S, M, L, XL",
+        "colorsPlaceholder": "Red, Blue, Black",
+        "tagsPlaceholder": "summer, sale, new",
+        "isFeatured": "Featured",
+        "isPublished": "Published",
+        "price_lbl": "Price:",
+        "discount_lbl": "Discount:",
+        "stock_lbl": "Stock:",
+        "sku_lbl": "SKU:",
+        "category_lbl": "Category:",
+        "brand_lbl": "Brand:",
+        "gender_lbl": "Gender:",
+        "collections_lbl": "Collections:",
+        "sizes_lbl": "Sizes:",
+        "colors_lbl": "Colors:"
+      }
+    }
+  },
+  "language": {
+    "en": "EN",
+    "ar": "AR",
+    "switchTo": "Switch language"
+  }
+}

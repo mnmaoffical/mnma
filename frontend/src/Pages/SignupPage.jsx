@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import logoImg from "../assets/login.webp";
 import MNMALOGO from "../assets/mnma_logo.png";
+import { useTranslation } from "react-i18next";
 
 export default function SignupPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -27,7 +29,7 @@ export default function SignupPage() {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      return setError("Passwords do not match");
+      return setError(t('signup.passwordMismatch'));
     }
 
     try {
@@ -55,18 +57,15 @@ export default function SignupPage() {
         throw new Error(data.message);
       }
 
-      // Save token
       localStorage.setItem("token", data.token);
-
-      // Save user
       localStorage.setItem(
         "user",
         JSON.stringify(data.user)
       );
 
-      navigate("/signinpage");
+      navigate("/SigninPage");
     } catch (err) {
-      setError(err.message || "Registration failed");
+      setError(err.message || t('signup.registrationFailed'));
     } finally {
       setLoading(false);
     }
@@ -92,11 +91,11 @@ export default function SignupPage() {
         />
 
         <h1 className="text-4xl font-bold text-center text-gray-900">
-          Create Account
+          {t('signup.title')}
         </h1>
 
         <p className="text-center text-gray-600 mt-2 mb-8">
-          Sign up to continue
+          {t('signup.subtitle')}
         </p>
 
         {error && (
@@ -112,59 +111,59 @@ export default function SignupPage() {
           <input
             type="text"
             name="name"
-            placeholder="Full Name"
+            placeholder={t('signup.namePlaceholder')}
             value={formData.name}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 rounded-lg p-3"
+            className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
           />
 
           <input
             type="email"
             name="email"
-            placeholder="Email Address"
+            placeholder={t('signup.emailPlaceholder')}
             value={formData.email}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 rounded-lg p-3"
+            className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
           />
 
           <input
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder={t('signup.passwordPlaceholder')}
             value={formData.password}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 rounded-lg p-3"
+            className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
           />
 
           <input
             type="password"
             name="confirmPassword"
-            placeholder="Confirm Password"
+            placeholder={t('signup.confirmPasswordPlaceholder')}
             value={formData.confirmPassword}
             onChange={handleChange}
             required
-            className="w-full border border-gray-300 rounded-lg p-3"
+            className="w-full border border-gray-300 rounded-lg p-3 text-sm focus:outline-none focus:ring-2 focus:ring-black"
           />
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg font-semibold transition"
           >
-            {loading ? "Creating Account..." : "Register"}
+            {loading ? t('signup.creatingAccount') : t('signup.register')}
           </button>
         </form>
 
-        <p className="text-center mt-6">
-          Already have an account?{" "}
+        <p className="text-center mt-6 text-sm text-gray-600">
+          {t('signup.haveAccount')}{" "}
           <span
             onClick={() => navigate("/SigninPage")}
-            className="text-blue-600 cursor-pointer hover:underline"
+            className="text-blue-600 cursor-pointer font-semibold hover:underline"
           >
-            Login here
+            {t('signup.login')}
           </span>
         </p>
       </div>

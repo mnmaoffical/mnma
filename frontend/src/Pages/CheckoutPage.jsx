@@ -5,8 +5,12 @@ import { fetchcart, clearcart } from "../redux/slices/cartslice";
 import { createcheckout } from "../redux/slices/checkoutslice";
 import PayPalButton from "../Components/Cart/PayPalButton";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 export default function CheckoutPage() {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
+
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
@@ -51,7 +55,7 @@ export default function CheckoutPage() {
 
   const handleCheckout = async () => {
     if (!formData.email || !formData.firstName || !formData.address || !formData.city) {
-      alert("Please fill in all required fields: Email, First Name, Address, and City.");
+      alert(t('checkout.fillRequired'));
       return;
     }
 
@@ -81,7 +85,7 @@ export default function CheckoutPage() {
       localStorage.setItem("checkoutId", newCheckoutId);
     } catch (error) {
       console.error("Checkout creation error:", error);
-      alert("Failed to save checkout. Please try again.");
+      alert(t('checkout.checkoutFailed'));
     }
   };
 
@@ -89,7 +93,7 @@ export default function CheckoutPage() {
     const checkoutId = activeCheckoutId || localStorage.getItem("checkoutId");
 
     if (!checkoutId) {
-      alert("Checkout session expired. Please restart checkout.");
+      alert(t('checkout.sessionExpired'));
       return;
     }
 
@@ -100,31 +104,35 @@ export default function CheckoutPage() {
     };
 
     try {
-      // Step 1 — Mark checkout as paid
       await axios.put(
         `${import.meta.env.VITE_BACKEND_URL}/api/checkout/${checkoutId}/pay`,
         { paymentStatus: "paid", paymentDetails },
         config
       );
 
-      // Step 2 — Finalise: create order + clear cart
       const finaliseRes = await axios.post(
         `${import.meta.env.VITE_BACKEND_URL}/api/checkout/${checkoutId}/finalise`,
         {},
         config
       );
 
-      // Clear the cart in Redux store and local storage
       dispatch(clearcart());
-
       localStorage.removeItem("checkoutId");
       
       navigate("/order-confirmation", { state: { order: finaliseRes.data.order } });
     } catch (err) {
       const message = err.response?.data?.message || err.message;
       console.error("Finalise error:", err.response?.data || err);
-      alert(`Order saving failed: ${message}`);
+      alert(t('checkout.orderSaveFailed', { message }));
     }
+  };
+
+  const formatPrice = (price) => {
+    const amount = Number(price) || 0;
+    if (isRtl) {
+      return new Intl.NumberFormat('ar-AE', { style: 'currency', currency: 'AED' }).format(amount);
+    }
+    return `AED ${amount.toFixed(2)}`;
   };
 
   if (cartLoading) {
@@ -132,7 +140,7 @@ export default function CheckoutPage() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="w-10 h-10 border-4 border-black border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-gray-600 font-medium">Loading your cart...</p>
+          <p className="text-gray-600 font-medium">{t('checkout.loadingCart')}</p>
         </div>
       </div>
     );
@@ -154,12 +162,12 @@ export default function CheckoutPage() {
         <div className="flex items-center justify-center gap-4 mb-8">
           <div className={`flex items-center gap-2 text-sm font-medium ${!activeCheckoutId ? "text-black" : "text-gray-400"}`}>
             <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${!activeCheckoutId ? "bg-black text-white" : "bg-gray-300 text-white"}`}>1</span>
-            Delivery
+            {t('checkout.step.delivery')}
           </div>
           <div className="h-px w-10 bg-gray-300" />
           <div className={`flex items-center gap-2 text-sm font-medium ${activeCheckoutId ? "text-black" : "text-gray-400"}`}>
             <span className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold ${activeCheckoutId ? "bg-black text-white" : "bg-gray-300 text-white"}`}>2</span>
-            Payment
+            {t('checkout.step.payment')}
           </div>
         </div>
 
@@ -172,7 +180,7 @@ export default function CheckoutPage() {
               {/* Step 1 — Delivery Info */}
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-lg font-semibold">Delivery Information</h2>
+                  <h2 className="text-lg font-semibold">{t('checkout.deliveryInfo')}</h2>
                   {activeCheckoutId && (
                     <button
                       onClick={() => {
@@ -181,7 +189,7 @@ export default function CheckoutPage() {
                       }}
                       className="text-xs text-blue-600 hover:underline"
                     >
-                      Edit
+                      {t('checkout.edit')}
                     </button>
                   )}
                 </div>
@@ -192,7 +200,7 @@ export default function CheckoutPage() {
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Email Address *"
+                    placeholder={t('checkout.emailPlaceholder')}
                     disabled={!!activeCheckoutId}
                     className="w-full border border-gray-300 p-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black disabled:bg-gray-50 disabled:text-gray-500"
                   />
@@ -203,7 +211,7 @@ export default function CheckoutPage() {
                       name="firstName"
                       value={formData.firstName}
                       onChange={handleChange}
-                      placeholder="First Name *"
+                      placeholder={t('checkout.firstNamePlaceholder')}
                       disabled={!!activeCheckoutId}
                       className="border border-gray-300 p-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black disabled:bg-gray-50 disabled:text-gray-500"
                     />
@@ -212,7 +220,7 @@ export default function CheckoutPage() {
                       name="lastName"
                       value={formData.lastName}
                       onChange={handleChange}
-                      placeholder="Last Name"
+                      placeholder={t('checkout.lastNamePlaceholder')}
                       disabled={!!activeCheckoutId}
                       className="border border-gray-300 p-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black disabled:bg-gray-50 disabled:text-gray-500"
                     />
@@ -223,7 +231,7 @@ export default function CheckoutPage() {
                     name="address"
                     value={formData.address}
                     onChange={handleChange}
-                    placeholder="Street Address *"
+                    placeholder={t('checkout.addressPlaceholder')}
                     disabled={!!activeCheckoutId}
                     className="w-full border border-gray-300 p-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black disabled:bg-gray-50 disabled:text-gray-500"
                   />
@@ -234,7 +242,7 @@ export default function CheckoutPage() {
                       name="city"
                       value={formData.city}
                       onChange={handleChange}
-                      placeholder="City *"
+                      placeholder={t('checkout.cityPlaceholder')}
                       disabled={!!activeCheckoutId}
                       className="border border-gray-300 p-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black disabled:bg-gray-50 disabled:text-gray-500"
                     />
@@ -243,7 +251,7 @@ export default function CheckoutPage() {
                       name="postalCode"
                       value={formData.postalCode}
                       onChange={handleChange}
-                      placeholder="Postal Code"
+                      placeholder={t('checkout.postalCodePlaceholder')}
                       disabled={!!activeCheckoutId}
                       className="border border-gray-300 p-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black disabled:bg-gray-50 disabled:text-gray-500"
                     />
@@ -255,7 +263,7 @@ export default function CheckoutPage() {
                       name="country"
                       value={formData.country}
                       onChange={handleChange}
-                      placeholder="Country"
+                      placeholder={t('checkout.countryPlaceholder')}
                       disabled={!!activeCheckoutId}
                       className="border border-gray-300 p-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black disabled:bg-gray-50 disabled:text-gray-500"
                     />
@@ -264,7 +272,7 @@ export default function CheckoutPage() {
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
-                      placeholder="Phone Number"
+                      placeholder={t('checkout.phonePlaceholder')}
                       disabled={!!activeCheckoutId}
                       className="border border-gray-300 p-3 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-black disabled:bg-gray-50 disabled:text-gray-500"
                     />
@@ -284,27 +292,27 @@ export default function CheckoutPage() {
                     {checkoutLoading ? (
                       <span className="flex items-center justify-center gap-2">
                         <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                        Processing...
+                        {t('checkout.processing')}
                       </span>
                     ) : (
-                      "Continue to Payment"
+                      t('checkout.continueToPayment')
                     )}
                   </button>
                 ) : (
                   <div className="bg-gray-50 p-5 rounded-lg border border-gray-200">
                     <p className="text-sm text-gray-500 mb-1 text-center">
-                      Total: <span className="font-semibold text-gray-800">AED {total.toFixed(2)}</span>
-                      <span className="text-xs text-gray-400 ml-1">(≈ ${(total / 3.67).toFixed(2)} USD)</span>
+                      {t('checkout.total')}: <span className="font-semibold text-gray-800">{formatPrice(total)}</span>
+                      <span className="text-xs text-gray-400 ms-1">(≈ ${(total / 3.67).toFixed(2)} USD)</span>
                     </p>
                     <p className="text-xs text-center text-gray-400 mb-4">
-                      You will be charged in USD via PayPal
+                      {t('checkout.youWillBeCharged')}
                     </p>
                     <PayPalButton
                       amount={(total / 3.67).toFixed(2)}
                       onSuccess={handlePaymentSuccess}
                       onError={(err) => {
                         console.error("PayPal error:", err);
-                        alert("Payment failed. Please try again.");
+                        alert(t('checkout.paymentFailed'));
                       }}
                     />
                   </div>
@@ -315,12 +323,12 @@ export default function CheckoutPage() {
 
           {/* Right — Order Summary */}
           <div className="bg-white p-6 rounded-xl shadow-sm h-fit sticky top-6">
-            <h2 className="text-lg font-semibold mb-5">Order Summary</h2>
+            <h2 className="text-lg font-semibold mb-5">{t('checkout.orderSummary')}</h2>
 
             {cartItems.length === 0 ? (
-              <p className="text-center text-gray-400 py-6">Your cart is empty</p>
+              <p className="text-center text-gray-400 py-6">{t('checkout.emptyCart')}</p>
             ) : (
-              <div className="space-y-4 max-h-[380px] overflow-y-auto pr-1">
+              <div className="space-y-4 max-h-[380px] overflow-y-auto pe-1">
                 {cartItems.map((item, index) => (
                   <div key={index} className="flex items-center gap-3 border-b pb-4 last:border-0">
                     <img
@@ -330,12 +338,12 @@ export default function CheckoutPage() {
                     />
                     <div className="flex-1 min-w-0">
                       <h3 className="font-medium text-sm text-gray-900 truncate">{item.name}</h3>
-                      <p className="text-gray-400 text-xs mt-0.5">Qty: {item.quantity}</p>
-                      {item.size && <p className="text-xs text-gray-400">Size: {item.size}</p>}
-                      {item.color && <p className="text-xs text-gray-400">Color: {item.color}</p>}
+                      <p className="text-gray-400 text-xs mt-0.5">{t('checkout.qty')}: {item.quantity}</p>
+                      {item.size && <p className="text-xs text-gray-400">{t('checkout.size')}: {item.size}</p>}
+                      {item.color && <p className="text-xs text-gray-400">{t('checkout.color')}: {item.color}</p>}
                     </div>
                     <span className="font-semibold text-sm flex-shrink-0">
-                      AED {(item.price * item.quantity).toFixed(2)}
+                      {formatPrice(item.price * item.quantity)}
                     </span>
                   </div>
                 ))}
@@ -344,16 +352,16 @@ export default function CheckoutPage() {
 
             <div className="mt-5 space-y-2 border-t pt-4">
               <div className="flex justify-between text-sm text-gray-500">
-                <span>Subtotal</span>
-                <span>AED {subtotal.toFixed(2)}</span>
+                <span>{t('checkout.subtotal')}</span>
+                <span>{formatPrice(subtotal)}</span>
               </div>
               <div className="flex justify-between text-sm text-gray-500">
-                <span>Shipping</span>
-                <span className="text-green-600 font-medium">Free</span>
+                <span>{t('checkout.shipping')}</span>
+                <span className="text-green-600 font-medium">{t('checkout.free')}</span>
               </div>
               <div className="flex justify-between font-bold text-base border-t pt-3 text-gray-900">
-                <span>Total</span>
-                <span>AED {total.toFixed(2)}</span>
+                <span>{t('checkout.total')}</span>
+                <span>{formatPrice(total)}</span>
               </div>
             </div>
           </div>

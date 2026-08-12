@@ -1,0 +1,432 @@
+{
+  "nav": {
+    "home": "الرئيسية",
+    "men": "رجال",
+    "women": "نساء",
+    "topItems": "الأكثر مبيعاً",
+    "aboutUs": "من نحن",
+    "admin": "الإدارة",
+    "profile": "الملف الشخصي",
+    "menu": "القائمة"
+  },
+  "topbar": {
+    "tagline": "نوصل لك أحدث الصيحات - بأناقة وتميز"
+  },
+  "hero": {
+    "title": "ما وراء الأناقة",
+    "subtitle": "اكتشف الأناقة من خلال الجلود الفاخرة والعطور المميزة والملابس العصرية.",
+    "shopNow": "تسوق الآن",
+    "imageAlt": "مجموعة 2026"
+  },
+  "genderCollection": {
+    "mensTitle": "تشكيلة الرجال",
+    "womensTitle": "تشكيلة النساء",
+    "shopNow": "تسوق الآن",
+    "mensAlt": "تشكيلة الرجال",
+    "womensAlt": "تشكيلة النساء"
+  },
+  "newArrivals": {
+    "title": "استكشف الوافدين الجدد",
+    "subtitle": "اكتشف أحدث الأنماط المضافة حديثاً لتبقى في صدارة الموضة.",
+    "loading": "جارٍ تحميل الوافدين الجدد...",
+    "noImage": "لا توجد صورة متاحة",
+    "empty": "لم يتم العثور على وافدين جدد في الوقت الحالي.",
+    "scrollLeft": "التمرير لليسار",
+    "scrollRight": "التمرير لليمين"
+  },
+  "bestSeller": {
+    "badge": "المنتج الأكثر شعبية",
+    "title": "الأكثر مبيعاً",
+    "loading": "جارٍ تحميل المنتج الأكثر مبيعاً...",
+    "noProduct": "لم يتم العثور على منتج الأكثر مبيعاً.",
+    "color": "اللون",
+    "size": "المقاس",
+    "adding": "جارٍ الإضافة...",
+    "addToCart": "أضف إلى السلة"
+  },
+  "footer": {
+    "newsletter": {
+      "title": "النشرة الإخبارية",
+      "description": "كن أول من يسمع عن المنتجات الجديدة والفعاليات الحصرية والعروض الإلكترونية.",
+      "incentive": "اشترك واحصل على خصم 10% على طلبك الأول.",
+      "placeholder": "أدخل بريدك الإلكتروني",
+      "subscribe": "اشتراك",
+      "subscribedSuccess": "تم الاشتراك بنجاح",
+      "subscribedFail": "فشل الاشتراك",
+      "networkError": "خطأ في الشبكة"
+    },
+    "shop": {
+      "title": "التسوق",
+      "mens": "منتجات الرجال",
+      "womens": "منتجات النساء",
+      "top": "المنتجات الأعلى مبيعاً",
+      "all": "جميع التشكيلات"
+    },
+    "support": {
+      "title": "الدعم",
+      "support": "الدعم",
+      "contact": "اتصل بنا",
+      "about": "من نحن",
+      "faq": "الأسئلة الشائعة",
+      "features": "المميزات"
+    },
+    "followUs": {
+      "title": "تابعنا"
+    },
+    "copyright": "© {{year}} شركة MNMA للتجارة العامة - ذ.م.م - ش.ش، جميع الحقوق محفوظة."
+  },
+  "search": {
+    "placeholder": "ابحث عن المنتجات..."
+  },
+  "cart": {
+    "title": "سلة التسوق",
+    "empty": "سلة التسوق فارغة",
+    "checkout": "إتمام الشراء",
+    "shippingNote": "يتم احتساب الشحن والضرائب ورموز الخصم عند الدفع.",
+    "size": "المقاس",
+    "color": "اللون",
+    "qty": "الكمية",
+    "itemSize": "المقاس",
+    "itemColor": "اللون"
+  },
+  "productDetail": {
+    "loading": "جارٍ تحميل المنتج...",
+    "color": "اللون",
+    "size": "المقاس",
+    "adding": "جارٍ الإضافة...",
+    "addToCart": "أضف إلى السلة",
+    "selectColor": "يرجى اختيار اللون",
+    "selectSize": "يرجى اختيار المقاس",
+    "addedToCart": "تم الإضافة إلى السلة",
+    "failedToAdd": "فشل إضافة المنتج إلى السلة",
+    "failedToLoad": "فشل تحميل المنتج"
+  },
+  "filter": {
+    "title": "تصفية",
+    "filterProducts": "تصفية المنتجات",
+    "applyFilters": "تطبيق الفلاتر",
+    "clearFilters": "مسح الفلاتر",
+    "category": "الفئة",
+    "topWear": "ملابس علوية",
+    "bottomWear": "ملابس سفلية",
+    "gender": "الجنس",
+    "men": "رجال",
+    "women": "نساء",
+    "color": "اللون",
+    "size": "المقاس",
+    "material": "الخامة",
+    "filters": "الفلاتر"
+  },
+  "collection": {
+    "badge": "جميع التشكيلات",
+    "title": "كتالوج الأزياء الكامل",
+    "subtitle": "لكل ذوق وأسلوب",
+    "loading": "جارٍ تحميل المنتجات...",
+    "noProducts": "لم يتم العثور على منتجات",
+    "filters": "الفلاتر"
+  },
+  "mens": {
+    "badge": "تشكيلة الرجال",
+    "title": "أزياء خالدة",
+    "subtitle": "مصممة للرجل العصري",
+    "loading": "جارٍ تحميل المنتجات...",
+    "noProducts": "لم يتم العثور على منتجات"
+  },
+  "womens": {
+    "badge": "تشكيلة النساء",
+    "title": "أزياء خالدة",
+    "subtitle": "مصممة للمرأة العصرية",
+    "loading": "جارٍ تحميل المنتجات...",
+    "noProducts": "لم يتم العثور على منتجات"
+  },
+  "topItems": {
+    "title": "الأكثر مبيعاً",
+    "subtitle": "اكتشف أبرز اختياراتنا الأكثر شعبية",
+    "loading": "جارٍ تحميل المنتجات الأعلى مبيعاً...",
+    "empty": "لم يتم العثور على منتجات أعلى مبيعاً.",
+    "loadError": "فشل تحميل المنتجات"
+  },
+  "about": {
+    "hero": {
+      "badge": "مرحباً بك في متجرنا",
+      "titlePart1": "نعيد تعريف",
+      "titleHighlight": "تجربة",
+      "titlePart2": "التسوق",
+      "description": "نؤمن أن التسوق ينبغي أن يكون بسيطاً وأنيقاً وممتعاً. تجمع منصتنا بين المنتجات عالية الجودة والتصميم العصري وتجربة عملاء سلسة — في مكان واحد.",
+      "shopNow": "تسوق الآن",
+      "explore": "استكشف التشكيلة"
+    },
+    "brand": {
+      "badge": "من نحن",
+      "title": "أكثر من مجرد متجر إلكتروني",
+      "p1": "مهمتنا هي إنشاء منصة تسوق يمكن للعملاء من خلالها اكتشاف منتجات عالية الجودة بثقة ويسر. نركز على تقديم القيمة والثقة ورحلة تسوق استثنائية عبر الإنترنت.",
+      "p2": "من التشكيلات المميزة إلى الخدمة الموثوقة، كل تفصيل مصمم لتقديم تجربة عملاء عصرية ومُرضية."
+    },
+    "features": {
+      "badge": "لماذا تختارنا",
+      "title": "مصمم للتسوق العصري"
+    },
+    "services": {
+      "premiumProducts": {
+        "title": "منتجات فاخرة",
+        "desc": "منتجات مختارة بعناية مع مراعاة الجودة والأسلوب ورضا العملاء."
+      },
+      "fastDelivery": {
+        "title": "توصيل سريع",
+        "desc": "تجربة شحن سريعة وموثوقة مصممة لتوصيل المنتجات في الوقت المحدد."
+      },
+      "secureShopping": {
+        "title": "تسوق آمن",
+        "desc": "مدفوعات آمنة ومعاملات موثوقة لضمان تجربة تسوق خالية من القلق."
+      },
+      "support247": {
+        "title": "دعم على مدار الساعة",
+        "desc": "دعم عملاء ودي جاهز دائماً لمساعدتك في طلباتك واستفساراتك."
+      }
+    },
+    "stats": {
+      "customers": "عميل سعيد",
+      "products": "منتج فاخر",
+      "reviews": "تقييم إيجابي",
+      "support": "دعم العملاء"
+    },
+    "cta": {
+      "title": "اكتشف طريقة أفضل للتسوق",
+      "description": "استمتع بمنتجات فاخرة وجودة موثوقة ورحلة تسوق سلسة عبر الإنترنت مصممة للعملاء العصريين.",
+      "button": "ابدأ التسوق"
+    }
+  },
+  "signin": {
+    "title": "مرحباً بعودتك",
+    "subtitle": "سجّل دخولك للمتابعة",
+    "emailPlaceholder": "البريد الإلكتروني",
+    "passwordPlaceholder": "كلمة المرور",
+    "signingIn": "جارٍ تسجيل الدخول...",
+    "signIn": "تسجيل الدخول",
+    "noAccount": "ليس لديك حساب؟",
+    "register": "سجّل هنا"
+  },
+  "signup": {
+    "title": "إنشاء حساب",
+    "subtitle": "سجّل للمتابعة",
+    "namePlaceholder": "الاسم الكامل",
+    "emailPlaceholder": "البريد الإلكتروني",
+    "passwordPlaceholder": "كلمة المرور",
+    "confirmPasswordPlaceholder": "تأكيد كلمة المرور",
+    "creatingAccount": "جارٍ إنشاء الحساب...",
+    "register": "تسجيل",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "login": "تسجيل الدخول هنا",
+    "passwordMismatch": "كلمتا المرور غير متطابقتين",
+    "registrationFailed": "فشل التسجيل"
+  },
+  "profile": {
+    "title": "ملفك الشخصي",
+    "description": "سجّل دخولك لعرض طلباتك وإدارة حسابك والحصول على تجربة مخصصة.",
+    "signIn": "تسجيل الدخول",
+    "createAccount": "إنشاء حساب",
+    "trackOrders": "تتبع الطلبات",
+    "easyReturns": "إرجاع سهل",
+    "secureAccount": "حساب آمن",
+    "totalOrders": "إجمالي الطلبات",
+    "delivered": "تم التسليم",
+    "inProgress": "قيد التنفيذ",
+    "totalSpent": "إجمالي الإنفاق",
+    "accountInfo": "معلومات الحساب",
+    "name": "الاسم",
+    "email": "البريد الإلكتروني",
+    "role": "الدور",
+    "logout": "تسجيل الخروج",
+    "logoutConfirm": "هل أنت متأكد أنك تريد تسجيل الخروج؟",
+    "loggedOut": "تم تسجيل الخروج بنجاح!",
+    "recentOrders": "الطلبات الأخيرة",
+    "noOrders": "لا توجد طلبات بعد",
+    "noOrdersDesc": "ستظهر طلباتك هنا بمجرد تسوقك",
+    "browseCollection": "تصفح التشكيلة",
+    "loadingOrders": "جارٍ تحميل الطلبات...",
+    "moreOrders": "+ {{count}} طلب إضافي",
+    "order": "طلب",
+    "orders": "طلبات",
+    "items": "عناصر",
+    "item": "عنصر"
+  },
+  "checkout": {
+    "step": {
+      "delivery": "التسليم",
+      "payment": "الدفع"
+    },
+    "deliveryInfo": "معلومات التسليم",
+    "edit": "تعديل",
+    "emailPlaceholder": "البريد الإلكتروني *",
+    "firstNamePlaceholder": "الاسم الأول *",
+    "lastNamePlaceholder": "اسم العائلة",
+    "addressPlaceholder": "العنوان *",
+    "cityPlaceholder": "المدينة *",
+    "postalCodePlaceholder": "الرمز البريدي",
+    "countryPlaceholder": "الدولة",
+    "phonePlaceholder": "رقم الهاتف",
+    "continueToPayment": "المتابعة إلى الدفع",
+    "processing": "جارٍ المعالجة...",
+    "orderSummary": "ملخص الطلب",
+    "emptyCart": "سلة التسوق فارغة",
+    "subtotal": "المجموع الفرعي",
+    "shipping": "الشحن",
+    "free": "مجاني",
+    "total": "الإجمالي",
+    "loadingCart": "جارٍ تحميل سلة التسوق...",
+    "youWillBeCharged": "سيتم خصم المبلغ بالدولار الأمريكي عبر PayPal",
+    "qty": "الكمية",
+    "size": "المقاس",
+    "color": "اللون",
+    "fillRequired": "يرجى ملء جميع الحقول المطلوبة: البريد الإلكتروني، الاسم الأول، العنوان، والمدينة.",
+    "checkoutFailed": "فشل حفظ بيانات الدفع. يرجى المحاولة مرة أخرى.",
+    "sessionExpired": "انتهت جلسة الدفع. يرجى إعادة البدء.",
+    "paymentFailed": "فشل الدفع. يرجى المحاولة مرة أخرى.",
+    "orderSaveFailed": "فشل حفظ الطلب: {{message}}"
+  },
+  "orderConfirmation": {
+    "title": "تم تأكيد الطلب!",
+    "thanks": "شكراً لتسوقك مع MNMA.",
+    "placed": "تم وضع طلبك بنجاح.",
+    "details": "تفاصيل الطلب",
+    "orderId": "رقم الطلب",
+    "orderDate": "تاريخ الطلب",
+    "paymentStatus": "حالة الدفع",
+    "paid": "مدفوع",
+    "estimatedDelivery": "التسليم المتوقع",
+    "deliveryDays": "3 - 5 أيام عمل",
+    "shippingAddress": "عنوان الشحن",
+    "continueShopping": "مواصلة التسوق",
+    "viewOrders": "عرض الطلبات"
+  },
+  "admin": {
+    "sidebar": {
+      "dashboard": "لوحة التحكم",
+      "users": "المستخدمون",
+      "products": "المنتجات",
+      "orders": "الطلبات",
+      "logout": "تسجيل الخروج",
+      "logoutConfirm": "هل أنت متأكد أنك تريد تسجيل الخروج؟"
+    },
+    "dashboard": {
+      "title": "لوحة تحكم المدير",
+      "revenue": "الإيرادات",
+      "totalOrders": "إجمالي الطلبات",
+      "manageOrders": "إدارة الطلبات",
+      "totalProducts": "إجمالي المنتجات",
+      "manageProducts": "إدارة المنتجات",
+      "recentOrders": "الطلبات الأخيرة",
+      "loading": "جارٍ تحميل الطلبات...",
+      "orderId": "رقم الطلب",
+      "user": "المستخدم",
+      "totalPrice": "السعر الإجمالي",
+      "status": "الحالة",
+      "adminUser": "مستخدم المدير"
+    },
+    "users": {
+      "title": "إدارة المستخدمين",
+      "addUser": "إضافة مستخدم جديد",
+      "editUser": "تعديل المستخدم",
+      "namePlaceholder": "الاسم",
+      "emailPlaceholder": "البريد الإلكتروني",
+      "passwordPlaceholder": "كلمة المرور",
+      "customer": "عميل",
+      "admin": "مدير",
+      "processing": "جارٍ المعالجة...",
+      "updateUser": "تحديث المستخدم",
+      "addUser_btn": "إضافة مستخدم",
+      "cancel": "إلغاء",
+      "userList": "قائمة المستخدمين",
+      "loading": "جارٍ تحميل المستخدمين...",
+      "noUsers": "لم يتم العثور على مستخدمين",
+      "fillAll": "يرجى ملء جميع الحقول",
+      "name": "الاسم",
+      "email": "البريد الإلكتروني",
+      "role": "الدور",
+      "status": "الحالة",
+      "actions": "الإجراءات",
+      "retry": "إعادة المحاولة"
+    },
+    "orders": {
+      "title": "إدارة الطلبات",
+      "loading": "جارٍ تحميل الطلبات...",
+      "orderId": "رقم الطلب",
+      "customer": "العميل",
+      "totalPrice": "السعر الإجمالي",
+      "status": "الحالة",
+      "actions": "الإجراءات",
+      "delete": "حذف",
+      "deleteConfirm": "هل تريد حذف هذا الطلب؟",
+      "unknown": "غير معروف",
+      "statuses": {
+        "processing": "قيد المعالجة",
+        "shipped": "تم الشحن",
+        "delivered": "تم التسليم",
+        "cancelled": "ملغى"
+      }
+    },
+    "products": {
+      "title": "إدارة المنتجات",
+      "addNew": "إضافة منتج جديد",
+      "editProduct": "تعديل المنتج",
+      "saving": "جارٍ الحفظ...",
+      "updateProduct": "تحديث المنتج",
+      "addProduct": "إضافة منتج",
+      "cancel": "إلغاء",
+      "loading": "جارٍ تحميل المنتجات...",
+      "noProducts": "لم يتم العثور على منتجات.",
+      "deleteConfirm": "هل تريد حذف هذا المنتج؟",
+      "deleteFailed": "فشل الحذف",
+      "failedToSave": "فشل حفظ المنتج",
+      "productCount": "المنتجات ({{count}})",
+      "published": "منشور",
+      "draft": "مسودة",
+      "featured": "مميز",
+      "edit": "تعديل",
+      "delete": "حذف",
+      "labels": {
+        "productName": "اسم المنتج *",
+        "description": "الوصف *",
+        "price": "السعر *",
+        "discountPrice": "سعر الخصم",
+        "countInStock": "الكمية في المخزون *",
+        "sku": "رمز المنتج *",
+        "category": "الفئة *",
+        "brand": "العلامة التجارية",
+        "collections": "التشكيلات *",
+        "material": "الخامة",
+        "gender": "الجنس *",
+        "sizes": "المقاسات (مفصولة بفاصلة) *",
+        "colors": "الألوان (مفصولة بفاصلة) *",
+        "tags": "الوسوم (مفصولة بفاصلة)",
+        "dimensions": "الأبعاد",
+        "weight": "الوزن (كجم)",
+        "productImage": "صورة المنتج *",
+        "selectGender": "اختر الجنس",
+        "men": "رجال",
+        "women": "نساء",
+        "unisex": "للجنسين",
+        "sizesPlaceholder": "S, M, L, XL",
+        "colorsPlaceholder": "أحمر، أزرق، أسود",
+        "tagsPlaceholder": "صيف، تخفيض، جديد",
+        "isFeatured": "مميز",
+        "isPublished": "منشور",
+        "price_lbl": "السعر:",
+        "discount_lbl": "الخصم:",
+        "stock_lbl": "المخزون:",
+        "sku_lbl": "رمز المنتج:",
+        "category_lbl": "الفئة:",
+        "brand_lbl": "العلامة التجارية:",
+        "gender_lbl": "الجنس:",
+        "collections_lbl": "التشكيلات:",
+        "sizes_lbl": "المقاسات:",
+        "colors_lbl": "الألوان:"
+      }
+    }
+  },
+  "language": {
+    "en": "EN",
+    "ar": "ع",
+    "switchTo": "تغيير اللغة"
+  }
+}

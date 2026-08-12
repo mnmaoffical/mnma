@@ -1,10 +1,20 @@
-// Pages/OrderConfirmationPage.jsx
-
 import React from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export default function OrderConfirmationPage() {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
   const orderId = "MNMA2026001";
+
+  const formatDate = () => {
+    const locale = isRtl ? 'ar-AE' : 'en-AE';
+    return new Date().toLocaleDateString(locale, {
+      day: "2-digit",
+      month: "short",
+      year: "numeric"
+    });
+  };
 
   return (
     <div className="min-h-screen bg-[#f8f5f0] flex items-center justify-center px-4 py-10">
@@ -32,46 +42,46 @@ export default function OrderConfirmationPage() {
         {/* Heading */}
         <div className="text-center mt-6">
           <h1 className="text-4xl font-bold text-gray-900">
-            Order Confirmed!
+            {t('orderConfirmation.title')}
           </h1>
           <p className="mt-3 text-gray-600 text-lg">
-            Thank you for shopping with MNMA.
+            {t('orderConfirmation.thanks')}
           </p>
           <p className="text-gray-500 mt-2">
-            Your order has been placed successfully.
+            {t('orderConfirmation.placed')}
           </p>
         </div>
 
         {/* Order Details */}
         <div className="mt-10 bg-gray-50 rounded-2xl p-6">
           <h2 className="text-xl font-semibold mb-4">
-            Order Details
+            {t('orderConfirmation.details')}
           </h2>
 
           <div className="space-y-3">
             <div className="flex justify-between">
-              <span className="text-gray-600">Order ID</span>
-              <span className="font-semibold">{orderId}</span>
+              <span className="text-gray-600">{t('orderConfirmation.orderId')}</span>
+              <span className="font-semibold font-mono">{orderId}</span>
             </div>
 
             <div className="flex justify-between">
-              <span className="text-gray-600">Order Date</span>
+              <span className="text-gray-600">{t('orderConfirmation.orderDate')}</span>
               <span className="font-semibold">
-                {new Date().toLocaleDateString()}
+                {formatDate()}
               </span>
             </div>
 
             <div className="flex justify-between">
-              <span className="text-gray-600">Payment Status</span>
+              <span className="text-gray-600">{t('orderConfirmation.paymentStatus')}</span>
               <span className="text-green-600 font-semibold">
-                Paid
+                {t('orderConfirmation.paid')}
               </span>
             </div>
 
             <div className="flex justify-between">
-              <span className="text-gray-600">Estimated Delivery</span>
+              <span className="text-gray-600">{t('orderConfirmation.estimatedDelivery')}</span>
               <span className="font-semibold">
-                3 - 5 Business Days
+                {t('orderConfirmation.deliveryDays')}
               </span>
             </div>
           </div>
@@ -80,10 +90,10 @@ export default function OrderConfirmationPage() {
         {/* Shipping Info */}
         <div className="mt-6 bg-gray-50 rounded-2xl p-6">
           <h2 className="text-xl font-semibold mb-3">
-            Shipping Address
+            {t('orderConfirmation.shippingAddress')}
           </h2>
 
-          <p className="text-gray-700">
+          <p className="text-gray-700 font-medium">
             John Doe
           </p>
 
@@ -92,7 +102,7 @@ export default function OrderConfirmationPage() {
           </p>
 
           <p className="text-gray-600">
-            New Delhi, India - 110001
+            Dubai, UAE - 00000
           </p>
         </div>
 
@@ -102,14 +112,14 @@ export default function OrderConfirmationPage() {
             to="/"
             className="px-6 py-3 rounded-xl bg-black text-white text-center font-medium hover:bg-gray-800 transition"
           >
-            Continue Shopping
+            {t('orderConfirmation.continueShopping')}
           </Link>
 
           <Link
-            to="/orders"
+            to="/profile"
             className="px-6 py-3 rounded-xl border border-gray-300 text-center font-medium hover:bg-gray-100 transition"
           >
-            View Orders
+            {t('orderConfirmation.viewOrders')}
           </Link>
         </div>
       </div>

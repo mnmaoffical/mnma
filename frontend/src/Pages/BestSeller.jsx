@@ -1,11 +1,13 @@
-
 import React, { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useDispatch, useSelector } from "react-redux";
- import { fetchproductbyfilters } from "../redux/slices/productslice";
- import { addtocart } from "../redux/slices/cartslice";
+import { fetchproductbyfilters } from "../redux/slices/productslice";
+import { addtocart } from "../redux/slices/cartslice";
+import { useTranslation } from "react-i18next";
 
 function BestSeller() {
+  const { t, i18n } = useTranslation();
+  const isRtl = i18n.language === 'ar';
   const dispatch = useDispatch();
 
   const { products, loading, error } = useSelector(
@@ -52,12 +54,12 @@ function BestSeller() {
 
   const handleAddToCart = async () => {
     if (!selectedColor && product?.colors?.length > 0) {
-      toast.error("Select a color");
+      toast.error(t('bestSeller.selectColor', 'Select a color'));
       return;
     }
 
     if (!selectedSize && product?.sizes?.length > 0) {
-      toast.error("Select a size");
+      toast.error(t('bestSeller.selectSize', 'Select a size'));
       return;
     }
 
@@ -77,9 +79,9 @@ function BestSeller() {
         })
       );
 
-      toast.success("Added to cart");
+      toast.success(t('productDetail.addedToCart'));
     } catch (error) {
-      toast.error("Failed to add cart");
+      toast.error(t('productDetail.failedToAdd'));
     } finally {
       setIsButtonDisabled(false);
     }
@@ -87,25 +89,29 @@ function BestSeller() {
 
   const getImageUrl = (image) => {
     if (!image) return "";
-
-    if (typeof image === "string") {
-      return image;
-    }
-
+    if (typeof image === "string") return image;
     return image.url;
+  };
+
+  const formatPrice = (price) => {
+    const amount = Number(price) || 0;
+    if (isRtl) {
+      return new Intl.NumberFormat('ar-AE', { style: 'currency', currency: 'AED' }).format(amount);
+    }
+    return `AED ${amount.toLocaleString()}`;
   };
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        Loading Best Seller Product...
+      <div className="flex justify-center items-center min-h-[300px] text-gray-500 font-medium">
+        {t('bestSeller.loading')}
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="flex justify-center items-center min-h-screen text-red-500">
+      <div className="flex justify-center items-center min-h-[300px] text-red-500 font-medium">
         {error}
       </div>
     );
@@ -113,8 +119,8 @@ function BestSeller() {
 
   if (!product) {
     return (
-      <div className="flex justify-center items-center min-h-screen">
-        No bestseller product found.
+      <div className="flex justify-center items-center min-h-[300px] text-gray-500">
+        {t('bestSeller.noProduct')}
       </div>
     );
   }
@@ -123,17 +129,16 @@ function BestSeller() {
     <div className="px-4 py-6 sm:p-6 bg-gray-50 min-h-screen">
       <div className="max-w-6xl mx-auto bg-white p-4 sm:p-8 rounded-lg shadow-sm">
         <div className="mb-8 text-center">
-          <p className="text-sm uppercase tracking-widest text-[#8b7355]">
-            Most Popular Product
+          <p className="text-sm uppercase tracking-widest text-[#8b7355] font-semibold">
+            {t('bestSeller.badge')}
           </p>
 
           <h1 className="text-3xl sm:text-4xl font-bold mt-2">
-            Best Seller
+            {t('bestSeller.title')}
           </h1>
         </div>
 
         <div className="flex flex-col md:flex-row gap-6">
-
           {/* Thumbnails */}
           <div className="hidden md:flex flex-col space-y-4">
             {product.images?.map((image, index) => {
@@ -187,9 +192,8 @@ function BestSeller() {
 
           {/* Product Details */}
           <div className="w-full md:w-1/2">
-
             <div className="mb-3">
-              <span className="text-sm text-[#8b7355] uppercase tracking-wider">
+              <span className="text-sm text-[#8b7355] uppercase tracking-wider font-semibold">
                 {product.category}
               </span>
             </div>
@@ -199,13 +203,13 @@ function BestSeller() {
             </h2>
 
             <div className="flex items-center gap-3 mb-4">
-              <p className="text-2xl font-semibold">
-                AED {product.price}
+              <p className="text-2xl font-semibold text-gray-900">
+                {formatPrice(product.price)}
               </p>
 
-              {product.discountprice && (
+              {product.discountprice > 0 && (
                 <p className="text-lg text-gray-400 line-through">
-                  AED {product.discountprice}
+                  {formatPrice(product.discountprice)}
                 </p>
               )}
             </div>
@@ -225,7 +229,7 @@ function BestSeller() {
             {/* Colors */}
             {product.colors?.length > 0 && (
               <div className="mb-5">
-                <h3 className="font-medium mb-2">Color</h3>
+                <h3 className="font-medium mb-2">{t('bestSeller.color')}</h3>
 
                 <div className="flex flex-wrap gap-2">
                   {product.colors.map((color) => (
@@ -249,14 +253,14 @@ function BestSeller() {
             {/* Sizes */}
             {product.sizes?.length > 0 && (
               <div className="mb-5">
-                <h3 className="font-medium mb-2">Size</h3>
+                <h3 className="font-medium mb-2">{t('bestSeller.size')}</h3>
 
                 <div className="flex flex-wrap gap-2">
                   {product.sizes.map((size) => (
                     <button
                       key={size}
                       onClick={() => setSelectedSize(size)}
-                      className={`px-4 py-2 border rounded transition ${
+                      className={`px-4 py-2 border rounded font-medium transition ${
                         selectedSize === size
                           ? "bg-black text-white border-black"
                           : "border-gray-300"
@@ -271,40 +275,35 @@ function BestSeller() {
 
             {/* Quantity */}
             <div className="mb-6">
-           
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => handleQuantityChange("Minus")}
-                  className="w-10 h-10 border rounded hover:bg-gray-100"
+                  className="w-10 h-10 border rounded hover:bg-gray-100 text-lg font-medium"
                 >
                   -
                 </button>
 
-                <span className="text-lg font-medium">
+                <span className="text-lg font-medium px-2">
                   {quantity}
                 </span>
 
                 <button
                   onClick={() => handleQuantityChange("Plus")}
-                  className="w-10 h-10 border rounded hover:bg-gray-100"
+                  className="w-10 h-10 border rounded hover:bg-gray-100 text-lg font-medium"
                 >
                   +
                 </button>
               </div>
             </div>
 
-          
-         
-
             {/* Add To Cart */}
             <button
               onClick={handleAddToCart}
               disabled={isButtonDisabled}
-              className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition disabled:opacity-50"
+              className="w-full bg-black text-white py-3 rounded-lg font-semibold hover:bg-gray-800 transition disabled:opacity-50"
             >
-              {isButtonDisabled ? "Adding..." : "ADD TO CART"}
+              {isButtonDisabled ? t('bestSeller.adding') : t('bestSeller.addToCart')}
             </button>
-
           </div>
         </div>
       </div>
