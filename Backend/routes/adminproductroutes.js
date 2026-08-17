@@ -20,8 +20,7 @@ adminprorouter.post("/", protect, admin, async (req, res) => {
     try {
         const { name, description, price, discountprice, countinstock, category, brand, sizes, colors, collections, material, gender,
             images, isfeatured, ispublised, tags, dimensions, weight, sku } = req.body
-
-        // ✅ Convert numbers properly
+            
         const creatingproduct = new product({
             name,
             description,
@@ -52,6 +51,7 @@ adminprorouter.post("/", protect, admin, async (req, res) => {
     } catch (error) {
         console.error("POST error:", error)  
         res.status(500).json({ message: error.message })  
+        console.error(error)
     }
 })
 

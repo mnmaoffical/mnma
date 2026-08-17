@@ -15,7 +15,7 @@ const storage = multer.memoryStorage()  // memorystorage - store file temperory 
 
 const upload = multer({storage})
 
-uploadroute.post("/", upload.single("image"), async (req, res) => {  // will accept a file named image 
+uploadroute.post("/", upload.array("images", 5), async (req, res) => {  // will accept a file named image 
     try {
         if (!req.file) { // store image info in req.file
             return res.status(400).json({ message: "No file uploaded" });

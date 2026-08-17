@@ -362,15 +362,17 @@ export default function ProductManagement() {
 
         {/* Sizes, Colors, Tags */}
         <div>
-          <label className="block mb-1 font-medium">{t('admin.products.labels.sizes')}</label>
-          <input
-            type="text"
-            name="sizes"
-            value={form.sizes}
-            onChange={handleChange}
-            placeholder={t('admin.products.labels.sizesPlaceholder')}
-            className="border p-2 rounded w-full text-sm"
-          />
+        <label className="block mb-1 font-medium">{t('admin.products.labels.sizes')}
+           <span className="text-gray-400 text-xs">(optional)</span>
+        </label>
+<input
+  type="text"
+  name="sizes"
+  value={form.sizes}
+  onChange={handleChange}
+  placeholder="6, 7, 8"
+  className="border p-2 rounded w-full text-sm"
+/>
         </div>
 
         <div>
