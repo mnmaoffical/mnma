@@ -4,6 +4,7 @@ import { RiTwitterXLine } from 'react-icons/ri';
 import { RiSnapchatLine } from "react-icons/ri";
 import { TbBrandMeta } from 'react-icons/tb';
 import { FiPhoneCall } from 'react-icons/fi';
+import { FaWhatsapp } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -88,17 +89,29 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div>
-          <h3 className='text-lg text-gray-800 mb-4'>{t('footer.support.title')}</h3>
-          <ul className='space-y-2 text-gray-600'>
-            <li><Link to="##" className='hover:text-gray-500 transition-colors'>{t('footer.support.support')}</Link></li>
-            <li><Link to="##" className='hover:text-gray-500 transition-colors'>{t('footer.support.contact')}</Link></li>
-            <li><Link to="/about" className='hover:text-gray-500 transition-colors'>{t('footer.support.about')}</Link></li>
-            <li><Link to="##" className='hover:text-gray-500 transition-colors'>{t('footer.support.faq')}</Link></li>
-            <li><Link to="##" className='hover:text-gray-500 transition-colors'>{t('footer.support.features')}</Link></li>
-          </ul>
-        </div>
-
+    <div>
+  <h3 className='text-lg text-gray-800 mb-4'>{t('footer.support.title')}</h3>
+  <ul className='space-y-2 text-gray-600'>
+    <li>
+      <a
+        href="mailto:mnmasupport@gmail.com?subject=Support%20Request&body=Hi%20MNMA%20Team%2C%0A%0AI%20need%20help%20with%3A%0A%0A"
+        className="hover:text-gray-500 transition-colors"
+      >
+        {t('footer.support.support')}
+      </a>
+    </li>
+    <li>
+      <Link to="/about" className='hover:text-gray-500 transition-colors'>
+        {t('footer.support.about')}
+      </Link>
+    </li>
+    <li>
+      <Link to="/faq" className='hover:text-gray-500 transition-colors'>
+        {t('footer.support.faq')}
+      </Link>
+    </li>
+  </ul>
+</div>
         <div>
           <h3 className='text-lg text-gray-800 mb-4'>{t('footer.followUs.title')}</h3>
           <div className='flex items-center gap-4 mb-6'>
@@ -115,14 +128,22 @@ const Footer = () => {
             href="https://www.snapchat.com/"
        target="_blank"
          rel="noopener noreferrer"
-  className="hover:text-gray-500"
+  className="hover:text-yellow-500"
 >
   <RiSnapchatLine className="h-4 w-4" />
 </a>
-    <a
-  href="tel:+971529205556"
-  className="text-gray-900 flex items-center gap-2 hover:text-gray-600"
+<a
+  href="https://wa.me/+971 55 393 5052"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-gray-900 flex items-center gap-2 hover:text-green-500"
 >
+  <FaWhatsapp className="inline-block" />
+</a>
+      <a
+      href="tel:+971529205556"
+     className="text-gray-900 flex items-center gap-2 hover:text-gray-600"
+  >
   <FiPhoneCall className="inline-block" />
 
 </a>
