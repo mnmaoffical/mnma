@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { IoLogoInstagram } from 'react-icons/io';
 import { RiTwitterXLine } from 'react-icons/ri';
+import { RiSnapchatLine } from "react-icons/ri";
 import { TbBrandMeta } from 'react-icons/tb';
 import { FiPhoneCall } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
@@ -101,20 +102,33 @@ const Footer = () => {
         <div>
           <h3 className='text-lg text-gray-800 mb-4'>{t('footer.followUs.title')}</h3>
           <div className='flex items-center gap-4 mb-6'>
-            <a href="https://www.facebook.com" target='_blank' rel='noopener noreferrer' className='hover:text-gray-500'>
+            <a href="https://www.facebook.com/share/1CCGCbUVQy/" target='_blank' rel='noopener noreferrer' className='hover:text-gray-500'>
               <TbBrandMeta className='h-5 w-5' />
             </a>
-            <a href="https://www.instagram.com" target='_blank' rel='noopener noreferrer' className='hover:text-gray-500'>
+            <a href="https://www.instagram.com/padora_by_mnma?utm_source=qr&igsh=MW8wNml6bTk5d3BzOQ==" target='_blank' rel='noopener noreferrer' className='hover:text-gray-500'>
               <IoLogoInstagram className='h-5 w-5' />
             </a>
             <a href="https://www.x.com" target='_blank' rel='noopener noreferrer' className='hover:text-gray-500'>
               <RiTwitterXLine className='h-4 w-4' />
             </a>
+            <a
+            href="https://www.snapchat.com/"
+       target="_blank"
+         rel="noopener noreferrer"
+  className="hover:text-gray-500"
+>
+  <RiSnapchatLine className="h-4 w-4" />
+</a>
+    <a
+  href="tel:+971529205556"
+  className="text-gray-900 flex items-center gap-2 hover:text-gray-600"
+>
+  <FiPhoneCall className="inline-block" />
+
+</a>
+          
           </div>
-          <p className='text-gray-900 flex items-center gap-2'>
-            <FiPhoneCall className='inline-block' />
-            <span>0123-456-789</span>
-          </p>
+     
         </div>
       </div>
 
