@@ -347,24 +347,40 @@
       "actions": "Actions",
       "retry": "Retry"
     },
-    "orders": {
-      "title": "Order Management",
-      "loading": "Loading orders...",
-      "orderId": "ORDER ID",
-      "customer": "CUSTOMER",
-      "totalPrice": "TOTAL PRICE",
-      "status": "STATUS",
-      "actions": "ACTIONS",
-      "delete": "Delete",
-      "deleteConfirm": "Delete this order?",
-      "unknown": "Unknown",
-      "statuses": {
-        "processing": "Processing",
-        "shipped": "Shipped",
-        "delivered": "Delivered",
-        "cancelled": "Cancelled"
-      }
-    },
+   "orders": {
+  "title": "Order Management",
+  "management": "Management",
+  "subtitle": "Monitor and manage customer orders",
+
+  "loading": "Loading orders...",
+  "refresh": "Refresh",
+
+  "orderId": "ORDER ID",
+  "customer": "CUSTOMER",
+  "totalPrice": "TOTAL PRICE",
+  "address": "ADDRESS",
+  "status": "STATUS",
+  "actions": "ACTIONS",
+
+  "totalOrders": "Total Orders",
+  "ordersFound": "orders found",
+  "latestOrders": "Latest orders",
+
+  "delete": "Delete",
+  "deleteConfirm": "Delete this order?",
+
+  "unknown": "Unknown",
+  "noAddress": "No address available",
+  "noOrders": "No orders found",
+  "noOrdersDescription": "New orders will appear here.",
+
+  "statuses": {
+    "processing": "Processing",
+    "shipped": "Shipped",
+    "delivered": "Delivered",
+    "cancelled": "Cancelled"
+  }
+},
     "products": {
       "title": "Product Management",
       "addNew": "Add New Product",

@@ -347,17 +347,27 @@
       "actions": "الإجراءات",
       "retry": "إعادة المحاولة"
     },
-    "orders": {
+     "orders": {
       "title": "إدارة الطلبات",
+      "management": "الإدارة",
+      "subtitle": "مراقبة وإدارة طلبات العملاء",
       "loading": "جارٍ تحميل الطلبات...",
+      "refresh": "تحديث",
       "orderId": "رقم الطلب",
       "customer": "العميل",
       "totalPrice": "السعر الإجمالي",
+      "address": "العنوان",
       "status": "الحالة",
       "actions": "الإجراءات",
+      "totalOrders": "إجمالي الطلبات",
+      "ordersFound": "طلبًا موجودًا",
+      "latestOrders": "أحدث الطلبات",
       "delete": "حذف",
       "deleteConfirm": "هل تريد حذف هذا الطلب؟",
       "unknown": "غير معروف",
+      "noAddress": "لا يوجد عنوان",
+      "noOrders": "لم يتم العثور على طلبات",
+      "noOrdersDescription": "ستظهر الطلبات الجديدة هنا.",
       "statuses": {
         "processing": "قيد المعالجة",
         "shipped": "تم الشحن",
