@@ -68,6 +68,7 @@ export default function OrderManagement() {
                 <th className="text-start p-4">{t('admin.orders.orderId')}</th>
                 <th className="text-start p-4">{t('admin.orders.customer')}</th>
                 <th className="text-start p-4">{t('admin.orders.totalPrice')}</th>
+                  <th className="text-start p-4">{t('admin.orders.shippingAddress.address')}</th>
                 <th className="text-start p-4">{t('admin.orders.status')}</th>
                 <th className="text-center p-4">{t('admin.orders.actions')}</th>
               </tr>
