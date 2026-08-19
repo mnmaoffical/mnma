@@ -82,7 +82,19 @@ export default function OrderManagement() {
                   <td className="p-4 font-semibold">
                     {formatPrice(order.totalprice || order.totalPrice || 0)}
                   </td>
-                  <td className="p-4">{order.shippingaddress?.address || t('admin.orders.noAddress')}</td>
+                       <td className="p-4">
+  {order.shippingAddress ? (
+    <>
+      <div>{order.shippingAddress.address}</div>
+      <div>{order.shippingAddress.city}</div>
+      <div>
+        {order.shippingAddress.postalCode}, {order.shippingAddress.country}
+      </div>
+    </>
+  ) : (
+    t("admin.orders.noAddress")
+  )}
+</td>
                   <td className="p-4">
                     <select
                       value={order.status || "Processing"}
