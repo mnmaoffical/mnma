@@ -68,7 +68,7 @@ export default function OrderManagement() {
                 <th className="text-start p-4">{t('admin.orders.orderId')}</th>
                 <th className="text-start p-4">{t('admin.orders.customer')}</th>
                 <th className="text-start p-4">{t('admin.orders.totalPrice')}</th>
-                  <th className="text-start p-4">{t('admin.orders.shippingAddress.address')}</th>
+                  <th className="text-start p-4">{t('admin.orders.address')}</th>
                 <th className="text-start p-4">{t('admin.orders.status')}</th>
                 <th className="text-center p-4">{t('admin.orders.actions')}</th>
               </tr>
@@ -82,6 +82,7 @@ export default function OrderManagement() {
                   <td className="p-4 font-semibold">
                     {formatPrice(order.totalprice || order.totalPrice || 0)}
                   </td>
+                  <td className="p-4">{order.shippingaddress?.address || t('admin.orders.noAddress')}</td>
                   <td className="p-4">
                     <select
                       value={order.status || "Processing"}
