@@ -205,13 +205,13 @@ function ProductDetail() {
               : "border-gray-300 hover:border-gray-400"
           }`}
         >
-          <span>IN {size}</span>
+          <span> {size}</span>
           <span
             className={`text-[10px] mt-0.5 ${
               selectedSize === size ? "text-gray-300" : "text-gray-500"
             }`}
           >
-            EU {euSize}
+             {euSize}
           </span>
         </button>
       );
