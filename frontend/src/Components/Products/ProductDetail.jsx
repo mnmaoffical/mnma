@@ -189,7 +189,6 @@ function ProductDetail() {
             </div>
 
             {/* sizes */}
-  {/* sizes */}
 <div className="mb-5">
   <h3 className="font-medium mb-2">{t('productDetail.size')}</h3>
 
@@ -219,8 +218,7 @@ function ProductDetail() {
     })}
   </div>
 </div>
-
-            {/* quantity */}
+         {/* quantity */}
             <div className="flex items-center gap-4 mb-6">
               <button 
                 onClick={() => handleQuantityChange("Minus")}
