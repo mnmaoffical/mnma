@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { addtocart } from "../../redux/slices/cartslice";
 import { useTranslation } from "react-i18next";
+ import { getEuSize } from "./sizeConversion";
 
 function ProductDetail() {
   const { t, i18n } = useTranslation();
@@ -188,25 +189,36 @@ function ProductDetail() {
             </div>
 
             {/* sizes */}
-            <div className="mb-5">
-              <h3 className="font-medium mb-2">{t('productDetail.size')}</h3>
+  {/* sizes */}
+<div className="mb-5">
+  <h3 className="font-medium mb-2">{t('productDetail.size')}</h3>
 
-              <div className="flex gap-2">
-                {product.sizes?.map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => setSelectedSize(size)}
-                    className={`px-4 py-2 border rounded font-medium transition ${
-                      selectedSize === size
-                        ? "bg-black text-white border-black"
-                        : "border-gray-300"
-                    }`}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-            </div>
+  <div className="flex flex-wrap gap-2">
+    {product.sizes?.map((size) => {
+      const euSize = getEuSize(size, product.category);
+      return (
+        <button
+          key={size}
+          onClick={() => setSelectedSize(size)}
+          className={`px-4 py-2 border rounded font-medium transition flex flex-col items-center leading-tight min-w-[64px] ${
+            selectedSize === size
+              ? "bg-black text-white border-black"
+              : "border-gray-300 hover:border-gray-400"
+          }`}
+        >
+          <span>IN {size}</span>
+          <span
+            className={`text-[10px] mt-0.5 ${
+              selectedSize === size ? "text-gray-300" : "text-gray-500"
+            }`}
+          >
+            EU {euSize}
+          </span>
+        </button>
+      );
+    })}
+  </div>
+</div>
 
             {/* quantity */}
             <div className="flex items-center gap-4 mb-6">
