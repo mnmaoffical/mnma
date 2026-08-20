@@ -2,10 +2,10 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion";
 import {
-  ShoppingBag,
-  Truck,
-  ShieldCheck,
-  Headphones,
+  Gem,
+  Droplet,
+  Shirt,
+  BadgeCheck,
 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -14,24 +14,24 @@ const About = () => {
 
   const services = [
     {
-      icon: <ShoppingBag size={34} />,
-      title: t('about.services.premiumProducts.title'),
-      desc: t('about.services.premiumProducts.desc'),
+      icon: <Gem size={34} />,
+      title: t('about.services.genuineLeather.title'),
+      desc: t('about.services.genuineLeather.desc'),
     },
     {
-      icon: <Truck size={34} />,
-      title: t('about.services.fastDelivery.title'),
-      desc: t('about.services.fastDelivery.desc'),
+      icon: <Droplet size={34} />,
+      title: t('about.services.parfum.title'),
+      desc: t('about.services.parfum.desc'),
     },
     {
-      icon: <ShieldCheck size={34} />,
-      title: t('about.services.secureShopping.title'),
-      desc: t('about.services.secureShopping.desc'),
+      icon: <Shirt size={34} />,
+      title: t('about.services.wearFashion.title'),
+      desc: t('about.services.wearFashion.desc'),
     },
     {
-      icon: <Headphones size={34} />,
-      title: t('about.services.support247.title'),
-      desc: t('about.services.support247.desc'),
+      icon: <BadgeCheck size={34} />,
+      title: t('about.services.authenticity.title'),
+      desc: t('about.services.authenticity.desc'),
     },
   ];
 
@@ -90,7 +90,7 @@ const About = () => {
           >
             <img
               src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b"
-              alt="shopping"
+              alt="Padora craftsmanship"
               className="rounded-3xl shadow-2xl object-cover h-[500px] w-full"
             />
           </motion.div>

@@ -146,56 +146,58 @@
     "empty": "No top-selling products found.",
     "loadError": "Failed to load products"
   },
+
   "about": {
     "hero": {
-      "badge": "Welcome To Our Store",
-      "titlePart1": "Redefining Your",
-      "titleHighlight": "Shopping",
-      "titlePart2": "Experience",
-      "description": "We believe shopping should be simple, elegant and enjoyable. Our platform brings together quality products, modern design and seamless customer experience — all in one place.",
+      "badge": "Welcome To Padora",
+      "titlePart1": "The Symbol Of",
+      "titleHighlight": "Timeless",
+      "titlePart2": "Class",
+      "description": "Padora stands as a symbol of style, luxury and sophistication — renowned for exquisite leather creations, Arabian and French-inspired perfumes, and elegant fashion wear.",
       "shopNow": "Shop Now",
       "explore": "Explore Collection"
     },
     "brand": {
-      "badge": "About Us",
-      "title": "More Than Just An E-Commerce Store",
-      "p1": "Our mission is to create a shopping platform where customers can discover high-quality products with confidence and ease. We focus on delivering value, trust and an exceptional online shopping journey.",
-      "p2": "From premium collections to reliable service, every detail is designed to provide a modern and satisfying customer experience."
+      "badge": "Our Story",
+      "title": "A Legacy Of Style For Today's Individual",
+      "p1": "Inspired by the journey of modern elegance and traditional craftsmanship, Padora bridges heritage with contemporary sophistication. Born from the fusion of comfort and craftsmanship, Padora embodies elegance, confidence and intelligent living.",
+      "p2": "Every step with Padora reflects the harmony between comfort and grace, in an experience that defines modern refinement. Since its inception, the brand has remained committed to timeless design, superior quality and meticulous attention to detail — managed by mnma, upholding a promise of sophistication and luxury through refined design, flawless quality and timeless elegance."
     },
     "features": {
-      "badge": "Why Choose Us",
-      "title": "Designed For Modern Shopping"
+      "badge": "Our Craft",
+      "title": "Three Crafts, One Timeless Identity"
     },
     "services": {
-      "premiumProducts": {
-        "title": "Premium Products",
-        "desc": "Carefully selected products with quality, style and customer satisfaction in mind."
+      "genuineLeather": {
+        "title": "Genuine Leather",
+        "desc": "Crafted from authentic leather, offering timeless style and enduring comfort — whether for your feet or your look."
       },
-      "fastDelivery": {
-        "title": "Fast Delivery",
-        "desc": "Quick and reliable shipping experience designed to deliver products on time."
+      "parfum": {
+        "title": "Parfum & Fragrance",
+        "desc": "Expertly blended with authentic Arabian and French essences, creating a signature scent that leaves a lasting impression."
       },
-      "secureShopping": {
-        "title": "Secure Shopping",
-        "desc": "Safe payments and trusted transactions to ensure a worry-free shopping experience."
+      "wearFashion": {
+        "title": "Wear Fashion",
+        "desc": "Meticulously designed with exceptional craftsmanship, offering elegance that transcends fleeting trends."
       },
-      "support247": {
-        "title": "24/7 Support",
-        "desc": "Friendly customer support always ready to help you with your orders and queries."
+      "authenticity": {
+        "title": "Trusted Authenticity",
+        "desc": "Every Padora creation is authentic, clearly described and marketed honestly — backed by fair return policies and quality you can trust."
       }
     },
     "stats": {
       "customers": "Happy Customers",
-      "products": "Premium Products",
+      "products": "Timeless Creations",
       "reviews": "Positive Reviews",
       "support": "Customer Support"
     },
     "cta": {
-      "title": "Discover A Better Way To Shop",
-      "description": "Experience premium products, trusted quality and a seamless online shopping journey designed for modern customers.",
+      "title": "Padora — The Symbol Of Timeless Class",
+      "description": "Discover leather, fragrance and fashion crafted with meticulous attention to detail, offering a statement of distinction for those who value refined taste and enduring elegance.",
       "button": "Start Shopping"
     }
   },
+
   "signin": {
     "title": "Welcome Back",
     "subtitle": "Login to continue",
