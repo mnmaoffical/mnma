@@ -368,6 +368,7 @@
       "noAddress": "لا يوجد عنوان",
       "noOrders": "لم يتم العثور على طلبات",
       "noOrdersDescription": "ستظهر الطلبات الجديدة هنا.",
+       "productDetails": "تفاصيل المنتج",
       "statuses": {
         "processing": "قيد المعالجة",
         "shipped": "تم الشحن",

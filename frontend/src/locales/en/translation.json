@@ -373,6 +373,7 @@
   "noAddress": "No address available",
   "noOrders": "No orders found",
   "noOrdersDescription": "New orders will appear here.",
+  "productDetails": "Product Details",
 
   "statuses": {
     "processing": "Processing",

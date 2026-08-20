@@ -280,6 +280,9 @@ export default function OrderManagement() {
                     <th className="whitespace-nowrap px-6 py-4 text-start text-xs font-bold uppercase tracking-wider text-slate-500">
                       {t("admin.orders.address")}
                     </th>
+                     <th className="whitespace-nowrap px-6 py-4 text-start text-xs font-bold uppercase tracking-wider text-slate-500">
+                      {t("admin.orders.productDetails")}
+                    </th>
                     <th className="whitespace-nowrap px-6 py-4 text-start text-xs font-bold uppercase tracking-wider text-slate-500">
                       {t("admin.orders.status")}
                     </th>
@@ -335,6 +338,28 @@ export default function OrderManagement() {
                         <td className="px-6 py-5">
                           {renderAddress(order.shippingAddress)}
                         </td>
+                       
+                       <td className="px-6 py-5">
+  {order.orderItems?.map((item, index) => (
+    <div key={item.productid || index} className="mb-2 flex items-center gap-3">
+      <img
+        src={item.image}
+        alt={item.name}
+        className="w-10 h-10 rounded object-cover border border-slate-200"
+      />
+      <div>
+        <p className="text-sm font-medium text-slate-800">
+          {item.name} x {item.quantity}
+        </p>
+        <p className="text-xs text-slate-500">
+          {item.size && <span>Size: {item.size} · </span>}
+          {item.color && <span>Color: {item.color} · </span>}
+          {formatPrice(item.price)}
+        </p>
+      </div>
+    </div>
+  ))}
+</td>
 
                         <td className="px-6 py-5">
                           <select
