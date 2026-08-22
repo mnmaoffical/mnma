@@ -321,6 +321,7 @@ export default function Profile() {
                 {orders.slice(0, 7).map((order) => (
                   <div
                     key={order._id}
+                    onClick={() => navigate(`/order-confirmation/${order._id}`, { state: { order } })}
                     className="flex items-center gap-3 px-4 sm:px-5 py-3 sm:py-4 hover:bg-gray-50 hover:shadow-sm transition-all cursor-pointer group"
                   >
                     <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-indigo-50 flex items-center justify-center flex-shrink-0">
