@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useNavigate, useLocation } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-const API_BASE = "https://mnma-backend.onrender.com";
+const API_BASE = import.meta.env.VITE_BACKEND_URL || "https://mnma-backend.onrender.com";
 
-// Adjust this helper if your app stores auth differently
-// (e.g. a redux slice, a cookie, a different localStorage key).
 const getAuthToken = () => {
   try {
-    const stored = localStorage.getItem("userInfo");
+    const directToken = localStorage.getItem("token") || localStorage.getItem("userToken");
+    if (directToken) return directToken;
+    const stored = localStorage.getItem("userInfo") || localStorage.getItem("user");
     if (!stored) return null;
     const parsed = JSON.parse(stored);
     return parsed?.token || null;
@@ -19,7 +19,7 @@ const getAuthToken = () => {
 
 const getCurrentUserId = () => {
   try {
-    const stored = localStorage.getItem("userInfo");
+    const stored = localStorage.getItem("userInfo") || localStorage.getItem("user");
     if (!stored) return null;
     const parsed = JSON.parse(stored);
     return parsed?._id || parsed?.id || null;
@@ -28,30 +28,48 @@ const getCurrentUserId = () => {
   }
 };
 
+const getStatusStyles = (status) => {
+  switch (status) {
+    case "Delivered":
+      return "text-emerald-700 bg-emerald-50";
+    case "Shipped":
+      return "text-blue-700 bg-blue-50";
+    case "Cancelled":
+      return "text-red-700 bg-red-50";
+    default:
+      return "text-amber-700 bg-amber-50";
+  }
+};
+
 export default function OrderConfirmationPage() {
   const { t, i18n } = useTranslation();
   const isRtl = i18n.language === "ar";
   const { orderId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [order, setOrder] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const passedOrder = location.state?.order;
+  const [order, setOrder] = useState(passedOrder || null);
+  const [loading, setLoading] = useState(!passedOrder);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchOrder = async () => {
       if (!orderId) {
-        setError(t("orderConfirmation.noOrderId", "No order specified."));
-        setLoading(false);
+        if (!passedOrder) {
+          setError(t("orderConfirmation.noOrderId", "No order specified."));
+          setLoading(false);
+        }
         return;
       }
 
       const token = getAuthToken();
 
       if (!token) {
-        // Not logged in — send them to login instead of showing someone else's data
-        navigate("/login");
-        return;
+        if (!passedOrder) {
+          navigate("/SigninPage");
+          return;
+        }
       }
 
       try {
@@ -64,12 +82,16 @@ export default function OrderConfirmationPage() {
         });
 
         if (res.status === 401 || res.status === 403) {
-          navigate("/login");
-          return;
+          if (!passedOrder) {
+            navigate("/SigninPage");
+            return;
+          }
         }
 
         if (res.status === 404) {
-          setError(t("orderConfirmation.notFound", "Order not found."));
+          if (!passedOrder) {
+            setError(t("orderConfirmation.notFound", "Order not found."));
+          }
           setLoading(false);
           return;
         }
@@ -80,11 +102,10 @@ export default function OrderConfirmationPage() {
 
         const data = await res.json();
 
-        // Safety net: even though the backend should already scope this
-        // request to the logged-in user, don't render an order that
-        // doesn't belong to them.
+        // Safety net: check order ownership
         const currentUserId = getCurrentUserId();
-        const orderUserId = data?.user?._id || data?.user || data?.userId;
+        const orderUserId =
+          typeof data?.user === "string" ? data.user : data?.user?._id;
 
         if (currentUserId && orderUserId && orderUserId !== currentUserId) {
           setError(
@@ -95,26 +116,29 @@ export default function OrderConfirmationPage() {
         }
 
         setOrder(data);
+        setError(null);
       } catch (err) {
         console.error(err);
-        setError(
-          t(
-            "orderConfirmation.fetchError",
-            "Couldn't load your order. Please try again."
-          )
-        );
+        if (!passedOrder) {
+          setError(
+            t(
+              "orderConfirmation.fetchError",
+              "Couldn't load your order. Please try again."
+            )
+          );
+        }
       } finally {
         setLoading(false);
       }
     };
 
     fetchOrder();
-  }, [orderId, navigate, t]);
+  }, [orderId, navigate, t, passedOrder]);
 
   const formatDate = (dateValue) => {
+    if (!dateValue) return null;
     const locale = isRtl ? "ar-AE" : "en-AE";
-    const date = dateValue ? new Date(dateValue) : new Date();
-    return date.toLocaleDateString(locale, {
+    return new Date(dateValue).toLocaleDateString(locale, {
       day: "2-digit",
       month: "short",
       year: "numeric",
@@ -160,8 +184,9 @@ export default function OrderConfirmationPage() {
   }
 
   const shipping = order.shippingAddress || {};
-  const isPaid = order.isPaid ?? order.paymentStatus === "Paid";
-  const totalPrice = order.totalprice ?? order.totalPrice ?? 0;
+  const status = order.status || (order.isDelivered ? "Delivered" : "Processing");
+  const isPaid = Boolean(order.isPaid);
+  const paidLabel = order.paymentStatus || (isPaid ? "paid" : "pending");
 
   return (
     <div className="min-h-screen bg-[#f8f5f0] flex items-center justify-center px-4 py-10">
@@ -200,9 +225,18 @@ export default function OrderConfirmationPage() {
 
         {/* Order Details */}
         <div className="mt-10 bg-gray-50 rounded-2xl p-6">
-          <h2 className="text-xl font-semibold mb-4">
-            {t("orderConfirmation.details")}
-          </h2>
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold">
+              {t("orderConfirmation.details")}
+            </h2>
+            <span
+              className={`text-xs font-semibold px-3 py-1 rounded-full ${getStatusStyles(
+                status
+              )}`}
+            >
+              {status}
+            </span>
+          </div>
 
           <div className="space-y-3">
             <div className="flex justify-between">
@@ -219,7 +253,7 @@ export default function OrderConfirmationPage() {
                 {t("orderConfirmation.orderDate")}
               </span>
               <span className="font-semibold">
-                {formatDate(order.createdAt)}
+                {formatDate(order.createdAt) || "—"}
               </span>
             </div>
 
@@ -228,32 +262,49 @@ export default function OrderConfirmationPage() {
                 {t("orderConfirmation.paymentStatus")}
               </span>
               <span
-                className={`font-semibold ${
+                className={`font-semibold capitalize ${
                   isPaid ? "text-green-600" : "text-amber-600"
                 }`}
               >
-                {isPaid
-                  ? t("orderConfirmation.paid")
-                  : t("orderConfirmation.pending", "Pending")}
+                {paidLabel}
               </span>
             </div>
 
-            <div className="flex justify-between">
-              <span className="text-gray-600">
-                {t("orderConfirmation.estimatedDelivery")}
-              </span>
-              <span className="font-semibold">
-                {order.estimatedDelivery ||
-                  t("orderConfirmation.deliveryDays")}
-              </span>
-            </div>
+            {order.paymentMode && (
+              <div className="flex justify-between">
+                <span className="text-gray-600">
+                  {t("orderConfirmation.paymentMode", "Payment method")}
+                </span>
+                <span className="font-semibold">{order.paymentMode}</span>
+              </div>
+            )}
+
+            {order.isDelivered && order.deliveredAt ? (
+              <div className="flex justify-between">
+                <span className="text-gray-600">
+                  {t("orderConfirmation.deliveredOn", "Delivered on")}
+                </span>
+                <span className="font-semibold">
+                  {formatDate(order.deliveredAt)}
+                </span>
+              </div>
+            ) : (
+              <div className="flex justify-between">
+                <span className="text-gray-600">
+                  {t("orderConfirmation.estimatedDelivery")}
+                </span>
+                <span className="font-semibold">
+                  {t("orderConfirmation.deliveryDays", "3-5 business days")}
+                </span>
+              </div>
+            )}
 
             <div className="flex justify-between border-t border-gray-200 pt-3 mt-3">
               <span className="text-gray-600">
                 {t("orderConfirmation.total", "Total")}
               </span>
               <span className="font-bold text-gray-900">
-                {formatPrice(totalPrice)}
+                {formatPrice(order.totalPrice)}
               </span>
             </div>
           </div>
@@ -276,18 +327,21 @@ export default function OrderConfirmationPage() {
                     <img
                       src={item.image}
                       alt={item.name}
-                      className="w-12 h-12 rounded object-cover border border-gray-200"
+                      className="w-14 h-14 rounded object-cover border border-gray-200"
                     />
                   )}
                   <div className="flex-1">
                     <p className="text-sm font-medium text-gray-800">
                       {item.name} x {item.quantity}
                     </p>
-                    <p className="text-xs text-gray-500">
+                    <p className="text-xs text-gray-500 mt-0.5">
                       {item.size && <span>Size: {item.size} · </span>}
                       {item.color && <span>Color: {item.color} · </span>}
-                      {formatPrice(item.price)}
+                      {formatPrice(item.price)} {t("orderConfirmation.each", "each")}
                     </p>
+                  </div>
+                  <div className="text-sm font-semibold text-gray-800">
+                    {formatPrice(item.price * item.quantity)}
                   </div>
                 </div>
               ))}
@@ -301,23 +355,16 @@ export default function OrderConfirmationPage() {
             {t("orderConfirmation.shippingAddress")}
           </h2>
 
-          {shipping.fullName && (
-            <p className="text-gray-700 font-medium">{shipping.fullName}</p>
-          )}
-
-          {shipping.address && (
-            <p className="text-gray-600">{shipping.address}</p>
-          )}
-
-          {(shipping.city || shipping.postalCode || shipping.country) && (
-            <p className="text-gray-600">
-              {[shipping.city, shipping.postalCode, shipping.country]
-                .filter(Boolean)
-                .join(", ")}
-            </p>
-          )}
-
-          {!shipping.address && (
+          {shipping.address ? (
+            <>
+              <p className="text-gray-700 font-medium">{shipping.address}</p>
+              <p className="text-gray-600">
+                {[shipping.city, shipping.postalCode, shipping.country]
+                  .filter(Boolean)
+                  .join(", ")}
+              </p>
+            </>
+          ) : (
             <p className="text-sm italic text-gray-400">
               {t("orderConfirmation.noAddress", "No shipping address on file.")}
             </p>

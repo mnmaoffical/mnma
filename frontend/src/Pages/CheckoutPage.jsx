@@ -116,10 +116,14 @@ export default function CheckoutPage() {
         config
       );
 
+      const confirmedOrder = finaliseRes.data.order;
+
       dispatch(clearcart());
       localStorage.removeItem("checkoutId");
-      
-      navigate("/order-confirmation", { state: { order: finaliseRes.data.order } });
+
+      navigate(`/order-confirmation/${confirmedOrder._id}`, {
+        state: { order: confirmedOrder },
+      });
     } catch (err) {
       const message = err.response?.data?.message || err.message;
       console.error("Finalise error:", err.response?.data || err);
