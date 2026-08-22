@@ -16,7 +16,6 @@ orderroute.get("/my-orders", protect, async (req, res) => {
     }
 });
 
-// GET /api/orders/:id
 // Get order by ID
 orderroute.get("/:id", protect, async (req, res) => {
     try {
