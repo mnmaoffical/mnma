@@ -64,11 +64,14 @@
     },
     "support": {
       "title": "Support",
-      "support": "Support",
+      "trackOrder": "Track Your Order",
       "contact": "Contact Us",
       "about": "About Us",
       "privacy": "Privacy Policy",
-      "features": "Features"
+      "delivery": "Delivery & Returns",
+      "franchise": "Franchise With Us",
+      "careers": "Careers",
+      "blog": "Blog"
     },
     "followUs": {
       "title": "Follow Us"
@@ -458,10 +461,14 @@
     "nav": {
       "privacy": "Privacy Policy",
       "terms": "Terms & Conditions",
-      "shipping": "Shipping & Delivery",
-      "cancellation": "Cancellation Policy",
+      "deliveryLink": "Delivery & Returns Policy",
       "brand": "Brand Standards",
       "contact": "Contact Us"
+    },
+    "deliveryCallout": {
+      "title": "Looking for Delivery & Returns Info?",
+      "subtitle": "We have created a dedicated Delivery & Returns Policy page covering shipping timelines, tracking, returns, exchanges, and cancellation terms.",
+      "cta": "View Delivery & Returns Policy"
     },
     "privacy": {
       "title": "Privacy Policy",
@@ -548,6 +555,236 @@
       "hoursLabel": "Working Hours",
       "hours": "10:00 AM - 10:00 PM",
       "sla": "We respond within 24 hours on working days."
+    }
+  },
+  "deliveryReturnsPage": {
+    "hero": {
+      "badge": "Padora Customer Care",
+      "title": "Delivery & Returns Policy",
+      "subtitle": "Complete guidance on shipping schedules, tracking, returns, exchange rules, and cancellation SLAs.",
+      "lastUpdated": "Last updated: August 2026"
+    },
+    "nav": {
+      "shipping": "Shipping & Delivery",
+      "returns": "Returns & Exchanges",
+      "cancellation": "Cancellation & Refunds",
+      "responsibility": "Courier & Guarantees",
+      "faq": "Frequently Asked Questions",
+      "contact": "Support Contact"
+    },
+    "stats": {
+      "uaeTime": "1–3 Days UAE Delivery",
+      "gccTime": "5–10 Days GCC Shipping",
+      "easyReturns": "Hassle-Free Returns",
+      "sla": "24h Support SLA"
+    },
+    "shipping": {
+      "title": "Shipping & Delivery Policy",
+      "badge": "UAE & GCC Coverage",
+      "times": {
+        "title": "Estimated Delivery Timelines",
+        "uaeTitle": "UAE Deliveries",
+        "uaeDesc": "1–3 Working Days. Express options available at checkout.",
+        "gccTitle": "GCC & Regional Shipping",
+        "gccDesc": "5–10 Working Days depending on local customs processing."
+      },
+      "freeShipping": {
+        "title": "Free Standard Delivery",
+        "desc": "Enjoy complimentary delivery on qualified UAE orders during store promotions. GCC rates apply based on parcel weight and destination."
+      },
+      "tracking": {
+        "title": "Real-Time Tracking",
+        "desc": "Once dispatched, tracking links are sent via email/SMS and updated in your profile dashboard.",
+        "button": "Track My Order"
+      }
+    },
+    "returns": {
+      "title": "Returns & Exchanges Policy",
+      "badge": "Customer Friendly",
+      "intro": "We want you to love every Padora purchase. If you are not completely satisfied, we offer straightforward returns and exchanges within our policy terms.",
+      "window": {
+        "title": "Return Window",
+        "desc": "Return or exchange requests must be initiated within 7 to 14 days of order delivery."
+      },
+      "eligibility": {
+        "title": "Eligibility Requirements",
+        "item1": "Items must be unused, unwashed, and in original brand packaging.",
+        "item2": "All original labels, security tags, and authenticity certificates must be attached.",
+        "item3": "Proof of purchase (invoice or order ID) is required."
+      },
+      "nonReturnable": {
+        "title": "Non-Returnable Items",
+        "item1": "Customized, engraved, or personalized items.",
+        "item2": "Opened or unsealed fragrances and hygiene-sensitive items (unless defective)."
+      },
+      "process": {
+        "title": "How to Return an Item",
+        "step1": "Contact support via email or WhatsApp with your Order ID and reason.",
+        "step2": "Our logistics team schedules a courier pickup at your preferred address.",
+        "step3": "Once inspected and approved, your refund or exchange is processed promptly."
+      }
+    },
+    "cancellation": {
+      "title": "Order Cancellation & Refund SLAs",
+      "badge": "Transparent Rules",
+      "beforeDispatch": {
+        "title": "Before Dispatch",
+        "desc": "100% full refund available if cancelled before dispatch."
+      },
+      "afterDispatch": {
+        "title": "After Dispatch",
+        "desc": "Shipped orders cannot be cancelled mid-transit. Return terms apply once received."
+      },
+      "customOrders": {
+        "title": "Custom Orders",
+        "desc": "Personalized products cannot be cancelled once production has started."
+      },
+      "refundSla": {
+        "title": "Refund SLA",
+        "desc": "Approved refunds are credited back to the original payment method within 7 working days."
+      }
+    },
+    "responsibility": {
+      "title": "Courier & Delivery Responsibility",
+      "badge": "Padora Protection Guarantee",
+      "desc": "Padora takes full responsibility for any package loss or damage occurring during delivery by our courier partners. If your order arrives damaged, contact us within 48 hours for immediate replacement."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "How do I check my order shipping status?",
+      "a1": "Log into your account and navigate to Profile > Orders to view real-time tracking numbers and courier updates.",
+      "q2": "What should I do if my package arrives damaged?",
+      "a2": "Take photos of the box and product, then email support@padoraonline.com or message us on WhatsApp immediately. We will arrange a replacement at no extra cost.",
+      "q3": "Are shipping charges refundable?",
+      "a3": "Standard shipping charges are non-refundable unless the return is due to a damaged or incorrect item sent by Padora."
+    },
+    "contact": {
+      "title": "Need Help With Delivery or Returns?",
+      "desc": "Our dedicated support team is ready to assist you every day from 10:00 AM to 10:00 PM GST.",
+      "whatsapp": "WhatsApp Support",
+      "phone": "Call Support",
+      "email": "Email Support"
+    }
+  },
+  "careersPage": {
+    "hero": {
+      "badge": "Careers at Padora",
+      "title": "More than just a Job...",
+      "quote": "\"Choose a job you love, and you will never have to work a day in your life\" - CONFUCIUS",
+      "desc": "We are constantly looking for new talent to work with us. Padora welcomes applicants who are ambitious, hard-working, and smart from different countries, beliefs, and backgrounds."
+    },
+    "intro": "Listed below are our current requirements (You may still email us your resume for future requirements):",
+    "jobs": {
+      "sales": {
+        "title": "Sales Associate",
+        "desc": "If you want to apply for the Sales Associate position at Padora, please send your resume to support@padoraonline.com or contact our HR by WhatsApp at +971 52 920 5556."
+      },
+      "other": {
+        "title": "Other Positions",
+        "desc": "If you want to apply for other positions at Padora, please send your resume to support@padoraonline.com or contact our HR by WhatsApp at +971 52 920 5556."
+      }
+    }
+  },
+  "partnerPage": {
+    "title": "Partner with Padora",
+    "subtitle": "Please fill the form below if you want to be a partner or open a franchise of Padora brand in your location.",
+    "form": {
+      "name": "Your name *",
+      "email": "Your email *",
+      "phone": "Phone number *",
+      "country": "Country *",
+      "message": "Your message *",
+      "submit": "SUBMIT",
+      "submitting": "SUBMITTING...",
+      "success": "Your request has been submitted successfully! We will contact you soon.",
+      "error": "Failed to submit request. Please try again later.",
+      "validation": {
+        "name": "Name is required",
+        "email": "Valid email is required",
+        "phone": "Phone number is required",
+        "country": "Country is required",
+        "message": "Message is required"
+      }
+    }
+  },
+  "blogPage": {
+    "title": "Padora Footwear Journal",
+    "subtitle": "Curated footwear stories, styling guides, and trends crafted for the modern Gulf lifestyle — from the heart of Dubai.",
+    "readMore": "Read Article",
+    "back": "Back to Blog",
+    "posts": {
+      "post1": {
+        "title": "The Perfect Shoe for the Kandura: A Dubai Style Guide",
+        "desc": "Discover how Padora's handcrafted leather loafers complement the Emirati kandura — from marina promenades to boardroom corridors."
+      },
+      "post2": {
+        "title": "Sneakers That Move With Dubai's Pace",
+        "desc": "The modern Dubai woman needs footwear that keeps up. Our new Luxe Stride sneaker blends Italian canvas craft with all-day Gulf comfort."
+      },
+      "post3": {
+        "title": "Evening Heels for Dubai Nights",
+        "desc": "From rooftop terraces to grand ballrooms, Padora's mirror-polished strappy sandals are the ultimate statement shoe for Dubai evenings."
+      },
+      "post4": {
+        "title": "The Oxford Shoe: Power Dressing in the DIFC",
+        "desc": "Padora's Balmoral Oxford in espresso calfskin was born for Dubai's corporate world — quiet authority from lobby to boardroom."
+      },
+      "post5": {
+        "title": "Inside the Atelier: Our 72-Step Shoemaking Process",
+        "desc": "From raw hide to hand-polished masterpiece — a behind-the-scenes look at how every Padora shoe takes four days to make."
+      },
+      "post6": {
+        "title": "Premium Kids' Footwear: Style Meets Development",
+        "desc": "Padora's junior collection is engineered around pediatric foot development while still looking unmistakably cool at the Dubai park."
+      },
+      "post7": {
+        "title": "The White Sneaker Edit: Dubai's Most Versatile Shoe",
+        "desc": "From Alserkal Avenue gallery openings to Souk Al Bahar brunches — why Padora's Cloud Canvas sneaker fits every Dubai scene."
+      },
+      "post8": {
+        "title": "Kitten Heels and the Abaya: A Perfect Pairing",
+        "desc": "Padora's Jasmine kitten heel was designed from the ground up for the abaya-wearing woman who refuses to sacrifice style for modesty."
+      },
+      "post9": {
+        "title": "The Art of the Loafer: Dubai's Most Versatile Men's Shoe",
+        "desc": "From weekend casual to smart office looks — why the Casablanca Tassel Loafer is the shoe Padora's team reaches for every day."
+      },
+      "post10": {
+        "title": "Full-Grain vs Top-Grain: The Leather Guide Every Buyer Needs",
+        "desc": "A complete breakdown of leather grades, what they mean for durability, and why Padora chooses only full-grain calfskin from Italian tanneries."
+      },
+      "post11": {
+        "title": "How to Care for Leather Shoes in Dubai's Climate",
+        "desc": "Extreme heat, humidity, and air-conditioning play havoc with leather. Here is Padora's complete care protocol for Gulf conditions."
+      },
+      "post12": {
+        "title": "Back-to-School in Style: The Best School Shoes in the UAE",
+        "desc": "Padora's School Classic passes UAE uniform standards, supports growing feet, and is tough enough to survive any playground."
+      },
+      "post13": {
+        "title": "Summer Business Style: Perforated Derby Shoes for the Gulf",
+        "desc": "Our Summer Business Derby brings boardroom-ready elegance with ventilation channels engineered for Dubai's summer office days."
+      },
+      "post14": {
+        "title": "Dubai Fashion Week: Why Luxury Sneakers Are Here to Stay",
+        "desc": "This season's runways confirmed it: the Atelier Runner sneaker with Italian suede overlays is the luxury footwear statement of the year."
+      },
+      "post15": {
+        "title": "Eid Exclusive: Hand-Painted Mules in a Limited Edition of 50",
+        "desc": "Padora's Eid Al Adha limited edition — 24 hours of hand-painting per pair, signed by the artisan, with a certificate of authenticity."
+      },
+      "post16": {
+        "title": "When to Resole and When to Replace: A Shoe Repair Guide",
+        "desc": "Padora's in-house repair service uses the same artisans who build our shoes. Here is how to know when your shoes need professional care."
+      },
+      "post17": {
+        "title": "Al-Noor Wedding Collection: Footwear for Gulf Celebrations",
+        "desc": "Padora's wedding shoes with mother-of-pearl finish catch the light with every step — made to order in 8 widths for the perfect fit."
+      },
+      "post18": {
+        "title": "The First Shoe: Starting Your Child's Style Story Right",
+        "desc": "Padora's Mini collection introduces children to premium materials with age-appropriate designs that build independence and personal style."
+      }
     }
   }
 }
