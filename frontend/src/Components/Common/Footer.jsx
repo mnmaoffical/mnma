@@ -106,8 +106,8 @@ const Footer = () => {
               </Link>
             </li>
             <li>
-              <Link to="/faq" className='hover:text-white transition-colors'>
-                {t('footer.support.faq')}
+              <Link to="/privacy-policy" className='hover:text-white transition-colors'>
+                {t('footer.support.privacy')}
               </Link>
             </li>
           </ul>
