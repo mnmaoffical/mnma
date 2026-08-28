@@ -42,9 +42,7 @@ function App() {
 
         <Routes>
           {/* Auth Routes - public, no layout */}
-          <Route path="/SigninPage" element={<SigninPage />} />
-          <Route path="/SignupPage" element={<SignupPage />} />
-
+       
           {/* User Routes */}
           <Route path="/" element={<UserLayout />}>
             <Route index element={<Home />} />
@@ -53,6 +51,9 @@ function App() {
             <Route path="WomensSection" element={<WomensSection />} />
             <Route path="collection" element={<AllCollection />} />
             <Route path="top-items" element={<TopItems />} />
+               <Route path="/SigninPage" element={<SigninPage />} />
+          <Route path="/SignupPage" element={<SignupPage />} />
+
             <Route path="product/:id" element={<ProductDetail />} />
             <Route
               path="CheckoutPage"
