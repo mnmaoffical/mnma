@@ -134,7 +134,7 @@ const Footer = () => {
               <RiSnapchatLine className="h-3.5 w-3.5" />
             </a>
             <a
-              href="https://wa.me/971553935052"
+              href="https://wa.me/+971529205556"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:text-green-500"
