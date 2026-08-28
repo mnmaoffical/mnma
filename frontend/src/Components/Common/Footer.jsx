@@ -92,14 +92,7 @@ const Footer = () => {
         <div>
           <h3 className='text-sm uppercase tracking-wide text-white mb-4'>{t('footer.support.title')}</h3>
           <ul className='space-y-2 text-xs text-gray-400'>
-            <li>
-              <a
-                href="mailto:mnmasupport@gmail.com?subject=Support%20Request&body=Hi%20MNMA%20Team%2C%0A%0AI%20need%20help%20with%3A%0A%0A"
-                className="hover:text-white transition-colors"
-              >
-                {t('footer.support.support')}
-              </a>
-            </li>
+           
             <li>
               <Link to="/about" className='hover:text-white transition-colors'>
                 {t('footer.support.about')}
@@ -109,6 +102,19 @@ const Footer = () => {
               <Link to="/privacy-policy" className='hover:text-white transition-colors'>
                 {t('footer.support.privacy')}
               </Link>
+              </li>
+            <li>
+                <Link to="/delivery-and-returns" className='hover:text-white transition-colors'>
+                {t('footer.support.delivery')}
+              </Link>
+            </li>
+             <li>
+              <a
+                href="/profile"
+                className="hover:text-white transition-colors"
+              >
+                {t('footer.support.trackOrder')}
+              </a>
             </li>
           </ul>
         </div>

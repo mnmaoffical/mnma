@@ -64,11 +64,11 @@
     },
     "support": {
       "title": "Support",
-      "support": "Support",
+      "trackOrder": "Track Your Order",
       "contact": "Contact Us",
       "about": "About Us",
       "privacy": "Privacy Policy",
-      "features": "Features"
+      "delivery": "Delivery & Returns"
     },
     "followUs": {
       "title": "Follow Us"
@@ -458,10 +458,14 @@
     "nav": {
       "privacy": "Privacy Policy",
       "terms": "Terms & Conditions",
-      "shipping": "Shipping & Delivery",
-      "cancellation": "Cancellation Policy",
+      "deliveryLink": "Delivery & Returns Policy",
       "brand": "Brand Standards",
       "contact": "Contact Us"
+    },
+    "deliveryCallout": {
+      "title": "Looking for Delivery & Returns Info?",
+      "subtitle": "We have created a dedicated Delivery & Returns Policy page covering shipping timelines, tracking, returns, exchanges, and cancellation terms.",
+      "cta": "View Delivery & Returns Policy"
     },
     "privacy": {
       "title": "Privacy Policy",
@@ -548,6 +552,115 @@
       "hoursLabel": "Working Hours",
       "hours": "10:00 AM - 10:00 PM",
       "sla": "We respond within 24 hours on working days."
+    }
+  },
+  "deliveryReturnsPage": {
+    "hero": {
+      "badge": "Padora Customer Care",
+      "title": "Delivery & Returns Policy",
+      "subtitle": "Complete guidance on shipping schedules, tracking, returns, exchange rules, and cancellation SLAs.",
+      "lastUpdated": "Last updated: August 2026"
+    },
+    "nav": {
+      "shipping": "Shipping & Delivery",
+      "returns": "Returns & Exchanges",
+      "cancellation": "Cancellation & Refunds",
+      "responsibility": "Courier & Guarantees",
+      "faq": "Frequently Asked Questions",
+      "contact": "Support Contact"
+    },
+    "stats": {
+      "uaeTime": "1–3 Days UAE Delivery",
+      "gccTime": "5–10 Days GCC Shipping",
+      "easyReturns": "Hassle-Free Returns",
+      "sla": "24h Support SLA"
+    },
+    "shipping": {
+      "title": "Shipping & Delivery Policy",
+      "badge": "UAE & GCC Coverage",
+      "times": {
+        "title": "Estimated Delivery Timelines",
+        "uaeTitle": "UAE Deliveries",
+        "uaeDesc": "1–3 Working Days. Express options available at checkout.",
+        "gccTitle": "GCC & Regional Shipping",
+        "gccDesc": "5–10 Working Days depending on local customs processing."
+      },
+      "freeShipping": {
+        "title": "Free Standard Delivery",
+        "desc": "Enjoy complimentary delivery on qualified UAE orders during store promotions. GCC rates apply based on parcel weight and destination."
+      },
+      "tracking": {
+        "title": "Real-Time Tracking",
+        "desc": "Once dispatched, tracking links are sent via email/SMS and updated in your profile dashboard.",
+        "button": "Track My Order"
+      }
+    },
+    "returns": {
+      "title": "Returns & Exchanges Policy",
+      "badge": "Customer Friendly",
+      "intro": "We want you to love every Padora purchase. If you are not completely satisfied, we offer straightforward returns and exchanges within our policy terms.",
+      "window": {
+        "title": "Return Window",
+        "desc": "Return or exchange requests must be initiated within 7 to 14 days of order delivery."
+      },
+      "eligibility": {
+        "title": "Eligibility Requirements",
+        "item1": "Items must be unused, unwashed, and in original brand packaging.",
+        "item2": "All original labels, security tags, and authenticity certificates must be attached.",
+        "item3": "Proof of purchase (invoice or order ID) is required."
+      },
+      "nonReturnable": {
+        "title": "Non-Returnable Items",
+        "item1": "Customized, engraved, or personalized items.",
+        "item2": "Opened or unsealed fragrances and hygiene-sensitive items (unless defective)."
+      },
+      "process": {
+        "title": "How to Return an Item",
+        "step1": "Contact support via email or WhatsApp with your Order ID and reason.",
+        "step2": "Our logistics team schedules a courier pickup at your preferred address.",
+        "step3": "Once inspected and approved, your refund or exchange is processed promptly."
+      }
+    },
+    "cancellation": {
+      "title": "Order Cancellation & Refund SLAs",
+      "badge": "Transparent Rules",
+      "beforeDispatch": {
+        "title": "Before Dispatch",
+        "desc": "100% full refund available if cancelled before dispatch."
+      },
+      "afterDispatch": {
+        "title": "After Dispatch",
+        "desc": "Shipped orders cannot be cancelled mid-transit. Return terms apply once received."
+      },
+      "customOrders": {
+        "title": "Custom Orders",
+        "desc": "Personalized products cannot be cancelled once production has started."
+      },
+      "refundSla": {
+        "title": "Refund SLA",
+        "desc": "Approved refunds are credited back to the original payment method within 7 working days."
+      }
+    },
+    "responsibility": {
+      "title": "Courier & Delivery Responsibility",
+      "badge": "Padora Protection Guarantee",
+      "desc": "Padora takes full responsibility for any package loss or damage occurring during delivery by our courier partners. If your order arrives damaged, contact us within 48 hours for immediate replacement."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "How do I check my order shipping status?",
+      "a1": "Log into your account and navigate to Profile > Orders to view real-time tracking numbers and courier updates.",
+      "q2": "What should I do if my package arrives damaged?",
+      "a2": "Take photos of the box and product, then email support@padoraonline.com or message us on WhatsApp immediately. We will arrange a replacement at no extra cost.",
+      "q3": "Are shipping charges refundable?",
+      "a3": "Standard shipping charges are non-refundable unless the return is due to a damaged or incorrect item sent by Padora."
+    },
+    "contact": {
+      "title": "Need Help With Delivery or Returns?",
+      "desc": "Our dedicated support team is ready to assist you every day from 10:00 AM to 10:00 PM GST.",
+      "whatsapp": "WhatsApp Support",
+      "phone": "Call Support",
+      "email": "Email Support"
     }
   }
 }

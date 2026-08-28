@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 import {
   ShieldCheck,
   FileText,
@@ -29,8 +30,7 @@ const Privacypolicy = () => {
   const navItems = [
     { id: "privacy", label: t("privacyPage.nav.privacy"), icon: <ShieldCheck className="w-4 h-4 shrink-0" /> },
     { id: "terms", label: t("privacyPage.nav.terms"), icon: <FileText className="w-4 h-4 shrink-0" /> },
-    { id: "shipping", label: t("privacyPage.nav.shipping"), icon: <Truck className="w-4 h-4 shrink-0" /> },
-    { id: "cancellation", label: t("privacyPage.nav.cancellation"), icon: <RotateCcw className="w-4 h-4 shrink-0" /> },
+    { id: "delivery", label: t("privacyPage.nav.deliveryLink"), icon: <Truck className="w-4 h-4 shrink-0" />, isLink: true, linkTo: "/delivery-and-returns" },
     { id: "brand", label: t("privacyPage.nav.brand"), icon: <Award className="w-4 h-4 shrink-0" /> },
     { id: "contact", label: t("privacyPage.nav.contact"), icon: <MapPin className="w-4 h-4 shrink-0" /> },
   ];
@@ -81,20 +81,32 @@ const Privacypolicy = () => {
       <div className="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-gray-200/80 shadow-xs transition-all duration-200">
         <div className="max-w-6xl mx-auto px-3 sm:px-6">
           <div className="flex items-center justify-start md:justify-center gap-1.5 sm:gap-2 py-3 overflow-x-auto no-scrollbar scroll-smooth">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 whitespace-nowrap ${
-                  activeTab === item.id
-                    ? "bg-orange-500 text-white shadow-md shadow-orange-500/20 font-semibold"
-                    : "text-gray-600 hover:text-orange-600 hover:bg-orange-50/80"
-                }`}
-              >
-                {item.icon}
-                <span>{item.label}</span>
-              </button>
-            ))}
+            {navItems.map((item) =>
+              item.isLink ? (
+                <Link
+                  key={item.id}
+                  to={item.linkTo}
+                  className="flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 whitespace-nowrap text-orange-600 bg-orange-50 hover:bg-orange-100 border border-orange-200/80 font-semibold"
+                >
+                  {item.icon}
+                  <span>{item.label}</span>
+                  <ChevronRight className="w-3.5 h-3.5" />
+                </Link>
+              ) : (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`flex items-center gap-1.5 sm:gap-2 px-3.5 sm:px-4 py-2 rounded-full text-xs sm:text-sm font-medium transition-all duration-200 whitespace-nowrap ${
+                    activeTab === item.id
+                      ? "bg-orange-500 text-white shadow-md shadow-orange-500/20 font-semibold"
+                      : "text-gray-600 hover:text-orange-600 hover:bg-orange-50/80"
+                  }`}
+                >
+                  {item.icon}
+                  <span>{item.label}</span>
+                </button>
+              )
+            )}
           </div>
         </div>
       </div>
@@ -268,131 +280,36 @@ const Privacypolicy = () => {
           </motion.div>
         </section>
 
-        {/* 3. Shipping Policy & Delivery Time */}
-        <section id="shipping" className="scroll-mt-32">
+        {/* 3. Delivery & Returns Policy Callout Banner */}
+        <section id="delivery" className="scroll-mt-32">
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="bg-white rounded-3xl p-5 sm:p-8 md:p-10 shadow-sm border border-gray-200/80 hover:shadow-md transition-all"
+            className="bg-gradient-to-br from-orange-500 via-orange-600 to-amber-500 text-white rounded-3xl p-6 sm:p-10 shadow-lg relative overflow-hidden flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
           >
-            <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-gray-100">
-              <div className="p-3 rounded-2xl bg-orange-100 text-orange-600 shrink-0">
-                <Truck className="w-6 h-6 sm:w-7 sm:h-7" />
-              </div>
-              <div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
-                  {t("privacyPage.shipping.title")}
-                </h2>
-                <p className="text-xs sm:text-sm text-orange-600 font-semibold tracking-wide uppercase mt-0.5">
-                  {t("privacyPage.shipping.coverage")}
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
-              {/* Delivery Times */}
-              <div className="bg-gradient-to-br from-orange-50 via-amber-50 to-orange-100/50 p-5 sm:p-6 rounded-2xl border border-orange-200/70 shadow-2xs">
-                <div className="flex items-center gap-2 font-bold text-base sm:text-lg text-orange-900 mb-4">
-                  <Clock className="w-5 h-5 text-orange-600 shrink-0" />
-                  <h3>{t("privacyPage.shipping.times.title")}</h3>
-                </div>
-                <div className="space-y-3">
-                  <div className="bg-white p-3.5 rounded-xl border border-orange-100 shadow-2xs">
-                    <p className="text-xs sm:text-sm font-semibold text-gray-800">{t("privacyPage.shipping.times.uae")}</p>
-                  </div>
-                  <div className="bg-white p-3.5 rounded-xl border border-orange-100 shadow-2xs">
-                    <p className="text-xs sm:text-sm font-semibold text-gray-800">{t("privacyPage.shipping.times.gcc")}</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Free Delivery & Tracking */}
-              <div className="space-y-3.5 sm:space-y-4">
-                <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50/70 border border-emerald-100">
-                  <div className="flex items-center gap-2 font-semibold text-emerald-800 text-sm sm:text-base mb-1.5">
-                    <PackageCheck className="w-5 h-5 text-emerald-600 shrink-0" />
-                    <h4>Free Delivery</h4>
-                  </div>
-                  <p className="text-xs sm:text-sm text-emerald-950 leading-relaxed">
-                    {t("privacyPage.shipping.freeShipping")}
-                  </p>
-                </div>
-
-                <div className="p-4 sm:p-5 rounded-2xl bg-sky-50/70 border border-sky-100">
-                  <div className="flex items-center gap-2 font-semibold text-sky-800 text-sm sm:text-base mb-1.5">
-                    <Truck className="w-5 h-5 text-sky-600 shrink-0" />
-                    <h4>{t("privacyPage.shipping.tracking.title")}</h4>
-                  </div>
-                  <p className="text-xs sm:text-sm text-sky-950 leading-relaxed">
-                    {t("privacyPage.shipping.tracking.desc")}
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Courier Responsibility */}
-            <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/80 border border-amber-200/80 flex items-start gap-3.5">
-              <Building2 className="w-6 h-6 text-amber-600 shrink-0 mt-0.5" />
-              <div>
-                <h4 className="font-bold text-sm sm:text-base text-amber-950 mb-1">
-                  {t("privacyPage.shipping.responsibility.title")}
-                </h4>
-                <p className="text-xs sm:text-sm text-gray-700 leading-relaxed">
-                  {t("privacyPage.shipping.responsibility.desc")}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* 4. Cancellation Policy Section */}
-        <section id="cancellation" className="scroll-mt-32">
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="bg-white rounded-3xl p-5 sm:p-8 md:p-10 shadow-sm border border-gray-200/80 hover:shadow-md transition-all"
-          >
-            <div className="flex items-center gap-3.5 mb-6 pb-4 border-b border-gray-100">
-              <div className="p-3 rounded-2xl bg-orange-100 text-orange-600 shrink-0">
-                <RotateCcw className="w-6 h-6 sm:w-7 sm:h-7" />
-              </div>
-              <div>
-                <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900">
-                  {t("privacyPage.cancellation.title")}
-                </h2>
-                <p className="text-xs sm:text-sm text-gray-500 mt-0.5">Clear & Fair Order Cancellation Policy</p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4 mb-6">
-              <div className="p-4 sm:p-5 rounded-2xl bg-emerald-50/70 border border-emerald-100 text-center">
-                <CheckCircle2 className="w-7 h-7 text-emerald-600 mx-auto mb-2 sm:mb-3" />
-                <h4 className="font-bold text-xs sm:text-sm text-emerald-900 mb-1">Before Dispatch</h4>
-                <p className="text-xs text-gray-600">{t("privacyPage.cancellation.item1")}</p>
-              </div>
-
-              <div className="p-4 sm:p-5 rounded-2xl bg-rose-50/70 border border-rose-100 text-center">
-                <AlertCircle className="w-7 h-7 text-rose-500 mx-auto mb-2 sm:mb-3" />
-                <h4 className="font-bold text-xs sm:text-sm text-rose-900 mb-1">After Dispatch</h4>
-                <p className="text-xs text-gray-600">{t("privacyPage.cancellation.item2")}</p>
-              </div>
-
-              <div className="p-4 sm:p-5 rounded-2xl bg-amber-50/70 border border-amber-100 text-center">
-                <Lock className="w-7 h-7 text-amber-600 mx-auto mb-2 sm:mb-3" />
-                <h4 className="font-bold text-xs sm:text-sm text-amber-900 mb-1">Custom Orders</h4>
-                <p className="text-xs text-gray-600">{t("privacyPage.cancellation.item3")}</p>
-              </div>
-            </div>
-
-            <div className="p-4 rounded-xl bg-orange-50 border border-orange-200/80 text-center shadow-2xs">
-              <p className="text-xs sm:text-sm font-semibold text-orange-900">
-                🔄 {t("privacyPage.cancellation.refundInfo")}
+            <div className="absolute top-0 end-0 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="relative z-10 space-y-3">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/20 backdrop-blur-xs text-orange-100 text-xs font-bold uppercase tracking-wider">
+                <Truck className="w-4 h-4" />
+                {t("privacyPage.deliveryCallout.title")}
+              </span>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight">
+                {t("privacyPage.nav.deliveryLink")}
+              </h2>
+              <p className="text-xs sm:text-sm md:text-base text-orange-50 font-normal max-w-xl leading-relaxed">
+                {t("privacyPage.deliveryCallout.subtitle")}
               </p>
             </div>
+
+            <Link
+              to="/delivery-and-returns"
+              className="relative z-10 px-6 sm:px-8 py-3.5 bg-white text-orange-600 hover:bg-orange-50 font-extrabold rounded-full text-xs sm:text-sm shadow-md transition-all transform hover:-translate-y-0.5 whitespace-nowrap flex items-center gap-2 shrink-0 self-stretch sm:self-auto justify-center"
+            >
+              <span>{t("privacyPage.deliveryCallout.cta")}</span>
+              <ChevronRight className="w-4 h-4" />
+            </Link>
           </motion.div>
         </section>
 
