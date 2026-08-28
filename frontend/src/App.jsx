@@ -13,6 +13,9 @@ import OrderConfirmationPage from "./Pages/OrderConfirmationPage";
 import Profile from "./Pages/Profile";
 import Privacypolicy from "./Pages/Privacypolicy";
 import Deliveryandreturns from "./Pages/Deliveryandreturns";
+import PartnerWithUs from "./Pages/PartnerWithUs";
+import Careers from "./Pages/Careers";
+import Blog from "./Pages/Blog";
 import ProductDetail from "./Components/Products/ProductDetail";
 
 import { Toaster } from "sonner";
@@ -78,6 +81,10 @@ function App() {
             <Route path="delivery-and-returns" element={<Deliveryandreturns />} />
             <Route path="delivery-policy" element={<Deliveryandreturns />} />
             <Route path="returns-policy" element={<Deliveryandreturns />} />
+            <Route path="partner-with-us" element={<PartnerWithUs />} />
+            <Route path="franchise" element={<PartnerWithUs />} />
+            <Route path="careers" element={<Careers />} />
+            <Route path="blog" element={<Blog />} />
           </Route>
 
           {/* Admin Routes */}

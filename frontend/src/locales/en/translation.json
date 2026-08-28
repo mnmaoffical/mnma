@@ -68,7 +68,10 @@
       "contact": "Contact Us",
       "about": "About Us",
       "privacy": "Privacy Policy",
-      "delivery": "Delivery & Returns"
+      "delivery": "Delivery & Returns",
+      "franchise": "Franchise With Us",
+      "careers": "Careers",
+      "blog": "Blog"
     },
     "followUs": {
       "title": "Follow Us"
@@ -661,6 +664,127 @@
       "whatsapp": "WhatsApp Support",
       "phone": "Call Support",
       "email": "Email Support"
+    }
+  },
+  "careersPage": {
+    "hero": {
+      "badge": "Careers at Padora",
+      "title": "More than just a Job...",
+      "quote": "\"Choose a job you love, and you will never have to work a day in your life\" - CONFUCIUS",
+      "desc": "We are constantly looking for new talent to work with us. Padora welcomes applicants who are ambitious, hard-working, and smart from different countries, beliefs, and backgrounds."
+    },
+    "intro": "Listed below are our current requirements (You may still email us your resume for future requirements):",
+    "jobs": {
+      "sales": {
+        "title": "Sales Associate",
+        "desc": "If you want to apply for the Sales Associate position at Padora, please send your resume to support@padoraonline.com or contact our HR by WhatsApp at +971 52 920 5556."
+      },
+      "other": {
+        "title": "Other Positions",
+        "desc": "If you want to apply for other positions at Padora, please send your resume to support@padoraonline.com or contact our HR by WhatsApp at +971 52 920 5556."
+      }
+    }
+  },
+  "partnerPage": {
+    "title": "Partner with Padora",
+    "subtitle": "Please fill the form below if you want to be a partner or open a franchise of Padora brand in your location.",
+    "form": {
+      "name": "Your name *",
+      "email": "Your email *",
+      "phone": "Phone number *",
+      "country": "Country *",
+      "message": "Your message *",
+      "submit": "SUBMIT",
+      "submitting": "SUBMITTING...",
+      "success": "Your request has been submitted successfully! We will contact you soon.",
+      "error": "Failed to submit request. Please try again later.",
+      "validation": {
+        "name": "Name is required",
+        "email": "Valid email is required",
+        "phone": "Phone number is required",
+        "country": "Country is required",
+        "message": "Message is required"
+      }
+    }
+  },
+  "blogPage": {
+    "title": "Padora Footwear Journal",
+    "subtitle": "Curated footwear stories, styling guides, and trends crafted for the modern Gulf lifestyle — from the heart of Dubai.",
+    "readMore": "Read Article",
+    "back": "Back to Blog",
+    "posts": {
+      "post1": {
+        "title": "The Perfect Shoe for the Kandura: A Dubai Style Guide",
+        "desc": "Discover how Padora's handcrafted leather loafers complement the Emirati kandura — from marina promenades to boardroom corridors."
+      },
+      "post2": {
+        "title": "Sneakers That Move With Dubai's Pace",
+        "desc": "The modern Dubai woman needs footwear that keeps up. Our new Luxe Stride sneaker blends Italian canvas craft with all-day Gulf comfort."
+      },
+      "post3": {
+        "title": "Evening Heels for Dubai Nights",
+        "desc": "From rooftop terraces to grand ballrooms, Padora's mirror-polished strappy sandals are the ultimate statement shoe for Dubai evenings."
+      },
+      "post4": {
+        "title": "The Oxford Shoe: Power Dressing in the DIFC",
+        "desc": "Padora's Balmoral Oxford in espresso calfskin was born for Dubai's corporate world — quiet authority from lobby to boardroom."
+      },
+      "post5": {
+        "title": "Inside the Atelier: Our 72-Step Shoemaking Process",
+        "desc": "From raw hide to hand-polished masterpiece — a behind-the-scenes look at how every Padora shoe takes four days to make."
+      },
+      "post6": {
+        "title": "Premium Kids' Footwear: Style Meets Development",
+        "desc": "Padora's junior collection is engineered around pediatric foot development while still looking unmistakably cool at the Dubai park."
+      },
+      "post7": {
+        "title": "The White Sneaker Edit: Dubai's Most Versatile Shoe",
+        "desc": "From Alserkal Avenue gallery openings to Souk Al Bahar brunches — why Padora's Cloud Canvas sneaker fits every Dubai scene."
+      },
+      "post8": {
+        "title": "Kitten Heels and the Abaya: A Perfect Pairing",
+        "desc": "Padora's Jasmine kitten heel was designed from the ground up for the abaya-wearing woman who refuses to sacrifice style for modesty."
+      },
+      "post9": {
+        "title": "The Art of the Loafer: Dubai's Most Versatile Men's Shoe",
+        "desc": "From weekend casual to smart office looks — why the Casablanca Tassel Loafer is the shoe Padora's team reaches for every day."
+      },
+      "post10": {
+        "title": "Full-Grain vs Top-Grain: The Leather Guide Every Buyer Needs",
+        "desc": "A complete breakdown of leather grades, what they mean for durability, and why Padora chooses only full-grain calfskin from Italian tanneries."
+      },
+      "post11": {
+        "title": "How to Care for Leather Shoes in Dubai's Climate",
+        "desc": "Extreme heat, humidity, and air-conditioning play havoc with leather. Here is Padora's complete care protocol for Gulf conditions."
+      },
+      "post12": {
+        "title": "Back-to-School in Style: The Best School Shoes in the UAE",
+        "desc": "Padora's School Classic passes UAE uniform standards, supports growing feet, and is tough enough to survive any playground."
+      },
+      "post13": {
+        "title": "Summer Business Style: Perforated Derby Shoes for the Gulf",
+        "desc": "Our Summer Business Derby brings boardroom-ready elegance with ventilation channels engineered for Dubai's summer office days."
+      },
+      "post14": {
+        "title": "Dubai Fashion Week: Why Luxury Sneakers Are Here to Stay",
+        "desc": "This season's runways confirmed it: the Atelier Runner sneaker with Italian suede overlays is the luxury footwear statement of the year."
+      },
+      "post15": {
+        "title": "Eid Exclusive: Hand-Painted Mules in a Limited Edition of 50",
+        "desc": "Padora's Eid Al Adha limited edition — 24 hours of hand-painting per pair, signed by the artisan, with a certificate of authenticity."
+      },
+      "post16": {
+        "title": "When to Resole and When to Replace: A Shoe Repair Guide",
+        "desc": "Padora's in-house repair service uses the same artisans who build our shoes. Here is how to know when your shoes need professional care."
+      },
+      "post17": {
+        "title": "Al-Noor Wedding Collection: Footwear for Gulf Celebrations",
+        "desc": "Padora's wedding shoes with mother-of-pearl finish catch the light with every step — made to order in 8 widths for the perfect fit."
+      },
+      "post18": {
+        "title": "The First Shoe: Starting Your Child's Style Story Right",
+        "desc": "Padora's Mini collection introduces children to premium materials with age-appropriate designs that build independence and personal style."
+      }
     }
   }
 }

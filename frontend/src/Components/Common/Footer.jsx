@@ -51,7 +51,7 @@ const Footer = () => {
   return (
     <footer className="border-t border-gray-800 bg-black py-12">
       <ToastContainer position="top-right" autoClose={3000} />
-      <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4 lg:px-0">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-5 gap-8 px-4 lg:px-0">
         <div>
           <h3 className="text-sm uppercase tracking-wide text-white mb-4">{t('footer.newsletter.title')}</h3>
           <p className="text-gray-400 text-xs mb-3">
@@ -92,7 +92,6 @@ const Footer = () => {
         <div>
           <h3 className='text-sm uppercase tracking-wide text-white mb-4'>{t('footer.support.title')}</h3>
           <ul className='space-y-2 text-xs text-gray-400'>
-           
             <li>
               <Link to="/about" className='hover:text-white transition-colors'>
                 {t('footer.support.about')}
@@ -102,13 +101,13 @@ const Footer = () => {
               <Link to="/privacy-policy" className='hover:text-white transition-colors'>
                 {t('footer.support.privacy')}
               </Link>
-              </li>
+            </li>
             <li>
-                <Link to="/delivery-and-returns" className='hover:text-white transition-colors'>
+              <Link to="/delivery-and-returns" className='hover:text-white transition-colors'>
                 {t('footer.support.delivery')}
               </Link>
             </li>
-             <li>
+            <li>
               <a
                 href="/profile"
                 className="hover:text-white transition-colors"
@@ -120,7 +119,28 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className='text-sm uppercase tracking-wide text-white mb-4'>{t('footer.followUs.title')}</h3>
+          <h3 className='text-sm uppercase tracking-wide text-white mb-4'>Company</h3>
+          <ul className='space-y-2 text-xs text-gray-400'>
+            <li>
+              <Link to="/partner-with-us" className='hover:text-white transition-colors'>
+                {t('footer.support.franchise')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/careers" className='hover:text-white transition-colors'>
+                {t('footer.support.careers')}
+              </Link>
+            </li>
+            <li>
+              <Link to="/blog" className='hover:text-white transition-colors'>
+                {t('footer.support.blog')}
+              </Link>
+            </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className='text-sm uppercase tracking-wide text-white mb-4'>We Are Social</h3>
           <div className='flex items-center gap-3 mb-6 text-gray-400'>
             <a href="https://www.facebook.com/share/1CCGCbUVQy/" target='_blank' rel='noopener noreferrer' className='hover:text-white'>
               <TbBrandMeta className='h-4 w-4' />
