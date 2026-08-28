@@ -11,6 +11,7 @@ import TopItems from "./Pages/TopItems";
 import CheckoutPage from "./Pages/CheckoutPage";
 import OrderConfirmationPage from "./Pages/OrderConfirmationPage";
 import Profile from "./Pages/Profile";
+import Privacypolicy from "./Pages/Privacypolicy";
 import ProductDetail from "./Components/Products/ProductDetail";
 
 import { Toaster } from "sonner";
@@ -70,6 +71,8 @@ function App() {
               }
             />
             <Route path="profile" element={<Profile />} />
+            <Route path="privacy-policy" element={<Privacypolicy />} />
+            <Route path="Privacypolicy" element={<Privacypolicy />} />
           </Route>
 
           {/* Admin Routes */}
