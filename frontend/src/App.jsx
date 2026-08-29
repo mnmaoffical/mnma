@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-
+import ChatBot from "./Components/ChatBot";
 import UserLayout from "./Components/Layout/UserLayout";
 import Home from "./Pages/Home";
 import About from "./Pages/About";
@@ -12,10 +12,6 @@ import CheckoutPage from "./Pages/CheckoutPage";
 import OrderConfirmationPage from "./Pages/OrderConfirmationPage";
 import Profile from "./Pages/Profile";
 import Privacypolicy from "./Pages/Privacypolicy";
-import Deliveryandreturns from "./Pages/Deliveryandreturns";
-import PartnerWithUs from "./Pages/PartnerWithUs";
-import Careers from "./Pages/Careers";
-import Blog from "./Pages/Blog";
 import ProductDetail from "./Components/Products/ProductDetail";
 
 import { Toaster } from "sonner";
@@ -45,8 +41,6 @@ function App() {
         <Toaster position="top-right" />
 
         <Routes>
-          {/* Auth Routes - public, no layout */}
-       
           {/* User Routes */}
           <Route path="/" element={<UserLayout />}>
             <Route index element={<Home />} />
@@ -55,8 +49,8 @@ function App() {
             <Route path="WomensSection" element={<WomensSection />} />
             <Route path="collection" element={<AllCollection />} />
             <Route path="top-items" element={<TopItems />} />
-               <Route path="/SigninPage" element={<SigninPage />} />
-          <Route path="/SignupPage" element={<SignupPage />} />
+            <Route path="/SigninPage" element={<SigninPage />} />
+            <Route path="/SignupPage" element={<SignupPage />} />
 
             <Route path="product/:id" element={<ProductDetail />} />
             <Route
@@ -78,13 +72,6 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="privacy-policy" element={<Privacypolicy />} />
             <Route path="Privacypolicy" element={<Privacypolicy />} />
-            <Route path="delivery-and-returns" element={<Deliveryandreturns />} />
-            <Route path="delivery-policy" element={<Deliveryandreturns />} />
-            <Route path="returns-policy" element={<Deliveryandreturns />} />
-            <Route path="partner-with-us" element={<PartnerWithUs />} />
-            <Route path="franchise" element={<PartnerWithUs />} />
-            <Route path="careers" element={<Careers />} />
-            <Route path="blog" element={<Blog />} />
           </Route>
 
           {/* Admin Routes */}
@@ -103,6 +90,8 @@ function App() {
             <Route path="shops" element={<ShopManagement />} />
           </Route>
         </Routes>
+
+        <ChatBot />
       </BrowserRouter>
     </Provider>
   );
