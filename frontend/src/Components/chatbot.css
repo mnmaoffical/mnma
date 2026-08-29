@@ -1,84 +1,8 @@
-/* ===== n8n Chat Widget Custom Styling ===== */
+
 
 :root {
-  --chat--color-primary: #1a1a1a;          /* main brand color (buttons, header) */
-  --chat--color-primary-shade-50: #2a2a2a;
-  --chat--color-primary-shade-100: #3a3a3a;
-  --chat--color-secondary: #ff6b35;        /* accent color, e.g. send button */
-  --chat--color-secondary-shade-50: #e55a2b;
-
-  --chat--color-white: #ffffff;
-  --chat--color-light: #f7f7f8;
-  --chat--color-light-shade-50: #ededed;
-  --chat--color-light-shade-100: #e0e0e0;
-  --chat--color-medium: #d0d0d0;
-  --chat--color-dark: #1a1a1a;
-  --chat--color-disabled: #a0a0a0;
-  --chat--color-typing: #6b6b6b;
-
-  --chat--spacing: 1rem;
-  --chat--border-radius: 12px;
-  --chat--transition-duration: 0.2s;
-
-  --chat--window--width: 400px;
-  --chat--window--height: 600px;
-
-  --chat--header-height: auto;
-  --chat--header--padding: 1rem;
-  --chat--header--background: var(--chat--color-primary);
-  --chat--header--color: var(--chat--color-white);
-  --chat--header--border-top: none;
-  --chat--header--border-bottom: none;
-
-  --chat--toggle--background: var(--chat--color-primary);
-  --chat--toggle--hover--background: var(--chat--color-primary-shade-50);
-  --chat--toggle--active--background: var(--chat--color-primary-shade-100);
-  --chat--toggle--color: var(--chat--color-white);
-  --chat--toggle--size: 60px;
-}
-
-/* Chat bubble/toggle button */
-#n8n-chat .chat-window-toggle {
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-  bottom: 20px;
-  right: 20px;
-}
-
-/* Chat window itself */
-#n8n-chat .chat-window-wrapper {
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  border-radius: var(--chat--border-radius);
-  overflow: hidden;
-}
-
-/* ===== Responsive: Mobile ===== */
-@media (max-width: 480px) {
-  :root {
-    --chat--window--width: 100vw;
-    --chat--window--height: 100vh;
-    --chat--border-radius: 0px;
-  }
-
-  #n8n-chat .chat-window-wrapper {
-    inset: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    max-height: 100vh !important;
-    border-radius: 0 !important;
-  }
-
-  #n8n-chat .chat-window-toggle {
-    bottom: 16px;
-    right: 16px;
-    width: 56px;
-    height: 56px;
-  }
-}
-
-/* ===== Tablet ===== */
-@media (min-width: 481px) and (max-width: 768px) {
-  :root {
-    --chat--window--width: 90vw;
-    --chat--window--height: 80vh;
-  }
+  --chat--toggle--background: #000000;
+  --chat--toggle--hover--background: #000000;
+  --chat--toggle--active--background: #000000;
+  --chat--toggle--color: #ffffff;
 }
