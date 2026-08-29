@@ -62,6 +62,10 @@
       "top": "Top Products",
       "all": "All Collection"
     },
+    "company": {
+      "title": "Company"
+      
+    },
     "support": {
       "title": "Support",
       "trackOrder": "Track Your Order",
@@ -74,7 +78,7 @@
       "blog": "Blog"
     },
     "followUs": {
-      "title": "Follow Us"
+      "title": "We Are Social"
     },
     "copyright": "© {{year}} M N M A General Trading - L.L.C- S.P.C, All rights reserved."
   },

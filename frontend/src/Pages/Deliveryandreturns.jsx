@@ -507,7 +507,7 @@ const Deliveryandreturns = () => {
                 </a>
 
                 <a
-                  href="mailto:support@padoraonline.com"
+                  href="mailto:mnmasupport@gmail.com"
                   className="flex items-center justify-center gap-2 p-3.5 rounded-2xl bg-gray-900 text-white font-bold text-xs sm:text-sm hover:bg-black transition shadow-sm"
                 >
                   <Mail className="w-4 h-4" />
