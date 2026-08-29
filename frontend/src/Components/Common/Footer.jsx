@@ -119,7 +119,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className='text-sm uppercase tracking-wide text-white mb-4'>Company</h3>
+          <h3 className='text-sm uppercase tracking-wide text-white mb-4'>{t('footer.company.title')}</h3>
           <ul className='space-y-2 text-xs text-gray-400'>
             <li>
               <Link to="/partner-with-us" className='hover:text-white transition-colors'>
@@ -140,7 +140,7 @@ const Footer = () => {
         </div>
 
         <div>
-          <h3 className='text-sm uppercase tracking-wide text-white mb-4'>We Are Social</h3>
+          <h3 className='text-sm uppercase tracking-wide text-white mb-4'>{t('footer.followUs.title')}</h3>
           <div className='flex items-center gap-3 mb-6 text-gray-400'>
             <a href="https://www.facebook.com/share/1CCGCbUVQy/" target='_blank' rel='noopener noreferrer' className='hover:text-white'>
               <TbBrandMeta className='h-4 w-4' />

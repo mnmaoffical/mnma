@@ -108,7 +108,7 @@ const Careers = () => {
           </div>
           <div className="flex flex-wrap gap-3 w-full md:w-auto justify-center">
             <a
-              href="mailto:support@padoraonline.com"
+              href="mailto:mnmasupport@gmail.com"
               className="flex items-center gap-2 px-5 py-3 bg-white text-orange-600 hover:bg-orange-50 rounded-full font-bold text-xs sm:text-sm shadow-sm transition"
             >
               <Mail className="w-4 h-4" />
