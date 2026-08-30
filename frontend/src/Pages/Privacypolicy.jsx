@@ -46,36 +46,65 @@ const Privacypolicy = () => {
   };
 
   return (
-    <div className="bg-[#FAF8F5] min-h-screen text-gray-900 selection:bg-orange-500 selection:text-white pb-20">
-      {/* Hero Section */}
-      <section className="relative bg-gradient-to-b from-gray-950 via-gray-900 to-gray-900 text-white py-20 px-6 overflow-hidden">
-        {/* Glow Effects */}
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-orange-600/20 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-500/15 rounded-full blur-3xl pointer-events-none" />
+    // <div className="bg-[#FAF8F5] min-h-screen text-gray-900 selection:bg-orange-500 selection:text-white pb-20">
+    //   {/* Hero Section */}
+    //   <section className="relative bg-gradient-to-br from-orange-50/70 via-amber-50/40 to-gray-50 text-gray-900  border-b border-gray-200/70 py-20 px-6 overflow-hidden">
+    //     {/* Glow Effects */}
+    //     <div className="absolute -top-24 -left-24 w-96 h-96  bg-orange-200/40 rounded-full blur-3xl pointer-events-none" />
+    //     <div className="absolute -bottom-24 -right-24 w-96 h-96  bg-amber-200/30 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="max-w-5xl mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-semibold uppercase tracking-widest mb-6">
-              <Sparkles className="w-3.5 h-3.5" />
-              {t("privacyPage.hero.badge")}
-            </span>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r from-white via-gray-100 to-gray-400">
-              {t("privacyPage.hero.title")}
-            </h1>
-            <p className="text-gray-400 text-base md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
-              {t("privacyPage.hero.subtitle")}
-            </p>
-            <div className="mt-8 flex items-center justify-center gap-2 text-xs text-orange-400/80 font-medium">
-              <Clock className="w-3.5 h-3.5 inline" />
-              <span>{t("privacyPage.hero.lastUpdated")}</span>
+    //     <div className="max-w-5xl mx-auto text-center relative z-10">
+    //       <motion.div
+    //         initial={{ opacity: 0, y: 20 }}
+    //         animate={{ opacity: 1, y: 0 }}
+    //         transition={{ duration: 0.6 }}
+    //       >
+    //         <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-500/10 border border-orange-500/30 text-orange-400 text-xs font-semibold uppercase tracking-widest mb-6">
+    //           <Sparkles className="w-3.5 h-3.5" />
+    //           {t("privacyPage.hero.badge")}
+    //         </span>
+    //         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 bg-clip-text text-transparent bg-gradient-to-r  text-gray-900 via-gray-100 to-gray-400">
+    //           {t("privacyPage.hero.title")}
+    //         </h1>
+    //         <p className="text-gray-400 text-base md:text-xl max-w-2xl mx-auto font-light leading-relaxed">
+    //           {t("privacyPage.hero.subtitle")}
+    //         </p>
+    //         <div className="mt-8 flex items-center justify-center gap-2 text-xs text-orange-400/80 font-medium">
+    //           <Clock className="w-3.5 h-3.5 inline" />
+    //           <span>{t("privacyPage.hero.lastUpdated")}</span>
+    //         </div>
+    //       </motion.div>
+    //     </div>
+    //   </section>
+    <div className="bg-[#f8f5f0] min-h-screen text-gray-900 selection:bg-orange-500 selection:text-white pb-20">
+          {/* Light Hero Section */}
+          <section className="relative bg-gradient-to-br from-orange-50/70 via-amber-50/40 to-gray-50 text-gray-900 py-14 sm:py-20 px-4 sm:px-6 border-b border-gray-200/70 overflow-hidden">
+            <div className="absolute top-0 start-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-orange-200/40 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 end-1/4 w-72 h-72 sm:w-96 sm:h-96 bg-amber-200/30 rounded-full blur-3xl pointer-events-none" />
+    
+            <div className="max-w-5xl mx-auto text-center relative z-10">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+              >
+                <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-orange-100 border border-orange-200/80 text-orange-600 text-xs sm:text-sm font-semibold uppercase tracking-widest mb-4 sm:mb-6 shadow-2xs">
+                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-orange-500" />
+                  {t("privacyPage.hero.badge")}
+                </span>
+                <h1 className="text-3xl sm:text-5xl md:text-6xl font-extrabold tracking-tight mb-4 sm:mb-6 text-gray-900 leading-tight">
+                  {t("privacyPage.hero.title")}
+                </h1>
+                <p className="text-gray-600 text-sm sm:text-lg md:text-xl max-w-2xl mx-auto font-normal leading-relaxed px-2">
+                  {t("privacyPage.hero.subtitle")}
+                </p>
+                 <div className="mt-8 flex items-center justify-center gap-2 text-xs text-orange-400/80 font-medium">
+               <Clock className="w-3.5 h-3.5 inline" />
+             <span>{t("privacyPage.hero.lastUpdated")}</span>
+             </div>
+              </motion.div>
             </div>
-          </motion.div>
-        </div>
-      </section>
+          </section>
 
       {/* Sticky Quick Nav Bar */}
       <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm transition-all duration-200">
