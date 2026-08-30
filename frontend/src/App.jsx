@@ -11,9 +11,15 @@ import TopItems from "./Pages/TopItems";
 import CheckoutPage from "./Pages/CheckoutPage";
 import OrderConfirmationPage from "./Pages/OrderConfirmationPage";
 import Profile from "./Pages/Profile";
-import Privacypolicy from "./Pages/Privacypolicy";
-import ProductDetail from "./Components/Products/ProductDetail";
 
+import ProductDetail from "./Components/Products/ProductDetail";
+// footer section pages
+import Privacypolicy from "./Pages/Privacypolicy";
+import Deliveryandreturns from "./Pages/Deliveryandreturns";
+import PartnerWithUs from "./Pages/PartnerWithUs";
+import Careers from "./Pages/Careers";
+import Blog from "./Pages/Blog";
+  
 import { Toaster } from "sonner";
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -32,12 +38,13 @@ import OrderManagement from "./Admin/OrderManagement";
 import ShopManagement from "./Admin/ShopManagement";
 
 import { useLanguageDirection } from "./hooks/useLanguageDirection";
-
+import ScrollToTop from "./Components/ScrollToTop";
 function App() {
   useLanguageDirection();
   return (
     <Provider store={store}>
       <BrowserRouter>
+        <ScrollToTop />
         <Toaster position="top-right" />
 
         <Routes>
@@ -71,7 +78,10 @@ function App() {
             />
             <Route path="profile" element={<Profile />} />
             <Route path="privacy-policy" element={<Privacypolicy />} />
-            <Route path="Privacypolicy" element={<Privacypolicy />} />
+            <Route path="delivery-and-returns" element={<Deliveryandreturns />} />
+            <Route path="partner-with-us" element={<PartnerWithUs />} />
+            <Route path="careers" element={<Careers />} />
+            <Route path="blog" element={<Blog />} />
           </Route>
 
           {/* Admin Routes */}
